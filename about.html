@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us — YAPS MUSIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+/* ── VARIABLES ──────────────────────────────────── */
+:root{
+  --bg:#05060f;
+  --bg2:#0a0d1c;
+  --card:#0d1128;
+  --cyan:#00f5ff;
+  --purple:#a855f7;
+  --pink:#ff2d78;
+  --teal:#00e5c3;
+  --gold:#ffd700;
+  --text:#e2e8f0;
+  --muted:#64748b;
+  --glow-cyan:0 0 20px rgba(0,245,255,.45);
+  --glow-purple:0 0 20px rgba(168,85,247,.45);
+  --glow-pink:0 0 20px rgba(255,45,120,.45);
+  --r:16px;
+}
+
+/* ── RESET ──────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden;cursor:none}
+
+/* ── CUSTOM CURSOR ──────────────────────────────── */
+.cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--cyan);pointer-events:none;z-index:9999;transition:transform .1s;mix-blend-mode:screen}
+.cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--cyan);pointer-events:none;z-index:9998;transition:transform .12s,width .2s,height .2s;mix-blend-mode:screen}
+
+/* ── SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px}
+
+/* ── PARTICLES CANVAS ───────────────────────────── */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.6}
+
+/* ── NAVBAR ─────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,6,15,.75);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,245,255,.12)}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.4rem;letter-spacing:.2em;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--cyan);transition:width .3s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:8px 22px;border:1px solid var(--cyan);color:var(--cyan);border-radius:50px;font-size:.8rem;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+  transition:background .3s,box-shadow .3s}
+.nav-cta:hover{background:var(--cyan);color:var(--bg);box-shadow:var(--glow-cyan)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--cyan);border-radius:2px;transition:.3s}
+
+/* ── HERO ────────────────────────────────────────── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;padding:0 5%}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 70% 60% at 50% 40%,rgba(168,85,247,.18) 0%,transparent 70%),
+  radial-gradient(ellipse 50% 40% at 80% 60%,rgba(0,245,255,.12) 0%,transparent 65%),
+  radial-gradient(ellipse 40% 50% at 20% 70%,rgba(255,45,120,.1) 0%,transparent 60%);
+  z-index:1}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(0,245,255,.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,245,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;z-index:1;
+  mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%)}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:860px}
+.hero-badge{display:inline-block;padding:6px 18px;border:1px solid rgba(0,245,255,.3);
+  border-radius:50px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:24px;animation:fadeDown .8s ease both}
+.hero-title{font-family:'Orbitron',monospace;font-size:clamp(2.4rem,7vw,5.5rem);font-weight:900;
+  line-height:1.05;letter-spacing:.04em;animation:fadeUp .9s .2s ease both}
+.hero-title .grad{background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 50%,var(--pink) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(.9rem,2vw,1.15rem);color:var(--muted);margin:20px auto;max-width:560px;
+  line-height:1.7;animation:fadeUp .9s .4s ease both}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp .9s .6s ease both;margin-top:36px}
+.btn-primary{padding:14px 34px;background:linear-gradient(135deg,var(--cyan),var(--purple));
+  color:#fff;border:none;border-radius:50px;font-size:.9rem;font-weight:600;letter-spacing:.06em;
+  text-decoration:none;transition:transform .25s,box-shadow .25s;cursor:none}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(168,85,247,.5)}
+.btn-ghost{padding:14px 34px;border:1px solid rgba(0,245,255,.4);color:var(--cyan);
+  border-radius:50px;font-size:.9rem;letter-spacing:.06em;text-decoration:none;
+  transition:all .25s;cursor:none}
+.btn-ghost:hover{background:rgba(0,245,255,.1);box-shadow:var(--glow-cyan)}
+/* floating music icons */
+.float-icons{position:absolute;inset:0;z-index:1;pointer-events:none}
+.fi{position:absolute;font-size:1.6rem;opacity:.18;animation:floatUp linear infinite}
+.fi:nth-child(1){left:8%;animation-duration:12s;animation-delay:0s;top:90%}
+.fi:nth-child(2){left:18%;animation-duration:15s;animation-delay:2s;top:85%}
+.fi:nth-child(3){left:30%;animation-duration:11s;animation-delay:4s;top:92%}
+.fi:nth-child(4){right:12%;animation-duration:14s;animation-delay:1s;top:88%}
+.fi:nth-child(5){right:25%;animation-duration:13s;animation-delay:3s;top:94%}
+.fi:nth-child(6){right:5%;animation-duration:16s;animation-delay:6s;top:87%}
+.fi:nth-child(7){left:50%;animation-duration:10s;animation-delay:5s;top:91%}
+
+/* ── AUDIO VISUALIZER ───────────────────────────── */
+.visualizer{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:60px;
+  margin:40px auto 0;animation:fadeUp .9s .8s ease both}
+.bar{width:5px;border-radius:3px;background:linear-gradient(to top,var(--purple),var(--cyan));
+  animation:barBounce ease-in-out infinite}
+.bar:nth-child(1){height:20px;animation-duration:1.1s}
+.bar:nth-child(2){height:35px;animation-duration:.9s;animation-delay:.1s}
+.bar:nth-child(3){height:50px;animation-duration:.8s;animation-delay:.2s}
+.bar:nth-child(4){height:40px;animation-duration:1.0s;animation-delay:.15s}
+.bar:nth-child(5){height:55px;animation-duration:.85s;animation-delay:.05s}
+.bar:nth-child(6){height:45px;animation-duration:.95s;animation-delay:.25s}
+.bar:nth-child(7){height:30px;animation-duration:1.15s;animation-delay:.3s}
+.bar:nth-child(8){height:48px;animation-duration:.88s;animation-delay:.1s}
+.bar:nth-child(9){height:38px;animation-duration:1.05s;animation-delay:.2s}
+.bar:nth-child(10){height:22px;animation-duration:.92s;animation-delay:.35s}
+.bar:nth-child(11){height:42px;animation-duration:.98s;animation-delay:.08s}
+.bar:nth-child(12){height:52px;animation-duration:.82s;animation-delay:.18s}
+
+/* ── SECTIONS SHARED ────────────────────────────── */
+section{position:relative;z-index:2;padding:100px 5%}
+.section-label{font-family:'Orbitron',monospace;font-size:.7rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:14px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.8rem);
+  letter-spacing:.06em;line-height:1;margin-bottom:20px}
+.section-title .accent{color:var(--cyan)}
+.section-desc{color:var(--muted);max-width:560px;line-height:1.8;font-size:.95rem}
+
+/* glass card */
+.glass{background:rgba(13,17,40,.7);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r);backdrop-filter:blur(12px)}
+
+/* ── OUR STORY ──────────────────────────────────── */
+#story{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:56px}
+.story-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3}
+.story-img-inner{width:100%;height:100%;
+  background:linear-gradient(135deg,rgba(0,245,255,.15),rgba(168,85,247,.2)),
+  repeating-linear-gradient(45deg,rgba(0,245,255,.04) 0,rgba(0,245,255,.04) 1px,transparent 0,transparent 50%);
+  background-size:cover,20px 20px;
+  display:flex;align-items:center;justify-content:center;font-size:5rem;
+  border:1px solid rgba(0,245,255,.15);border-radius:var(--r)}
+.story-img::before{content:'';position:absolute;inset:0;border-radius:var(--r);
+  background:linear-gradient(135deg,rgba(0,245,255,.08),transparent);z-index:1}
+/* timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--cyan),var(--purple),transparent)}
+.tl-item{position:relative;margin-bottom:32px;opacity:0;transform:translateX(-20px);transition:.6s}
+.tl-item.visible{opacity:1;transform:none}
+.tl-dot{position:absolute;left:-28px;top:4px;width:13px;height:13px;border-radius:50%;
+  background:var(--cyan);box-shadow:var(--glow-cyan)}
+.tl-year{font-family:'Orbitron',monospace;font-size:.72rem;color:var(--cyan);letter-spacing:.1em;margin-bottom:4px}
+.tl-title{font-weight:600;margin-bottom:4px;font-size:.95rem}
+.tl-body{color:var(--muted);font-size:.85rem;line-height:1.6}
+
+/* ── MISSION / VISION ───────────────────────────── */
+#mission{background:var(--bg2)}
+.mv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:56px}
+.mv-card{padding:36px 28px;border-radius:var(--r);position:relative;overflow:hidden;
+  opacity:0;transform:translateY(30px);transition:.6s}
+.mv-card.visible{opacity:1;transform:none}
+.mv-card.mission-c{border:1px solid rgba(0,245,255,.2);background:rgba(0,245,255,.04)}
+.mv-card.vision-c{border:1px solid rgba(168,85,247,.2);background:rgba(168,85,247,.04)}
+.mv-card.values-c{border:1px solid rgba(255,45,120,.2);background:rgba(255,45,120,.04)}
+.mv-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at 50% 50%,currentColor,transparent 60%);
+  opacity:.04;pointer-events:none}
+.mv-icon{font-size:2.4rem;margin-bottom:18px}
+.mv-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;
+  letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase}
+.mission-c .mv-title{color:var(--cyan)}
+.vision-c .mv-title{color:var(--purple)}
+.values-c .mv-title{color:var(--pink)}
+.mv-list{list-style:none;color:var(--muted);font-size:.88rem;line-height:1.9}
+.mv-list li::before{content:'◈ ';opacity:.5}
+
+/* ── STATS ───────────────────────────────────────── */
+#stats{position:relative;overflow:hidden;background:var(--bg)}
+.stats-bg{position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,245,255,.06),transparent)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;
+  border:1px solid rgba(0,245,255,.1);border-radius:var(--r);overflow:hidden;margin-top:60px}
+.stat-item{padding:40px 24px;text-align:center;border-right:1px solid rgba(0,245,255,.07);
+  position:relative;overflow:hidden;transition:.3s}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:rgba(0,245,255,.04)}
+.stat-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));transform:scaleX(0);
+  transition:transform .3s;transform-origin:left}
+.stat-item:hover::after{transform:scaleX(1)}
+.stat-num{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{color:var(--muted);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  margin-top:6px}
+.stat-icon{font-size:1.8rem;margin-bottom:10px;opacity:.7}
+
+/* ── WHY CHOOSE US ───────────────────────────────── */
+#why{background:var(--bg2)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:56px}
+.why-card{padding:28px 22px;border-radius:var(--r);border:1px solid rgba(255,255,255,.06);
+  background:var(--card);position:relative;overflow:hidden;cursor:default;
+  opacity:0;transform:translateY(20px);transition:.5s}
+.why-card.visible{opacity:1;transform:none}
+.why-card::before{content:'';position:absolute;inset:0;border-radius:var(--r);
+  background:linear-gradient(135deg,var(--glow-start),transparent);
+  opacity:0;transition:opacity .3s}
+.why-card:hover::before{opacity:1}
+.why-card:hover{transform:translateY(-6px)!important;border-color:rgba(0,245,255,.3)}
+.why-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:1.3rem;margin-bottom:16px;
+  background:linear-gradient(135deg,rgba(0,245,255,.15),rgba(168,85,247,.1))}
+.why-title{font-weight:600;margin-bottom:8px;font-size:.95rem}
+.why-desc{color:var(--muted);font-size:.83rem;line-height:1.65}
+
+/* ── TEAM ────────────────────────────────────────── */
+#team{background:var(--bg)}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:56px}
+.team-card{perspective:1000px}
+.team-inner{position:relative;transition:transform .7s;transform-style:preserve-3d;border-radius:var(--r)}
+.team-card:hover .team-inner{transform:rotateY(180deg)}
+.team-front,.team-back{backface-visibility:hidden;border-radius:var(--r);padding:32px 20px;
+  text-align:center;border:1px solid rgba(255,255,255,.07);background:var(--card)}
+.team-back{position:absolute;inset:0;transform:rotateY(180deg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(0,245,255,.1),rgba(168,85,247,.1));
+  border-color:rgba(0,245,255,.2)}
+.team-avatar{width:90px;height:90px;border-radius:50%;border:2px solid var(--cyan);
+  margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;background:linear-gradient(135deg,rgba(0,245,255,.15),rgba(168,85,247,.15));
+  box-shadow:0 0 25px rgba(0,245,255,.25)}
+.team-name{font-weight:600;font-size:1rem;margin-bottom:4px}
+.team-role{color:var(--cyan);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.team-bio{color:var(--muted);font-size:.82rem;line-height:1.6;margin-bottom:16px}
+.social-links{display:flex;gap:10px;justify-content:center}
+.social-links a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,245,255,.3);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+  color:var(--cyan);text-decoration:none;transition:.25s}
+.social-links a:hover{background:var(--cyan);color:var(--bg)}
+
+/* ── ARTIST SHOWCASE ─────────────────────────────── */
+#artists{background:var(--bg2);overflow:hidden}
+.carousel-track{display:flex;gap:20px;margin-top:48px;animation:scroll 22s linear infinite}
+.carousel-track:hover{animation-play-state:paused}
+.artist-card{flex:0 0 200px;border-radius:var(--r);border:1px solid rgba(255,255,255,.07);
+  background:var(--card);padding:24px 16px;text-align:center;position:relative;overflow:hidden}
+.artist-card::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(168,85,247,.06));
+  opacity:0;transition:.3s}
+.artist-card:hover::before{opacity:1}
+.artist-card:hover{transform:scale(1.04)}
+.artist-avatar{width:70px;height:70px;border-radius:50%;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+  border:2px solid var(--purple);background:rgba(168,85,247,.1)}
+.artist-name{font-weight:600;font-size:.9rem;margin-bottom:4px}
+.artist-genre{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.07em}
+.play-btn{margin-top:14px;padding:7px 18px;border:1px solid var(--pink);
+  color:var(--pink);border-radius:50px;font-size:.75rem;
+  background:rgba(255,45,120,.05);cursor:none;transition:.25s;display:inline-block}
+.artist-card:hover .play-btn{background:var(--pink);color:#fff}
+
+/* ── TESTIMONIALS ────────────────────────────────── */
+#testimonials{background:var(--bg)}
+.testi-slider{position:relative;overflow:hidden;margin-top:56px}
+.testi-track{display:flex;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.testi-item{flex:0 0 100%;padding:0 4%}
+.testi-card{padding:40px 36px;border-radius:var(--r);
+  border:1px solid rgba(0,245,255,.12);
+  background:linear-gradient(135deg,rgba(0,245,255,.04),rgba(168,85,247,.04))}
+.testi-quote{font-size:clamp(1rem,2vw,1.15rem);line-height:1.8;margin-bottom:24px;
+  position:relative;padding-left:24px}
+.testi-quote::before{content:'"';position:absolute;left:0;top:-8px;
+  font-size:3rem;color:var(--cyan);opacity:.4;font-family:'Bebas Neue',sans-serif}
+.testi-stars{color:var(--gold);letter-spacing:3px;margin-bottom:16px;font-size:1rem}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-av{width:48px;height:48px;border-radius:50%;border:2px solid var(--purple);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  background:rgba(168,85,247,.12)}
+.testi-name{font-weight:600;font-size:.9rem}
+.testi-handle{color:var(--muted);font-size:.78rem}
+.testi-dots{display:flex;gap:10px;justify-content:center;margin-top:28px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);
+  cursor:pointer;transition:.3s}
+.dot.active{background:var(--cyan);width:24px;border-radius:4px}
+.testi-nav{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.testi-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(0,245,255,.3);
+  background:transparent;color:var(--cyan);font-size:1.1rem;cursor:pointer;transition:.25s}
+.testi-btn:hover{background:var(--cyan);color:var(--bg)}
+
+/* ── VIDEO SECTION ───────────────────────────────── */
+#video{background:var(--bg2);text-align:center}
+.video-container{position:relative;margin:56px auto 0;max-width:800px;
+  border-radius:var(--r);overflow:hidden;border:1px solid rgba(0,245,255,.15);
+  aspect-ratio:16/9;cursor:pointer}
+.video-thumb{width:100%;height:100%;object-fit:cover;display:block}
+.video-placeholder{width:100%;height:100%;
+  background:linear-gradient(135deg,rgba(0,245,255,.1),rgba(168,85,247,.15));
+  display:flex;align-items:center;justify-content:center}
+.vinyl{width:200px;height:200px;border-radius:50%;
+  background:conic-gradient(var(--bg) 0%,#1a1a3e 10%,var(--bg) 20%,#1a1a3e 30%,var(--bg) 40%,#1a1a3e 50%,var(--bg) 60%,#1a1a3e 70%,var(--bg) 80%,#1a1a3e 90%,var(--bg) 100%);
+  border:3px solid var(--purple);box-shadow:0 0 40px rgba(168,85,247,.3);
+  animation:spin 8s linear infinite;position:relative}
+.vinyl::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:40px;height:40px;border-radius:50%;background:var(--bg);
+  border:2px solid var(--cyan);box-shadow:var(--glow-cyan)}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.3)}
+.play-circle{width:72px;height:72px;border-radius:50%;border:2px solid var(--cyan);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--cyan);
+  transition:.3s;box-shadow:var(--glow-cyan)}
+.video-container:hover .play-circle{transform:scale(1.15);background:rgba(0,245,255,.15)}
+
+/* ── NEWSLETTER ──────────────────────────────────── */
+#newsletter{background:var(--bg);position:relative;overflow:hidden}
+.newsletter-inner{max-width:600px;margin:0 auto;text-align:center}
+.nl-bg{position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(168,85,247,.08),transparent)}
+.nl-form{display:flex;gap:10px;margin-top:36px;flex-wrap:wrap;justify-content:center}
+.nl-input{flex:1;min-width:220px;padding:14px 20px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(0,245,255,.2);border-radius:50px;
+  color:var(--text);font-family:'Poppins',sans-serif;font-size:.9rem;outline:none;
+  transition:border-color .3s}
+.nl-input:focus{border-color:var(--cyan);box-shadow:var(--glow-cyan)}
+.nl-input::placeholder{color:var(--muted)}
+.nl-btn{padding:14px 30px;background:linear-gradient(135deg,var(--cyan),var(--purple));
+  color:#fff;border:none;border-radius:50px;font-weight:600;font-size:.9rem;
+  cursor:pointer;transition:.25s;white-space:nowrap}
+.nl-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(168,85,247,.4)}
+.nl-success{display:none;color:var(--cyan);margin-top:14px;font-size:.9rem}
+
+/* ── SOCIAL ──────────────────────────────────────── */
+#social{background:var(--bg2);text-align:center}
+.social-grid{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:48px}
+.soc-btn{display:flex;align-items:center;gap:10px;padding:14px 24px;
+  border-radius:50px;border:1px solid rgba(255,255,255,.1);
+  background:var(--card);text-decoration:none;color:var(--text);
+  font-size:.88rem;font-weight:500;transition:.3s;position:relative;overflow:hidden}
+.soc-btn::before{content:'';position:absolute;inset:0;
+  background:var(--sc);opacity:0;transition:.3s}
+.soc-btn:hover::before{opacity:.12}
+.soc-btn:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.2)}
+.soc-icon{font-size:1.2rem}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(0,245,255,.08);padding:60px 5% 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:14px}
+.footer-desc{color:var(--muted);font-size:.85rem;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:18px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s}
+.footer-col ul a:hover{color:var(--text)}
+.footer-bottom{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:12px;
+  color:var(--muted);font-size:.78rem}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom a{color:var(--muted);text-decoration:none;transition:.2s}
+.footer-bottom a:hover{color:var(--cyan)}
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes floatUp{from{transform:translateY(0) rotate(0deg);opacity:.18}to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+@keyframes barBounce{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+@keyframes scroll{to{transform:translateX(calc(-200px * 8 - 20px * 8))}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,245,255,.4)}50%{box-shadow:0 0 0 12px rgba(0,245,255,0)}}
+@keyframes noteFloat{0%{transform:translateY(0) rotate(-10deg);opacity:.6}100%{transform:translateY(-80px) rotate(20deg);opacity:0}}
+
+/* scroll reveal base */
+.reveal{opacity:0;transform:translateY(40px);transition:.7s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:900px){
+  .story-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  nav.open .nav-links{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;
+    background:rgba(5,6,15,.96);padding:24px;gap:1.2rem;border-bottom:1px solid rgba(0,245,255,.12)}
+  nav.open .nav-cta{display:block;margin:0 24px;text-align:center}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(0,245,255,.07)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .nl-form{flex-direction:column;align-items:center}
+  .nl-input{width:100%;max-width:360px}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Particles -->
+<canvas id="particles"></canvas>
+
+<!-- ── NAVBAR ─────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">YAPS MUSIC</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#artists">Artists</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <a href="#newsletter" class="nav-cta">Join Free</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="float-icons">
+    <span class="fi">♪</span><span class="fi">♫</span><span class="fi">🎵</span>
+    <span class="fi">🎶</span><span class="fi">♩</span><span class="fi">🎸</span><span class="fi">🎤</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🎵 The Sound of Tomorrow</div>
+    <h1 class="hero-title">
+      Connecting<br/><span class="grad">Artists With</span><br/>The World
+    </h1>
+    <p class="hero-sub">YAPS MUSIC is the gateway for emerging artists to share their talent globally — streaming, downloads, discovery, and promotion all in one place.</p>
+    <div class="hero-btns">
+      <a href="#story" class="btn-primary">Discover Our Story</a>
+      <a href="#artists" class="btn-ghost">▶ Featured Artists</a>
+    </div>
+    <div class="visualizer">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OUR STORY ──────────────────────────────────── -->
+<section id="story">
+  <span class="section-label">Our Journey</span>
+  <h2 class="section-title">The <span class="accent">YAPS</span> Story</h2>
+  <p class="section-desc">From a small studio dream to a global music platform empowering thousands of artists across Africa and beyond.</p>
+  <div class="story-grid">
+    <div class="story-img reveal">
+      <div class="story-img-inner">🎙️</div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2020</div>
+        <div class="tl-title">The Beginning</div>
+        <div class="tl-body">YAPS MUSIC was founded with a single mission — give upcoming African artists a platform to share their talent with the world without barriers.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2021</div>
+        <div class="tl-title">First 1,000 Artists</div>
+        <div class="tl-body">We hit our first major milestone — 1,000 registered artists across 8 countries, with over 10,000 tracks uploaded to the platform.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2022</div>
+        <div class="tl-title">Global Expansion</div>
+        <div class="tl-body">YAPS MUSIC expanded to 20+ countries, launching our artist promotion program that helped hundreds of creators grow their fanbase.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2024</div>
+        <div class="tl-title">1 Million Listeners</div>
+        <div class="tl-body">We proudly crossed 1 million active listeners — proving that authentic, independent music resonates across cultures and continents.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">NOW</div>
+        <div class="tl-title">The Future is Sound</div>
+        <div class="tl-body">With new features, artist monetization, and live sessions rolling out — the best chapter of YAPS MUSIC is just beginning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MISSION / VISION ───────────────────────────── -->
+<section id="mission">
+  <span class="section-label">Purpose & Direction</span>
+  <h2 class="section-title">Mission &amp; <span class="accent">Vision</span></h2>
+  <p class="section-desc">We exist to empower creators and build bridges between artists and their audience.</p>
+  <div class="mv-grid">
+    <div class="mv-card mission-c glass">
+      <div class="mv-icon">🎯</div>
+      <div class="mv-title">Our Mission</div>
+      <ul class="mv-list">
+        <li>Empower upcoming artists globally</li>
+        <li>Remove barriers to music distribution</li>
+        <li>Deliver high-quality streaming</li>
+        <li>Build artist-first communities</li>
+        <li>Support independent creators</li>
+      </ul>
+    </div>
+    <div class="mv-card vision-c glass">
+      <div class="mv-icon">🔭</div>
+      <div class="mv-title">Our Vision</div>
+      <ul class="mv-list">
+        <li>Africa's #1 music platform by 2027</li>
+        <li>50K active artists on the platform</li>
+        <li>Fair royalty system for all creators</li>
+        <li>Live concert streaming globally</li>
+        <li>AI-powered music discovery</li>
+      </ul>
+    </div>
+    <div class="mv-card values-c glass">
+      <div class="mv-icon">💡</div>
+      <div class="mv-title">Our Values</div>
+      <ul class="mv-list">
+        <li>Authenticity over algorithms</li>
+        <li>Community before profit</li>
+        <li>Diversity in every beat</li>
+        <li>Transparency with artists</li>
+        <li>Innovation in every feature</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ──────────────────────────────────────── -->
+<section id="stats">
+  <div class="stats-bg"></div>
+  <span class="section-label">By The Numbers</span>
+  <h2 class="section-title">Our <span class="accent">Impact</span></h2>
+  <div class="stats-grid reveal">
+    <div class="stat-item">
+      <div class="stat-icon">🎵</div>
+      <div class="stat-num" data-target="10000">0</div>
+      <div class="stat-label">Songs Uploaded</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🎤</div>
+      <div class="stat-num" data-target="5000">0</div>
+      <div class="stat-label">Active Artists</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">👂</div>
+      <div class="stat-num" data-target="1000000">0</div>
+      <div class="stat-label">Monthly Listeners</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🌍</div>
+      <div class="stat-num" data-target="20">0</div>
+      <div class="stat-label">Countries Reached</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-num" data-target="98">0</div>
+      <div class="stat-label">% Satisfaction Rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ──────────────────────────────── -->
+<section id="why">
+  <span class="section-label">Why YAPS</span>
+  <h2 class="section-title">Why <span class="accent">Choose Us</span></h2>
+  <p class="section-desc">We're not just a streaming platform — we're your music career partner.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎧</div>
+      <div class="why-title">HD Audio Streaming</div>
+      <div class="why-desc">Crystal clear, lossless quality streaming so your fans hear every detail of your art exactly as intended.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Fast Downloads</div>
+      <div class="why-desc">Lightning-fast download speeds across all devices, even in areas with limited connectivity.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📢</div>
+      <div class="why-title">Artist Promotion</div>
+      <div class="why-desc">Our built-in promotional tools put your music in front of new audiences every single day.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💻</div>
+      <div class="why-title">Modern Interface</div>
+      <div class="why-desc">A sleek, intuitive experience that works beautifully on every device — phone, tablet, or desktop.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">Secure Platform</div>
+      <div class="why-desc">Your music and data are protected with enterprise-grade security. Your art stays yours.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Fair Royalties</div>
+      <div class="why-desc">Transparent royalty distribution so artists earn what they deserve from every stream and download.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ───────────────────────────────────────── -->
+<section id="team">
+  <span class="section-label">The People Behind The Music</span>
+  <h2 class="section-title">Meet The <span class="accent">Team</span></h2>
+  <p class="section-desc">A passionate group of music lovers, technologists, and creators building the future of sound.</p>
+  <div class="team-grid" style="margin-top:56px">
+    <div class="team-card reveal">
+      <div class="team-inner">
+        <div class="team-front glass">
+          <div class="team-avatar">👑</div>
+          <div class="team-name">Yaps Founder</div>
+          <div class="team-role">Founder & CEO</div>
+        </div>
+        <div class="team-back">
+          <div class="team-bio">Visionary music entrepreneur with a passion for African talent. Founded YAPS to bridge the gap between artists and global audiences.</div>
+          <div class="social-links">
+            <a href="#">𝕏</a><a href="#">in</a><a href="#">@</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-inner">
+        <div class="team-front glass">
+          <div class="team-avatar">🎛️</div>
+          <div class="team-name">Alex Beats</div>
+          <div class="team-role">Music Producer</div>
+        </div>
+        <div class="team-back">
+          <div class="team-bio">Multi-platinum producer with 15+ years crafting the sonic landscape of YAPS and guiding our featured artists.</div>
+          <div class="social-links">
+            <a href="#">𝕏</a><a href="#">in</a><a href="#">@</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-inner">
+        <div class="team-front glass">
+          <div class="team-avatar">⚙️</div>
+          <div class="team-name">Zara Dev</div>
+          <div class="team-role">Lead Developer</div>
+        </div>
+        <div class="team-back">
+          <div class="team-bio">Full-stack engineer building the tech that powers 1M+ listening sessions. Previously at Spotify and SoundCloud.</div>
+          <div class="social-links">
+            <a href="#">𝕏</a><a href="#">in</a><a href="#">@</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-inner">
+        <div class="team-front glass">
+          <div class="team-avatar">✍️</div>
+          <div class="team-name">Mia Content</div>
+          <div class="team-role">Content Manager</div>
+        </div>
+        <div class="team-back">
+          <div class="team-bio">Storyteller and curator who ensures every artist's voice is heard. Managing all editorial and social content strategy.</div>
+          <div class="social-links">
+            <a href="#">𝕏</a><a href="#">in</a><a href="#">@</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ARTIST SHOWCASE ────────────────────────────── -->
+<section id="artists">
+  <span class="section-label">Featured Talent</span>
+  <h2 class="section-title">Artist <span class="accent">Showcase</span></h2>
+  <p class="section-desc">Discover the breakthrough talents making waves on YAPS MUSIC right now.</p>
+  <div style="overflow:hidden;margin:0 -5%">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Cards repeated for infinite scroll -->
+      <div class="artist-card glass"><div class="artist-avatar">🎤</div><div class="artist-name">Kofi Rhythms</div><div class="artist-genre">Afrobeats</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎸</div><div class="artist-name">Luna Wave</div><div class="artist-genre">Afro-Soul</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🥁</div><div class="artist-name">Drums X</div><div class="artist-genre">Afropop</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎹</div><div class="artist-name">Nadia Keys</div><div class="artist-genre">R&B</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎺</div><div class="artist-name">Brass King</div><div class="artist-genre">Afrojazz</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎵</div><div class="artist-name">Skai Beats</div><div class="artist-genre">Trap</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🔊</div><div class="artist-name">EchoVoice</div><div class="artist-genre">Neo-Soul</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🌟</div><div class="artist-name">Zuri Star</div><div class="artist-genre">Gospel Fusion</div><div class="play-btn">▶ Preview</div></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="artist-card glass"><div class="artist-avatar">🎤</div><div class="artist-name">Kofi Rhythms</div><div class="artist-genre">Afrobeats</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎸</div><div class="artist-name">Luna Wave</div><div class="artist-genre">Afro-Soul</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🥁</div><div class="artist-name">Drums X</div><div class="artist-genre">Afropop</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎹</div><div class="artist-name">Nadia Keys</div><div class="artist-genre">R&B</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎺</div><div class="artist-name">Brass King</div><div class="artist-genre">Afrojazz</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🎵</div><div class="artist-name">Skai Beats</div><div class="artist-genre">Trap</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🔊</div><div class="artist-name">EchoVoice</div><div class="artist-genre">Neo-Soul</div><div class="play-btn">▶ Preview</div></div>
+      <div class="artist-card glass"><div class="artist-avatar">🌟</div><div class="artist-name">Zuri Star</div><div class="artist-genre">Gospel Fusion</div><div class="play-btn">▶ Preview</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────── -->
+<section id="testimonials">
+  <span class="section-label">What They're Saying</span>
+  <h2 class="section-title">Artist <span class="accent">Testimonials</span></h2>
+  <div class="testi-slider">
+    <div class="testi-track" id="testiTrack">
+      <div class="testi-item">
+        <div class="testi-card glass">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">YAPS MUSIC completely changed my career. Within 3 months of uploading my first album, I had listeners in 12 different countries. The artist promotion tools are unlike anything else out there.</p>
+          <div class="testi-author">
+            <div class="testi-av">🎤</div>
+            <div><div class="testi-name">Kofi Rhythms</div><div class="testi-handle">Afrobeats Artist • Ghana</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-item">
+        <div class="testi-card glass">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">As an independent artist, I always struggled to get my music heard. YAPS gave me the platform, the tools, and the community I needed. My fan base grew 300% in one year.</p>
+          <div class="testi-author">
+            <div class="testi-av">🎸</div>
+            <div><div class="testi-name">Luna Wave</div><div class="testi-handle">Afro-Soul Singer • Nigeria</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-item">
+        <div class="testi-card glass">
+          <div class="testi-stars">★★★★☆</div>
+          <p class="testi-quote">The streaming quality on YAPS is exceptional. My fans always message me saying how clear the audio sounds. This platform truly respects the artistry behind every track.</p>
+          <div class="testi-author">
+            <div class="testi-av">🎹</div>
+            <div><div class="testi-name">Nadia Keys</div><div class="testi-handle">R&B Producer • South Africa</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testi-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+  </div>
+  <div class="testi-nav">
+    <button class="testi-btn" onclick="prevSlide()">←</button>
+    <button class="testi-btn" onclick="nextSlide()">→</button>
+  </div>
+</section>
+
+<!-- ── VIDEO SECTION ──────────────────────────────── -->
+<section id="video">
+  <span class="section-label">See Us In Action</span>
+  <h2 class="section-title">Studio <span class="accent">Sessions</span></h2>
+  <p class="section-desc" style="margin:0 auto">Go behind the scenes and see how YAPS MUSIC brings artists to life.</p>
+  <div class="video-container" onclick="openVideo()">
+    <div class="video-placeholder">
+      <div class="vinyl"></div>
+    </div>
+    <div class="play-overlay">
+      <div class="play-circle">▶</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ─────────────────────────────────── -->
+<section id="newsletter">
+  <div class="nl-bg"></div>
+  <div class="newsletter-inner reveal">
+    <span class="section-label">Stay Connected</span>
+    <h2 class="section-title">Never Miss a <span class="accent">Beat</span></h2>
+    <p class="section-desc" style="margin:0 auto 8px">Subscribe to get new artist drops, features, and platform updates delivered to your inbox.</p>
+    <div class="nl-form">
+      <input type="email" class="nl-input" placeholder="Enter your email address" id="nlEmail"/>
+      <button class="nl-btn" onclick="subscribeNL()">Subscribe Free →</button>
+    </div>
+    <p class="nl-success" id="nlSuccess">🎵 You're in! Welcome to the YAPS family.</p>
+  </div>
+</section>
+
+<!-- ── SOCIAL ─────────────────────────────────────── -->
+<section id="social">
+  <span class="section-label">Follow The Sound</span>
+  <h2 class="section-title">Find Us <span class="accent">Everywhere</span></h2>
+  <div class="social-grid">
+    <a class="soc-btn" href="#" style="--sc:linear-gradient(135deg,#e1306c,#f77737)">
+      <span class="soc-icon">📸</span> Instagram
+    </a>
+    <a class="soc-btn" href="#" style="--sc:linear-gradient(135deg,#00f2ea,#ff0050)">
+      <span class="soc-icon">🎵</span> TikTok
+    </a>
+    <a class="soc-btn" href="#" style="--sc:linear-gradient(135deg,#1877f2,#0050a0)">
+      <span class="soc-icon">👥</span> Facebook
+    </a>
+    <a class="soc-btn" href="#" style="--sc:linear-gradient(135deg,#ff0000,#cc0000)">
+      <span class="soc-icon">▶️</span> YouTube
+    </a>
+    <a class="soc-btn" href="#" style="--sc:linear-gradient(135deg,#1da1f2,#0d8bd9)">
+      <span class="soc-icon">𝕏</span> X / Twitter
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">YAPS MUSIC</div>
+      <p class="footer-desc">Connecting artists with the world through the universal language of music. Your sound deserves to be heard.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#">Browse Music</a></li>
+        <li><a href="#">Top Artists</a></li>
+        <li><a href="#">New Releases</a></li>
+        <li><a href="#">Playlists</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>For Artists</h4>
+      <ul>
+        <li><a href="#">Upload Music</a></li>
+        <li><a href="#">Artist Dashboard</a></li>
+        <li><a href="#">Promotion Tools</a></li>
+        <li><a href="#">Royalties</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Press Kit</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 YAPS MUSIC. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ────────────────────────────────────── -->
+<script>
+/* --- CURSOR --- */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-6+'px';cur.style.top=my-6+'px'});
+function animRing(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button,.testi-btn,.dot,.play-btn,.soc-btn,.btn-primary,.btn-ghost,.nl-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='56px';ring.style.height='56px';ring.style.marginLeft='-10px';ring.style.marginTop='-10px'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.marginLeft='0';ring.style.marginTop='0'})
+});
+
+/* --- PARTICLES --- */
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+let W,H,dots=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+const COLORS=['#00f5ff','#a855f7','#ff2d78','#00e5c3'];
+for(let i=0;i<80;i++)dots.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.8+.4,c:COLORS[Math.floor(Math.random()*COLORS.length)]});
+function drawParticles(){
+  ctx.clearRect(0,0,W,H);
+  dots.forEach(d=>{
+    d.x+=d.vx;d.y+=d.vy;
+    if(d.x<0||d.x>W)d.vx*=-1;
+    if(d.y<0||d.y>H)d.vy*=-1;
+    ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    ctx.fillStyle=d.c;ctx.fill();
+  });
+  dots.forEach((a,i)=>dots.forEach((b,j)=>{if(j<=i)return;const dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(0,245,255,${.12*(1-dist/120)})`;ctx.lineWidth=.5;ctx.stroke()}}));
+  requestAnimationFrame(drawParticles)
+}
+drawParticles();
+
+/* --- NAVBAR scroll --- */
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>40?'rgba(5,6,15,.95)':'rgba(5,6,15,.75)'});
+
+/* --- HAMBURGER --- */
+document.getElementById('hamburger').addEventListener('click',()=>nav.classList.toggle('open'));
+
+/* --- SCROLL REVEAL --- */
+const revealEls=document.querySelectorAll('.reveal,.tl-item,.mv-card,.why-card,.team-card');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12});
+revealEls.forEach(el=>obs.observe(el));
+
+/* --- COUNT-UP --- */
+function countUp(el){
+  const target=+el.dataset.target;
+  let count=0;
+  const step=target/80;
+  const t=setInterval(()=>{
+    count=Math.min(count+step,target);
+    el.textContent=target>=10000?Math.floor(count).toLocaleString():Math.floor(count)+(target===98?'%':'+');
+    if(count>=target)clearInterval(t)
+  },20)
+}
+const statsObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.stat-num').forEach(countUp);statsObs.disconnect()}})},{threshold:.3});
+const statsEl=document.querySelector('.stats-grid');
+if(statsEl)statsObs.observe(statsEl);
+
+/* --- TESTIMONIAL SLIDER --- */
+let slide=0,autoT;
+function goSlide(n){
+  slide=n;
+  document.getElementById('testiTrack').style.transform=`translateX(-${n*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===n))
+}
+function nextSlide(){goSlide((slide+1)%3)}
+function prevSlide(){goSlide((slide+2)%3)}
+autoT=setInterval(nextSlide,5000);
+document.querySelector('.testi-slider').addEventListener('mouseenter',()=>clearInterval(autoT));
+document.querySelector('.testi-slider').addEventListener('mouseleave',()=>{autoT=setInterval(nextSlide,5000)});
+
+/* --- VIDEO OPEN --- */
+function openVideo(){
+  const v=document.querySelector('.video-container');
+  v.innerHTML='<iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen style="display:block;border-radius:16px"></iframe>'
+}
+
+/* --- NEWSLETTER --- */
+function subscribeNL(){
+  const v=document.getElementById('nlEmail').value;
+  if(v&&v.includes('@')){
+    document.getElementById('nlSuccess').style.display='block';
+    document.getElementById('nlEmail').value='';
+    document.querySelector('.nl-btn').textContent='✓ Subscribed!';
+  }
+}
+
+/* --- SMOOTH ACTIVE LINKS --- */
+window.addEventListener('scroll',()=>{
+  const sections=['hero','story','mission','stats','why','team','artists','testimonials','video','newsletter'];
+  let cur='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-80)cur=id
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    const href=a.getAttribute('href').replace('#','');
+    a.style.color=href===cur?'var(--cyan)':'';
+  })
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SECURITY ALERT: SYSTEM COMPROMISED</title>
+    <style>
+        :root {
+            --alert-red: #ff0000;
+            --glass-bg: rgba(0, 0, 0, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            background-color: #050000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Emergency Flash Background */
+        .emergency-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('Assets/hacker1.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            animation: siren-flash 0.8s infinite;
+        }
+
+        @keyframes siren-flash {
+            0%, 100% { opacity: 0.1; filter: saturate(1) hue-rotate(0deg); }
+            50% { opacity: 0.6; filter: saturate(5) hue-rotate(-20deg) drop-shadow(0 0 50px red); background-color: red; }
+        }
+
+        /* Glassmorphic Container */
+        .alert-container {
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            z-index: 10;
+        }
+
+        /* Glitch Effect */
+        .glitch-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            color: var(--alert-red);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: "SYSTEM COMPROMISED";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 blue;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 red;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 1s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 50px, 0); }
+            20% { clip: rect(80px, 9999px, 90px, 0); }
+            40% { clip: rect(30px, 9999px, 60px, 0); }
+            60% { clip: rect(70px, 9999px, 100px, 0); }
+            80% { clip: rect(10px, 9999px, 40px, 0); }
+            100% { clip: rect(50px, 9999px, 80px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(60px, 9999px, 70px, 0); }
+            100% { clip: rect(20px, 9999px, 30px, 0); }
+        }
+
+        .status-msg {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Secure Button */
+        #secure-btn {
+            background: var(--alert-red);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
+
+        #secure-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+        }
+
+        #secure-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 480px) {
+            .glitch-text { font-size: 1.8rem; }
+            .alert-container { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="emergency-overlay"></div>
+
+    <div class="alert-container">
+        <div class="glitch-text" style="color: #17fa17;">YOUR SYSTEM COMPROMISED</div>
+        <p class="status-msg">
+            Unauthorized intrusion detected in Sector 7-G.<br>
+            Encryption protocols failing.
+        </p>
+        <button id="secure-btn">SECURE DEVICE</button>
+    </div>
+
+    <script>
+        const secureBtn = document.getElementById('secure-btn');
+        let audioCtx;
+        let isSecuring = false;
+
+        secureBtn.addEventListener('click', () => {
+            if (isSecuring) return;
+            isSecuring = true;
+            
+            secureBtn.innerText = "SECURING...";
+            secureBtn.style.opacity = "0.7";
+
+            // Initialize Web Audio API
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            startEmergencyBeep();
+            triggerVoiceAlert();
+        });
+
+        function startEmergencyBeep() {
+            // Create looping beep
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // A5 note
+
+            // Pulsing volume for the beep
+            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            
+            const now = audioCtx.currentTime;
+            for(let i = 0; i < 100; i++) {
+                gainNode.gain.exponentialRampToValueAtTime(0.2, now + (i * 0.5));
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, now + (i * 0.5) + 0.2);
+            }
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+        }
+
+        function triggerVoiceAlert() {
+            const message = new SpeechSynthesisUtterance("Warning. Unauthorized access detected.");
+            message.rate = 0.85; // Slightly slower for dramatic effect
+            message.pitch = 0.1;  // Lower pitch for "authority"
+            
+            // Loop the voice
+            message.onend = () => {
+                if (isSecuring) {
+                    setTimeout(() => window.speechSynthesis.speak(message), 1000);
+                }
+            };
+
+            window.speechSynthesis.speak(message);
+        }
+    </script>
+</body>
+</html>
+security_alert.html
+Displaying security_alert.html.
