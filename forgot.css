@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('Assets/hacker1.jpg') no-repeat center center/cover;
+}
+
+.glass-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.forgot-card {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 30px;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.icon-header {
+    font-size: 50px;
+    color: #00d2ff;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+p {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #00d2ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    color: #888;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-wrapper input:focus {
+    border-color: #00d2ff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.reset-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+}
+
+.footer {
+    margin-top: 25px;
+}
+
+.back-link {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #fff;
+}

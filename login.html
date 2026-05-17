@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:        #00d4c8;
+      --teal-dim:    #009b91;
+      --teal-glow:   rgba(0, 212, 200, 0.35);
+      --dark:        #051c1b;
+      --panel-dark:  #071e1d;
+      --panel-mid:   #0c2c2a;
+      --text-light:  #cff6f4;
+      --text-muted:  #7ab8b5;
+      --border:      rgba(0, 212, 200, 0.3);
+    }
+
+    html, body {
+      min-height: 100%;
+      height: 100%;
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── animated background grid ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        linear-gradient(rgba(0,212,200,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,200,.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridDrift 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes gridDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 40px 40px; }
+    }
+
+    /* ── ambient orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
+    .orb1 { width: 400px; height: 400px; background: rgba(0,180,170,.18); top:-100px; left:-100px; animation-delay: 0s; }
+    .orb2 { width: 300px; height: 300px; background: rgba(0,212,200,.12); bottom:-80px; right:-80px; animation-delay: 3s; }
+    @keyframes pulse {
+      from { opacity: .6; transform: scale(1); }
+      to   { opacity: 1;  transform: scale(1.15); }
+    }
+
+    /* ── card wrapper ── */
+    .card {
+      position: relative;
+      width: min(760px, 96vw);
+      height: 460px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(0,212,200,.25), 0 0 120px rgba(0,212,200,.1);
+      border: 1px solid var(--border);
+    }
+
+    /* ── left welcome panel ── */
+    .welcome {
+      position: absolute;
+      top: 0; left: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(135deg, #0d3533 0%, #07201f 60%, var(--panel-dark) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 36px;
+      clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+      z-index: 2;
+      transition: transform .7s cubic-bezier(.77,0,.18,1);
+    }
+    .welcome::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(0,212,200,.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .welcome-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-shadow: 0 0 20px var(--teal-glow);
+    }
+    .welcome-text {
+      color: var(--text-muted);
+      font-size: .95rem;
+      line-height: 1.6;
+      font-weight: 400;
+      max-width: 200px;
+    }
+    .welcome-btn {
+      margin-top: 32px;
+      display: inline-block;
+      padding: 10px 28px;
+      border: 1.5px solid var(--teal);
+      border-radius: 50px;
+      color: var(--teal);
+      font-family: 'Orbitron', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: background .3s, color .3s, box-shadow .3s;
+      text-transform: uppercase;
+    }
+    .welcome-btn:hover {
+      background: var(--teal);
+      color: var(--dark);
+      box-shadow: 0 0 20px var(--teal-glow);
+    }
+
+    /* ── right form panel ── */
+    .forms-wrap {
+      position: absolute;
+      top: 0; right: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(180deg, #07201f 0%, var(--panel-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    /* ── individual forms ── */
+    .form-box {
+      position: absolute;
+      width: 85%;
+      padding: 10px 0;
+      transition: opacity .5s ease, transform .5s cubic-bezier(.77,0,.18,1);
+    }
+    .form-box.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(24px);
+    }
+    .form-box.visible {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .form-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 3px;
+      text-align: center;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    /* ── input groups ── */
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .input-group input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid var(--border);
+      color: var(--text-light);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 10px 36px 10px 4px;
+      outline: none;
+      transition: border-color .3s;
+      letter-spacing: 1px;
+    }
+    .input-group input::placeholder { color: var(--text-muted); }
+    .input-group input:focus { border-bottom-color: var(--teal); }
+    .input-group input:focus + .line { transform: scaleX(1); }
+    .line {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1.5px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+      box-shadow: 0 0 8px var(--teal-glow);
+    }
+    .icon {
+      position: absolute;
+      right: 6px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    /* ── submit button ── */
+    .submit-btn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 13px;
+      background: linear-gradient(90deg, var(--teal-dim), var(--teal));
+      border: none;
+      border-radius: 50px;
+      color: var(--dark);
+      font-family: 'Orbitron', sans-serif;
+      font-size: .85rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .3s, transform .15s;
+    }
+    .submit-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.2) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform .5s ease;
+    }
+    .submit-btn:hover::before { transform: translateX(100%); }
+    .submit-btn:hover {
+      box-shadow: 0 0 28px var(--teal-glow), 0 0 60px rgba(0,212,200,.2);
+      transform: translateY(-1px);
+    }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* ── toggle link ── */
+    .toggle-link {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: var(--text-muted);
+      font-size: .88rem;
+      letter-spacing: .5px;
+    }
+    .toggle-link span {
+      color: var(--teal);
+      cursor: pointer;
+      font-weight: 600;
+      transition: text-shadow .3s;
+    }
+    .toggle-link span:hover { text-shadow: 0 0 10px var(--teal); }
+
+    /* ── scanning line effect ── */
+    .card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(transparent 0%, rgba(0,212,200,.04) 50%, transparent 100%);
+      background-size: 100% 40px;
+      animation: scan 4s linear infinite;
+      pointer-events: none;
+      z-index: 99;
+    }
+    @keyframes scan {
+      from { background-position: 0 -40px; }
+      to   { background-position: 0 460px; }
+    }
+
+    /* ── slide state: login active ── */
+    .card.login-active .welcome { transform: translateX(0); }
+
+    /* ── slide state: signup active (desktop) ── */
+    .card.signup-active .welcome {
+      transform: translateX(122%);
+      clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* ── corner decorations ── */
+    .corner {
+      position: absolute;
+      width: 16px; height: 16px;
+      border-color: var(--teal);
+      border-style: solid;
+      opacity: .6;
+      z-index: 10;
+    }
+    .corner.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+    .corner.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+    .corner.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+    /* ── responsive (mobile) ── */
+    @media (max-width: 560px) {
+      body {
+        align-items: flex-start;
+        padding: 24px 0;
+      }
+
+      .card {
+        height: auto;
+        min-height: unset;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Welcome banner stacks on top */
+      .welcome {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 140px;
+        clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%);
+        padding: 28px 24px 48px;
+        justify-content: flex-start;
+      }
+      .welcome-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+      }
+      .welcome-text {
+        font-size: .85rem;
+        max-width: 100%;
+      }
+      .welcome-btn {
+        margin-top: 16px;
+        padding: 8px 22px;
+        font-size: .7rem;
+      }
+
+      /* Form area sits below the banner */
+      .forms-wrap {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 28px 0 32px;
+        overflow: visible;
+      }
+
+      /* Forms are stacked; only the visible one takes space */
+      .form-box {
+        position: relative;
+        width: 88%;
+        margin: 0 auto;
+        padding: 0;
+      }
+      .form-box.hidden {
+        display: none;
+      }
+      .form-box.visible {
+        display: block;
+        opacity: 1;
+        transform: none;
+      }
+
+      .form-title { margin-bottom: 20px; }
+      .input-group { margin-bottom: 16px; }
+      .submit-btn { padding: 11px; }
+      .toggle-link { margin-top: 14px; }
+
+      /* Signup-active: slide the welcome panel — disabled on mobile */
+      .card.signup-active .welcome {
+        transform: none !important;
+        clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <!-- page-title removed -->
+
+  <div class="card login-active" id="card">
+    <!-- corner accents -->
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <!-- LEFT / TOP WELCOME PANEL -->
+    <div class="welcome" id="welcome">
+      <div class="welcome-title" id="welcomeTitle">WELCOME<br>BACK</div>
+      <p class="welcome-text" id="welcomeText">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut provident dolorem, error.
+      </p>
+      <button class="welcome-btn" id="panelSwitch" onclick="toggleMode()">Sign Up</button>
+    </div>
+
+    <!-- RIGHT / BOTTOM FORM AREA -->
+    <div class="forms-wrap">
+
+      <!-- LOGIN FORM -->
+      <div class="form-box visible" id="loginForm">
+        <div class="form-title">Sign In</div>
+
+        <div class="input-group">
+          <input type="text" placeholder="Username" autocomplete="off"/>
+          <div class="line"></div>
+          <span class="icon">&#9786;</span>
+        </div>
+
+        <div class="input-group">
+          <input type="email" placeholder="Email" autocomplete="off"/>
+          <div class="line"></div>
+          <span class="icon">&#9993;</span>
+        </div>
+
+        <div class="input-group">
+          <input type="password" placeholder="Password"/>
+          <div class="line"></div>
+          <span class="icon">&#128274;</span>
+        </div>
+
+        <button class="submit-btn">Login</button>
+        <p class="toggle-link">Don't have an account? <span onclick="toggleMode()">Sign Up</span></p>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div class="form-box hidden" id="signupForm">
+        <div class="form-title">Sign Up</div>
+
+        <div class="input-group">
+          <input type="text" placeholder="Username" autocomplete="off"/>
+          <div class="line"></div>
+          <span class="icon">&#9786;</span>
+        </div>
+
+        <div class="input-group">
+          <input type="email" placeholder="Email" autocomplete="off"/>
+          <div class="line"></div>
+          <span class="icon">&#9993;</span>
+        </div>
+
+        <div class="input-group">
+          <input type="password" placeholder="Password"/>
+          <div class="line"></div>
+          <span class="icon">&#128274;</span>
+        </div>
+
+        <button class="submit-btn">Sign Up</button>
+        <p class="toggle-link">Already have an account? <span onclick="toggleMode()">Login</span></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let isLogin = true;
+
+    function toggleMode() {
+      const card         = document.getElementById('card');
+      const loginForm    = document.getElementById('loginForm');
+      const signupForm   = document.getElementById('signupForm');
+      const welcomeTitle = document.getElementById('welcomeTitle');
+      const welcomeText  = document.getElementById('welcomeText');
+      const panelSwitch  = document.getElementById('panelSwitch');
+
+      isLogin = !isLogin;
+
+      if (isLogin) {
+        card.classList.remove('signup-active');
+        card.classList.add('login-active');
+
+        loginForm.classList.remove('hidden');
+        loginForm.classList.add('visible');
+        signupForm.classList.remove('visible');
+        signupForm.classList.add('hidden');
+
+        welcomeTitle.innerHTML = 'WELCOME<br>BACK';
+        welcomeText.textContent = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut provident dolorem, error.';
+        panelSwitch.textContent = 'Sign Up';
+      } else {
+        card.classList.remove('login-active');
+        card.classList.add('signup-active');
+
+        signupForm.classList.remove('hidden');
+        signupForm.classList.add('visible');
+        loginForm.classList.remove('visible');
+        loginForm.classList.add('hidden');
+
+        welcomeTitle.innerHTML = 'HELLO<br>FRIEND';
+        welcomeText.textContent = 'Create your account and join the experience today.';
+        panelSwitch.textContent = 'Sign In';
+      }
+    }
+  </script>
+</body>
+</html>
