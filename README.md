@@ -1,1 +1,1 @@
-# YAPSMUSIC.COM
+YAPS MUSIC is a music platform/application designed to help users discover, stream, organize, and enjoy music seamlessly. The project focuses on delivering an intuitive user experience, high-performance audio playback, and modern music management features.
