@@ -1,0 +1,43 @@
+{
+  "name": "YAPS MUSIC — Uganda's Sound",
+  "short_name": "YAPS Music",
+  "description": "Uganda's premier music platform. Stream, upload and share Ugandan music.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#030a1c",
+  "theme_color": "#030a1c",
+  "orientation": "portrait-primary",
+  "lang": "en-UG",
+  "categories": ["music", "entertainment"],
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=192&h=192&fit=crop&q=80",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=512&h=512&fit=crop&q=80",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Upload Music",
+      "short_name": "Upload",
+      "description": "Upload a new track",
+      "url": "./index.html#upload",
+      "icons": [{ "src": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=96&q=80", "sizes": "96x96" }]
+    },
+    {
+      "name": "AI DJ",
+      "short_name": "AI DJ",
+      "description": "Open the AI DJ",
+      "url": "./index.html#ai-dj",
+      "icons": [{ "src": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=96&q=80", "sizes": "96x96" }]
+    }
+  ]
+}
