@@ -1,88 +1,89 @@
-// YAPS Music — Service Worker v2
-// Adds: Supabase SDK caching, R2 audio stream-through, network-first for API calls
+// ══════════════════════════════════════════════════════════════
+//  YAPS MUSIC — Service Worker  (sw.js)
+//  Provides offline support and fast repeat loads.
+//  Place this file in the SAME folder as yaps_music.html
+// ══════════════════════════════════════════════════════════════
 
-const CACHE_NAME = 'yaps-music-v2';
+const CACHE_NAME = 'yaps-v1';
 
-const SHELL_FILES = [
-  './index.html',
+// Shell assets to cache on install (adjust paths if hosting elsewhere)
+const PRECACHE = [
+  './',
+  './yaps_music.html',
   'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
   'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js',
 ];
 
-// Install — cache app shell + Supabase SDK
+// ── INSTALL: pre-cache the app shell ──────────────────────────
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('[SW] Caching app shell + Supabase SDK');
-      return cache.addAll(SHELL_FILES).catch(e => {
-        console.warn('[SW] Some files failed to cache:', e);
-      });
-    })
+      // Non-fatal: if one CDN asset fails, still install
+      return Promise.allSettled(PRECACHE.map(url => cache.add(url)));
+    }).then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
-// Activate — clean up old caches
+// ── ACTIVATE: clear old caches ────────────────────────────────
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
+// ── FETCH: network-first for API/audio, cache-first for shell ─
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-  if (event.request.url.startsWith('chrome-extension')) return;
+  const { request } = event;
+  const url = new URL(request.url);
 
-  const url = event.request.url;
+  // Always go to network for Supabase API calls
+  if (url.hostname.includes('supabase.co')) {
+    event.respondWith(fetch(request).catch(() => new Response('', { status: 503 })));
+    return;
+  }
 
-  // ── Supabase API & Realtime — network only (auth, db, realtime) ──
-  if (url.includes('.supabase.co')) return;
+  // Audio files: network-first, no caching (files can be large)
+  if (request.destination === 'audio') {
+    event.respondWith(fetch(request));
+    return;
+  }
 
-  // ── Anthropic API — network only ──
-  if (url.includes('api.anthropic.com')) return;
-
-  // ── Cloudflare R2 audio — network only with range-request support ──
-  // R2 bucket URLs stream audio; don't intercept range requests
-  if (url.includes('.r2.dev') || url.includes('.r2.cloudflarestorage.com')) return;
-
-  // ── Audio files (blob / external) — network only ──
-  if (/\.(mp3|wav|ogg|opus|m4a|aac|flac)(\?|$)/i.test(url)) return;
-
-  // ── Supabase JS SDK & CDN assets — cache first ──
-  if (url.includes('cdn.jsdelivr.net') || url.includes('cdnjs.cloudflare.com') || url.includes('fonts.gstatic.com') || url.includes('fonts.googleapis.com')) {
+  // Unsplash images: cache-first with network fallback
+  if (url.hostname.includes('unsplash.com') || url.hostname.includes('images.unsplash')) {
     event.respondWith(
-      caches.match(event.request).then(cached => {
+      caches.match(request).then(cached => {
         if (cached) return cached;
-        return fetch(event.request).then(response => {
-          if (response && response.status === 200) {
-            const toCache = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, toCache));
+        return fetch(request).then(resp => {
+          if (resp.ok) {
+            const clone = resp.clone();
+            caches.open(CACHE_NAME).then(c => c.put(request, clone));
           }
-          return response;
-        });
+          return resp;
+        }).catch(() => new Response('', { status: 404 }));
       })
     );
     return;
   }
 
-  // ── App shell — cache first, fallback to network ──
+  // App shell & static assets: cache-first
   event.respondWith(
-    caches.match(event.request).then(cached => {
+    caches.match(request).then(cached => {
       if (cached) return cached;
-      return fetch(event.request).then(response => {
-        if (response && response.status === 200 && response.type !== 'opaque') {
-          const toCache = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, toCache));
+      return fetch(request).then(resp => {
+        if (resp.ok && (request.method === 'GET')) {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then(c => c.put(request, clone));
         }
-        return response;
+        return resp;
       }).catch(() => {
-        if (event.request.destination === 'document') {
-          return caches.match('./index.html');
+        // Offline fallback: serve the app shell for navigation requests
+        if (request.mode === 'navigate') {
+          return caches.match('./yaps_music.html');
         }
+        return new Response('', { status: 503 });
       });
     })
   );
