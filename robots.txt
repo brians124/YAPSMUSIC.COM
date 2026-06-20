@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://brians124.github.io/YAPS-DEVELOPER/sitemap.xml
