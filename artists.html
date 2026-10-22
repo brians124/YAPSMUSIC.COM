@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Artists — YAPSMusic</title>
+<meta name="description" content="Discover featured, trending, popular and rising artists from Uganda and East Africa on YAPSMusic.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080808;--navy:#121212;--deep:#1b1b1b;--violet:#7c7c7c;--ocean:#a1a1a1;--crimson:#858585;--emerald:#9e9e9e;--sky:#a1a1a1;--sky2:#7c7c7c;--txt:#f6f6f6;--mute:#c6c6c6;--aurora-grad:linear-gradient(100deg,#9e9e9e 0%,#a1a1a1 33%,#7c7c7c 66%,#858585 100%);--aurora-btn:linear-gradient(100deg,#727272 0%,#6c6c6c 35%,#626262 68%,#686868 100%);--grad:var(--aurora-grad);--btn:var(--aurora-btn);--glass:rgba(255,255,255,.06);--line:rgba(142,142,142,.26);--r:18px;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;background:var(--ink)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 10% 0%,rgba(158,158,158,.20),transparent 42%),radial-gradient(circle at 100% 12%,rgba(133,133,133,.18),transparent 46%),radial-gradient(circle at 75% 100%,rgba(124,124,124,.22),transparent 50%),radial-gradient(circle at 0% 80%,rgba(161,161,161,.13),transparent 45%),var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding:56px 0}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,.45);border:0;box-shadow:0 8px 28px #7c7c7c55}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px}
+.head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
+.head a{color:var(--sky);font-size:14px;font-weight:600;white-space:nowrap}
+/* header */
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(8,8,8,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:var(--grad) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo i{font-style:normal;font-weight:inherit}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:var(--glass)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+/* hero */
+.hero{padding:72px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.04;font-weight:800;letter-spacing:-.035em;margin-bottom:18px}
+.hero p{color:var(--mute);max-width:46ch;margin-bottom:26px}
+.search{position:relative;max-width:560px}
+.search input{width:100%;padding:16px 20px 16px 50px;border-radius:999px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.search input::placeholder{color:var(--mute)}
+.search svg{position:absolute;left:18px;top:16px;width:20px;height:20px;stroke:var(--sky);fill:none;stroke-width:2}
+#results{position:absolute;left:0;right:0;top:62px;max-height:340px;overflow:auto;padding:8px;background:rgba(18,18,18,.95);z-index:20}
+#results[hidden]{display:none}
+#results a{display:flex;gap:12px;align-items:center;padding:8px;border-radius:12px}
+#results a:hover{background:var(--glass)}
+#results small{color:var(--mute);margin-left:auto;text-transform:capitalize}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.stage{position:relative;max-width:400px;justify-self:center;width:100%;display:grid}
+.orb{position:absolute;inset:auto;left:-8%;top:50%;width:116%;margin-top:-58%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 200deg,var(--violet),var(--ocean),var(--emerald),var(--crimson),var(--violet));filter:blur(.5px);box-shadow:0 0 120px #7c7c7c66;animation:spin 24s linear infinite}
+.orb::after{content:"";position:absolute;inset:14%;border-radius:50%;background:var(--ink);box-shadow:inset 0 0 60px #7c7c7c44}
+.eq{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:7px}
+.eq b{width:9px;border-radius:9px;background:linear-gradient(var(--emerald),var(--ocean));animation:eq 1.2s ease-in-out infinite alternate}.eq b:nth-child(3n+2){background:linear-gradient(var(--crimson),var(--violet))}
+.now{position:absolute;left:-2%;bottom:6%;right:12%;display:flex;gap:12px;align-items:center;padding:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes eq{from{height:12%}to{height:48%}}
+/* cards */
+.row{display:grid;gap:18px}
+.g5{grid-template-columns:repeat(5,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{display:block;padding:12px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:rgba(124,124,124,.6)}
+.cover{position:relative;aspect-ratio:1;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:clamp(24px,3vw,38px);color:#ffffffcc;overflow:hidden}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.cover .play{z-index:2}.cover.wide{aspect-ratio:16/9}.cover.round{border-radius:50%}
+.play{position:absolute;right:10px;bottom:10px;width:40px;height:40px;border-radius:50%;background:var(--btn);color:#ffffff;display:grid;place-items:center;font-size:13px;opacity:0;transform:translateY(6px);transition:.2s}
+.card:hover .play,.card:focus-visible .play{opacity:1;transform:none}
+.card h3{font-size:15px;font-weight:600;margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card p{font-size:13px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card.artist{text-align:center}
+/* featured */
+.feat{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;overflow:hidden}
+.feat .cover{border-radius:0;aspect-ratio:auto;min-height:340px;font-size:72px}
+.feat div.b{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.feat h2{font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-.03em}
+.feat p{color:var(--mute)}
+.tag{align-self:flex-start;padding:4px 12px;border-radius:999px;background:rgba(158,158,158,.16);color:#9e9e9e;font-size:12px;font-weight:600}
+/* trending list */
+.list{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.song{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;padding:10px 14px;transition:transform .2s,border-color .2s}.song::before{content:'';position:absolute;inset:-10px;background:var(--im) center/cover;opacity:.28;filter:blur(14px) saturate(1.5)}.song>*{position:relative}.song:hover{transform:translateY(-2px);border-color:rgba(161,161,161,.6)}.song:hover .play{opacity:1;transform:none}.song .play{width:30px;height:30px;right:auto;bottom:auto;left:50%;top:50%;margin:-15px 0 0 -15px;font-size:11px}
+.song .n{width:22px;color:var(--mute);font-weight:600;text-align:center}
+.song .cover{width:68px;flex:none;border-radius:12px;font-size:18px}
+.song div.t{min-width:0;flex:1}
+.song h3{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.song p{font-size:13px;color:var(--mute)}
+.song em{font-style:normal;font-size:13px;color:var(--sky)}
+/* events + podcasts + news */
+.event{display:flex;gap:16px;align-items:center;padding:16px}
+.date{flex:none;width:64px;text-align:center;padding:8px 0;border-radius:14px;background:linear-gradient(160deg,#626262,#686868);border:1px solid var(--line)}
+.date b{display:block;font-size:24px;line-height:1}.date span{font-size:12px;color:#e4e4e4}
+.event h3{font-size:16px}.event p{font-size:13px;color:var(--mute)}
+.event .btn{margin-left:auto;padding:8px 16px;font-size:13px}
+.pod{display:flex;gap:14px;padding:12px;align-items:center}
+.pod .cover{width:96px;flex:none;font-size:22px}
+.pod h3{font-size:16px}.pod p{font-size:13px;color:var(--mute)}
+.news .cover{margin-bottom:4px}
+.news small{color:var(--sky);font-size:12px;font-weight:600}
+.news h3{white-space:normal;line-height:1.35}
+/* promo */
+.promo{position:relative;overflow:hidden;padding:clamp(32px,6vw,72px);background:linear-gradient(135deg,#2c2c2ccc,#282828cc 50%,#383838cc);text-align:center}
+.promo::before{content:"";position:absolute;width:420px;height:420px;right:-120px;top:-160px;border-radius:50%;background:radial-gradient(#9e9e9e44,transparent 70%)}
+.promo h2{position:relative;font-size:clamp(28px,4.5vw,48px);letter-spacing:-.03em;margin-bottom:12px}
+.promo p{position:relative;color:var(--mute);max-width:52ch;margin:0 auto 24px}
+.perks{position:relative;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}
+.perks span{padding:6px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:48px 0 28px;background:linear-gradient(transparent,#12121266)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}
+footer li{list-style:none;margin-bottom:8px}footer ul{padding:0}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(max-width:1020px){.g5{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.stage{max-width:340px}.feat{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}.list{grid-template-columns:1fr}}
+@media(max-width:860px){
+.burger{display:block}
+nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:none}
+nav.open{display:flex}
+nav a{padding:12px 14px;font-size:16px}
+header .bar>.btn{display:none}}
+@media(max-width:640px){section{padding:40px 0}.g5,.g4,.g3{grid-template-columns:repeat(2,1fr)}.g3.stack{grid-template-columns:1fr}.event{flex-wrap:wrap}.event .btn{margin-left:0}.hero{padding-top:40px}}
+
+/* Premium aurora lettering (from the YAPS app) */
+/* ── 3D letters (extruded teal → blue → purple, like the YAPS Music poster) ── */
+html .y3d, html .y3d-g {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 900 !important; letter-spacing: -0.3px; text-transform: uppercase;
+  color: #ffffff; display: inline-block;
+  filter:
+    drop-shadow(1px 1px 0 #5c5c5c) drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444)
+    drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(0 6px 7px rgba(0,0,0,0.5));
+}
+html .y3d-g {
+  background: var(--aurora-grad); background-size: 100% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  padding-right: 0.06em;
+  filter:
+    drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #343434)
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(0 6px 7px rgba(0,0,0,0.5));
+}
+html .y3d-s, html .y3d-s.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+html .y3d-s.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+html .y3d-xl {
+  filter:
+    drop-shadow(1px 1px 0 #5c5c5c) drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444)
+    drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(1px 1px 0 #2d2d2d) drop-shadow(0 10px 12px rgba(0,0,0,0.55));
+}
+html .y3d-xl.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #343434)
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(1px 1px 0 #282828) drop-shadow(0 10px 12px rgba(0,0,0,0.55));
+}
+html .y3d-live { background-size: 220% 100%; animation: auroraShine 5s linear infinite; }
+@keyframes auroraShine { from { background-position: 0% 0; } to { background-position: 220% 0; } }
+
+
+html .hero h1.y3d{display:block;font-size:clamp(32px,5.2vw,58px);line-height:1.06;letter-spacing:-.5px;margin-bottom:18px}
+.hero h1 em{font-style:normal;padding-right:.06em;background:var(--grad);background-size:220% 100%;animation:auroraShine 5s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+html .head h2,html .feat h2,html .promo h2{font-family:Archivo,system-ui,sans-serif!important;font-weight:900!important;text-transform:uppercase;letter-spacing:-.2px;color:#ffffff;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.cover{box-shadow:0 10px 24px rgba(0,0,0,.45)}.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,8,8,.55));z-index:1;pointer-events:none}.cover img{transition:transform .4s}.card:hover .cover img,.song:hover .cover img{transform:scale(1.08)}.cover .play{z-index:2}
+.song.on,.card.on{border-color:var(--ocean);box-shadow:0 0 0 1px var(--ocean),0 0 26px #a1a1a144}
+.player{position:relative;padding:14px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.player .art{aspect-ratio:1;border-radius:14px;font-size:64px}
+.player.playing .art{animation:glow 2.2s ease-in-out infinite alternate}
+@keyframes glow{from{box-shadow:0 0 0 rgba(124,124,124,0)}to{box-shadow:0 0 44px #a1a1a188}}
+.player h3{font-size:22px;font-weight:800;margin-top:14px;letter-spacing:-.01em}.player p{color:var(--mute);font-size:14px}
+#seek{width:100%;margin-top:12px;accent-color:#7c7c7c}
+.times{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin-bottom:12px}
+.pbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.pbtns .btn{flex:1 1 130px;justify-content:center}
+.open{display:inline-block;margin-top:12px;font-size:13px;color:var(--sky)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<style>
+.phero{padding:56px 0 20px}
+html .phero h1.y3d{display:block;font-size:clamp(32px,5vw,54px);line-height:1.06;letter-spacing:-.5px;margin-bottom:10px}
+.phero p{color:var(--mute);max-width:56ch;margin-bottom:22px}
+.phero .search{max-width:680px}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:22px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;max-width:100%}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--glass);cursor:pointer;font-size:13px;font-weight:600;color:var(--mute);transition:.2s}
+.chip:hover{color:#ffffff}.chip.on{background:var(--btn);color:#ffffff;border-color:transparent}
+select{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(18,18,18,.9);color:var(--txt)}
+.card p a:hover,.song p a:hover{color:var(--sky)}
+.empty{grid-column:1/-1;color:var(--mute);padding:28px;text-align:center}
+.more{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:28px;color:var(--mute);font-size:13px}
+.clear{background:none;border:0;color:var(--sky);cursor:pointer;font-weight:600}
+@media(max-width:640px){#mp input,#mp .ap{display:none}.phero{padding-top:36px}}
+</style>
+<style>
+.vb{width:1.05em;height:1.05em;vertical-align:-.15em;margin-left:5px;flex:none}
+.card.artist{text-align:center;padding:16px 12px}
+.card.artist .cover{width:78%;margin:0 auto 4px;box-shadow:0 10px 28px rgba(0,0,0,.5),0 0 0 3px rgba(161,161,161,.18)}
+.card.artist h3{font-size:16px}
+.card.artist .sub{color:var(--sky);font-weight:600}
+.card.artist .fol{font-size:13px;color:var(--mute)}
+.card.artist .ex{display:inline-block;margin-top:6px;padding:2px 10px;border-radius:999px;background:rgba(161,161,161,.12);color:var(--sky);font-size:11px;font-weight:600}
+.fcard{padding:16px;text-align:left;position:relative;overflow:hidden}
+.fcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0,#a1a1a133,transparent 55%),radial-gradient(circle at 0 100%,#7c7c7c33,transparent 55%);pointer-events:none}
+.fcard>*{position:relative}
+.fcard .cover{aspect-ratio:4/3;border-radius:14px}
+.fcard h3{font-size:22px;font-weight:800;margin-top:14px}
+.fcard .btn{margin-top:14px;padding:9px 18px;font-size:14px}
+.fcard p{font-size:14px}
+.tools{margin-bottom:18px}
+.promo .perks{margin-bottom:26px}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+<script src="signup-gate.js" defer></script>
+<script src="hero-player.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html" class="on" aria-current="page">Artists</a><a href="charts.html">Charts</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="podcasts.html">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo">Contact</a><a href="join.html" class="mo">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+<main id="top">
+<div class="wrap phero">
+<h1 class="y3d y3d-xl">Discover Artists</h1>
+<p>Find the voices shaping the sound of Uganda and East Africa. Search by name or genre and open any profile.</p>
+<form class="search" role="search" onsubmit="return false">
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input id="q" type="search" placeholder="Search artists or genres" autocomplete="off" aria-label="Search artists">
+</form>
+</div>
+
+<section class="curated"><div class="wrap"><div class="head"><h2>Featured artists</h2></div><div class="row g3 stack" id="s-feat"></div></div></section>
+<section class="curated"><div class="wrap"><div class="head"><h2>Trending artists</h2></div><div class="row g4" id="s-trend"></div></div></section>
+<section class="curated"><div class="wrap"><div class="head"><h2>Popular artists</h2></div><div class="row g5" id="s-pop"></div></div></section>
+<section class="curated"><div class="wrap"><div class="head"><h2>Rising artists</h2></div><div class="row g4" id="s-rise"></div></div></section>
+
+<section id="library"><div class="wrap">
+<div class="head"><h2 id="lt">All artists</h2><span id="count" style="color:var(--mute);font-size:14px"></span></div>
+<div class="tools"><div class="chips" id="chips" role="group" aria-label="Genres"></div>
+<label style="display:flex;gap:8px;align-items:center;color:var(--mute);font-size:13px">Sort<select id="sort"><option value="pop">Most followers</option><option value="az">Name A–Z</option><option value="new">Newest music</option></select></label></div>
+<p id="ls" style="color:var(--mute);margin-bottom:16px" hidden></p>
+<div class="row g5" id="grid"></div>
+<div class="more"><button class="btn" id="more">Load more</button></div>
+</div></section>
+
+<section id="join"><div class="wrap"><div class="glass promo">
+<h2>Become an Artist</h2>
+<p>Upload your music, build your profile and reach listeners across Uganda and beyond.</p>
+<div class="perks"><span>Free to join</span><span>Mobile Money payouts</span><span>Streaming analytics</span><span>Global reach</span></div>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Become an Artist</a>
+</div></div></section>
+</main>
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+<script>
+/* ===== DATA — replace with real YAPSMusic artist data =====
+   ROW: [name, image, followersLabel, followersNumber, genre, verified(0/1), trendingSongs, latestSongId, songs] */
+const ART=[["Jose Chameleone","images/Jose Chameleon.jpg","1.5M",1500000,"Luganda Pop",0,1,198,2],["Bobi Wine","images/bobi_wine.jpg","1.3M",1300000,"",1,0,0,0],["Bebe Cool","images/Bebe Cool.png","1.1M",1100000,"Afropop",0,0,83,1],["King Saha","images/king saha.jpg","1.1M",1100000,"Luganda Pop",0,1,28,2],["John Blaq","images/John blaq.png","980K",980000,"Afropop",1,2,8,2],["Rema Namakula","images/Rema_Namakula.png","920K",920000,"Afropop",0,1,167,2],["Vyroota","images/Vyroota.png","740K",740000,"Luganda Pop",0,2,170,4],["Fik Fameica","images/Fik_Fameica.png","870K",870000,"Afrobeats",0,3,199,5],["Azawi","images/Azawi.png","810K",810000,"Afrobeats",1,1,21,1],["Joshua Baraka","images/Joshua_Baraka.png","650K",650000,"Afrobeats",0,3,201,3],["Sheebah","images/Sheebah.jpg","1.0M",1000000,"Afrobeats",1,4,161,4],["Vinka","images/Vinka.png","590K",590000,"Afropop",0,1,166,3],["Alien Skin","images/Alien_Skin.png","720K",720000,"",0,0,0,0],["Spice Diana","images/Spice_Diana.png","560K",560000,"Afrobeats",0,1,197,3],["Kapeke","images/Kapeke.png","480K",480000,"Afrobeats",0,1,54,4],["Pawaboy","images/Pawaboy.jpg","420K",420000,"Luganda Pop",0,3,19,3],["Winnie Nwagi","images/Winnie_Nwagi.png","680K",680000,"Afrobeats",0,1,159,3],["A Pass","images/Apass.png","450K",450000,"Dancehall",0,1,165,1],["Ben Hunter","images/Ben_Hunter.png","380K",380000,"",0,0,0,0],["Liam Voice","images/Liam_Voice.png","290K",290000,"Afropop",0,0,32,1],["Karole Kasita","images/Carol Kasita.jpg","340K",340000,"Afropop",0,1,23,1],["Elijah Kitaka","images/Eliaja Kitaka.png","260K",260000,"Afropop",0,1,10,1],["Princess Amila","images/Princess_Amila.png","New",0,"",0,0,0,0],["Mose Radio","images/Mose_Radio.png","New",0,"",0,0,0,0],["Kateleya","images/Kateleya_Cando.png","New",0,"",0,0,0,0],["Cando","images/Kateleya_Cando.png","New",0,"",0,0,0,0],["Navio","images/Navio.png","New",0,"",0,0,0,0],["Eddy Kenzo","images/Eddy_Kenzo.png","New",0,"Afrobeats",0,1,159,1],["Zexs Bilangilanji","images/Zexs_Bilangilanji.png","New",0,"",0,0,0,0],["Prosper","images/Prosper.png","New",0,"",0,0,0,0],["Bruno K","images/Bruno_K.png","New",0,"",0,0,0,0],["Wizomanzo","images/Wizomanzo.png","New",0,"",0,0,0,0],["B2C","images/B2C.png","New",0,"",0,0,0,0],["Daddy Andre","images/Daddy_Andre.png","New",0,"",0,0,0,0],["Da Agent","images/Da_Agent.png","New",0,"Afrobeats",0,1,156,1],["Radio & Weasel","images/Mose_Rhadio.png","890K",890000,"",0,0,0,0],["Juliana Kanyomozi","images/Julian Kanyomo.png","820K",820000,"",0,0,0,0],["Pallaso","images/pallaso.jpg","610K",610000,"Afropop",0,0,117,1],["Maurice Kirya","","430K",430000,"",0,0,0,0],["Ykee Benda","images/Yk bend.png","520K",520000,"",0,0,0,0],["Levixone","images/levixon.jpg","480K",480000,"",0,0,22,1],["Wilson Bugembe","","390K",390000,"",0,0,0,0],["Irene Ntale","","450K",450000,"",0,0,0,0],["Lydia Jazmine","","370K",370000,"",0,0,0,0],["Feffe Bussi","images/Fefe_Bussi.png","340K",340000,"Afrobeats",0,0,25,1],["GNL Zamba","","310K",310000,"",0,0,0,0],["Blu*3","","280K",280000,"",0,0,0,0],["Jackie Chandiru","","260K",260000,"",0,0,0,0],["Benon & Vamposs","","220K",220000,"",0,0,0,0],["Coco Finger","","200K",200000,"",0,0,0,0],["Paulo Kafeero","","Classic",0,"",0,0,0,0],["Herman Basudde","","Classic",0,"",0,0,0,0],["Fred Sebatta","","Classic",0,"",0,0,0,0],["Elly Wamala","","Classic",0,"",0,0,0,0],["Philly Lutaaya","","Legend",0,"",0,0,0,0],["Afrigo Band","","Legend",0,"",0,0,0,0],["David Lutalo","","350K",350000,"",0,0,0,0],["Jamal Wasswa","","180K",180000,"",0,0,0,0],["Ava Peace","","New",0,"Afrobeats",0,0,168,2],["Lutty Neika","images/Anaconda_Lutty_Neika_Bravion_Emcee.png","New",0,"Afropop",0,3,162,3],["Bravion Emcee","images/Anaconda_Lutty_Neika_Bravion_Emcee.png","New",0,"Afrobeats",0,1,37,1],["Jowy Landa","","New",0,"Luganda Pop",0,1,16,1],["Cindy Sanyu","images/Cindy_Sanyu.png","New",0,"R&B",0,1,11,1],["Acidic Vokoz","","New",0,"Afrobeats",0,0,52,1],["Dax Vibez","","New",0,"Afrobeats",0,1,200,3],["Ray G","","New",0,"",0,0,0,0],["Crysto Panda","","New",0,"",0,0,0,0],["Gravity Omutujju","images/Gravity_Omutujju.png","New",0,"",0,0,0,0],["Maureen Nantume","images/Maureen_Nantume.png","New",0,"",0,0,0,0],["Carol Nantongo","","New",0,"",0,0,0,0],["An-Known","","New",0,"",0,0,0,0],["Mudra D Viral","images/Mudra_D_Viral.png","New",0,"",0,0,0,0],["Fik Gaza","","New",0,"",0,0,0,0],["Grenade Official","images/Grenade_Official.png","New",0,"",0,0,0,0],["Goodlyfe Crew","","New",0,"",0,0,0,0],["Mesach Semakula","","New",0,"",0,0,0,0],["Sophie Nantongo","","New",0,"",0,0,0,0],["Ragga Dee","images/Ragga_Dee.png","New",0,"",0,0,0,0],["Martha Mukisa","","New",0,"",0,0,0,0],["Shanita","","New",0,"",0,0,0,0],["T-Paul","images/T-Paul.png","New",0,"",0,0,0,0],["James Ploh","","New",0,"Dancehall",0,1,165,1],["Kiboo","","New",0,"Dancehall",0,1,165,1],["Dokta Brain","images/Dokta_Brain.png","New",0,"Afrobeats",0,1,164,1],["Gloria Bugie","images/Gloria_Bugie.png","New",0,"Afropop",0,1,163,1]];
+const APP_URL="https://brians124.github.io/YAPSMUSIC.APP/";
+const PROFILE="artist.html?artist=";
+const src=p=>/^https?:/.test(p)?p:APP_URL+encodeURI(p);
+const $=id=>document.getElementById(id),HUE=[265,200,292,155];
+const cov=h=>`linear-gradient(135deg,hsl(${h} 0% 48%),hsl(${h+35} 0% 16%))`;
+const ini=s=>s.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const img=p=>p?`<img src="${src(p)}" alt="" loading="lazy" onerror="this.remove()">`:"";
+const A=ART.map((r,i)=>({name:r[0],img:r[1],fl:r[2],fn:r[3],genre:r[4]||"Artist",ver:r[5],tr:r[6],last:r[7],songs:r[8],hue:HUE[i%4]}));
+/* ===== Reusable artist cards ===== */
+const badge=a=>a.ver?`<svg class="vb" viewBox="0 0 24 24" role="img" aria-label="Verified artist"><title>Verified artist</title><circle cx="12" cy="12" r="11" fill="#9c9c9c"/><path d="m7 12.5 3.2 3.2L17 8.8" stroke="#ffffff" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`:"";
+const fol=a=>a.fn?a.fl+" followers":"New artist";
+const link=a=>PROFILE+encodeURIComponent(a.name);
+const pic=(a,c="")=>`<div class="cover ${c}" style="background:${cov(a.hue)}">${ini(a.name)}${img(a.img)}</div>`;
+const card=(a,ex)=>`<a class="glass card artist" href="${link(a)}">${pic(a,"round")}<h3>${esc(a.name)}${badge(a)}</h3><p class="sub">${esc(a.genre)}</p><p class="fol">${fol(a)}</p>${ex?`<span class="ex">${ex}</span>`:""}</a>`;
+const feat=a=>`<a class="glass card fcard" href="${link(a)}">${pic(a)}<h3>${esc(a.name)}${badge(a)}</h3><p style="color:var(--sky);font-weight:600">${esc(a.genre)}</p><p style="color:var(--mute)">${fol(a)}</p><span class="btn pri">View profile</span></a>`;
+const put=(id,arr,fn)=>$(id).innerHTML=arr.map(fn).join("");
+/* ===== Curated sections ===== */
+const byF=[...A].sort((a,b)=>b.fn-a.fn),withImg=byF.filter(a=>a.img);
+const featured=withImg.slice(0,3),used=new Set(featured);
+const trending=A.filter(a=>a.tr>0&&a.img).sort((a,b)=>b.tr-a.tr||b.fn-a.fn).slice(0,8);
+const popular=byF.filter(a=>a.img&&!used.has(a)).slice(0,10);
+const rising=A.filter(a=>a.img&&a.fn<500000&&a.songs>0).sort((a,b)=>b.last-a.last).slice(0,8);
+put("s-feat",featured,feat);put("s-trend",trending,a=>card(a,a.tr+(a.tr>1?" trending songs":" trending song")));
+put("s-pop",popular,a=>card(a));put("s-rise",rising,a=>card(a,"Rising"));
+const gc={};A.forEach(a=>{if(a.genre!=="Artist")gc[a.genre]=(gc[a.genre]||0)+1});
+const genres=Object.keys(gc).sort((x,y)=>gc[y]-gc[x]);
+$("chips").innerHTML=["All",...genres].map(g=>`<button class="chip" data-genre="${esc(g)}">${esc(g)}</button>`).join("");
+/* ===== Search, filter, load more ===== */
+const st={q:"",g:"All",sort:"pop",n:10,page:10};
+function draw(){const q=st.q.toLowerCase(),f=!!(q||st.g!=="All");
+const r=A.filter(a=>(st.g==="All"||a.genre===st.g)&&(!q||(a.name+" "+a.genre).toLowerCase().includes(q)));
+r.sort(st.sort==="az"?(a,b)=>a.name.localeCompare(b.name):st.sort==="new"?(a,b)=>b.last-a.last||b.fn-a.fn:(a,b)=>b.fn-a.fn);
+document.querySelectorAll(".curated").forEach(e=>e.hidden=f);
+$("lt").textContent=f?"Results":"All artists";$("count").textContent=`${Math.min(st.n,r.length)} of ${r.length} artists`;
+const bits=[st.q&&`“${esc(st.q)}”`,st.g!=="All"&&esc(st.g)].filter(Boolean);
+$("ls").hidden=!f;$("ls").innerHTML=f?`Showing ${bits.join(" · ")} <button class="clear" id="clr">Clear</button>`:"";
+document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.dataset.genre===st.g));
+$("grid").innerHTML=r.length?r.slice(0,st.n).map(a=>card(a)).join(""):`<p class="empty">No artists found. Try another name or genre.</p>`;
+$("more").hidden=r.length<=st.n;$("more").textContent=`Load more (${r.length-st.n} left)`}
+const set=o=>{Object.assign(st,{n:st.page},o);draw()};
+$("q").addEventListener("input",e=>set({q:e.target.value.trim()}));
+$("sort").onchange=e=>set({sort:e.target.value});
+$("more").onclick=()=>{st.n+=st.page;draw()};
+document.addEventListener("click",e=>{const g=e.target.closest(".chip");if(g){set({g:g.dataset.genre});return}
+if(e.target.id==="clr"){$("q").value="";set({q:"",g:"All"})}});
+/* ===== Header (same as index.html) ===== */
+const nav=$("nav"),bg=$("burger");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove("open");bg.setAttribute("aria-expanded",false)}});
+const na=$("navapp"),mq=matchMedia("(max-width:860px)");na.style.display=mq.matches?"inline-flex":"none";mq.addEventListener("change",e=>na.style.display=e.matches?"inline-flex":"none");
+$("yr").textContent=new Date().getFullYear();
+draw();
+</script>
+</body>
+</html>

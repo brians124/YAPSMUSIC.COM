@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Podcasts — YAPSMusic</title>
+<meta name="description" content="Discover podcasts about Ugandan music: interviews, industry news, culture and studio stories on YAPSMusic.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0c0c;--surface:#171717;--card:#212121;--card2:#2b2b2b;--line:rgba(169,169,169,.24);--txt:#f5f5f5;--mute:#b6b6b6;--acc:#7e7e7e;--acc2:#a9a9a9;--acc3:#e0e0e0;--btn:linear-gradient(135deg,#777777,#4f4f4f);--glass:rgba(33,33,33,.55);--r:18px;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:150px;background:var(--bg)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 10% 0%,rgba(126,126,126,.24),transparent 44%),radial-gradient(circle at 100% 14%,rgba(169,169,169,.13),transparent 46%),radial-gradient(circle at 70% 100%,rgba(91,91,91,.28),transparent 52%),var(--bg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc3);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding:34px 0}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);font-weight:600;font-size:14px;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;border:0;box-shadow:0 8px 26px rgba(126,126,126,.35)}
+.btn[aria-pressed=true]{background:rgba(169,169,169,.18);border-color:var(--acc2);color:var(--acc3)}
+.btn svg{width:16px;height:16px;fill:currentColor}
+.lnk{background:none;border:0;color:var(--acc2);font-weight:600;font-size:14px;cursor:pointer;padding:0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:20px}
+.head span{color:var(--acc2);font-size:14px;font-weight:600}
+html .head h2,html dialog h2,html .hd{font-family:Archivo,system-ui,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.2px;color:#ffffff;filter:drop-shadow(1px 1px 0 #5b5b5b) drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #222222) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.head h2{font-size:clamp(22px,3vw,30px)}
+/* header */
+header{position:sticky;top:0;z-index:60;padding-top:env(safe-area-inset-top,0px);background:rgba(12,12,12,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#5b5b5b,#7e7e7e,#e0e0e0) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:-.3px;text-transform:uppercase}.logo i{font-style:normal}
+.logo .wm{background:linear-gradient(100deg,#e0e0e0,#a9a9a9 50%,#7e7e7e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em;filter:drop-shadow(1px 1px 0 #393939) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:rgba(255,255,255,.08)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+/* hero */
+.hero{padding:56px 0 24px}
+.hero h1{font-size:clamp(34px,5.6vw,60px);line-height:1.06;margin-bottom:14px}
+.hero p{color:var(--mute);max-width:54ch}
+/* filter bar */
+.fbar{position:sticky;top:calc(70px + env(safe-area-inset-top,0px));z-index:40;padding:14px;display:grid;gap:10px;background:rgba(23,23,23,.9)}
+.frow{display:grid;grid-template-columns:1.6fr 1fr 1fr auto auto;gap:10px;align-items:end}
+.fbar label{display:block;font-size:12px;color:var(--mute);margin:0 0 4px 14px}
+.fbar input,.fbar select{width:100%;height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);min-width:0}
+.fbar input::placeholder{color:var(--mute)}.fbar option{background:#171717}
+.srch{position:relative}.srch svg{position:absolute;left:16px;bottom:13px;width:20px;height:20px;stroke:var(--acc2);fill:none;stroke-width:2}.srch input{padding-left:46px}
+.cnt{font-size:13px;color:var(--mute)}
+/* cover art */
+.cv{position:relative;container-type:inline-size;aspect-ratio:1;border-radius:14px;overflow:hidden;background:linear-gradient(145deg,hsl(var(--h) 0% 48%),hsl(calc(var(--h) + 25) 75% 14%));box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.cv svg{position:absolute;inset:0;width:100%;height:100%}
+.cv b{position:absolute;left:9%;top:7%;font-size:24cqw;line-height:1;font-weight:900;letter-spacing:-.04em;color:#ffffff;opacity:.94}
+.cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cv::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(12,12,12,.5));pointer-events:none}
+.pl{position:absolute;right:8px;bottom:8px;z-index:2;width:44px;height:44px;border-radius:50%;background:var(--btn);color:#ffffff;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.45);transition:transform .15s}
+.pl:hover{transform:scale(1.08)}.pl svg{width:16px;height:16px;fill:#ffffff;margin-left:2px}
+.pl.sm{position:static;flex:none;box-shadow:none}
+.tag{display:inline-block;align-self:flex-start;padding:4px 12px;border-radius:999px;background:rgba(169,169,169,.16);color:var(--acc3);font-size:12px;font-weight:600}
+.mt{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13px;color:var(--mute)}
+.tl{background:none;border:0;padding:0;text-align:left;font-weight:700;cursor:pointer;color:inherit}.tl:hover{color:var(--acc3)}
+.hs{color:var(--acc2);font-weight:600;font-size:14px}
+/* featured */
+.fg{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.fbig{grid-row:span 2;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;padding:20px;align-items:center}
+.fb{display:flex;flex-direction:column;gap:12px}
+.fb h3{font-size:clamp(24px,3vw,36px);line-height:1.1;letter-spacing:-.02em}
+.fb p.d{color:var(--mute)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.fsm{display:grid;grid-template-columns:112px 1fr;gap:16px;padding:16px;align-items:center}
+.fsm .pl{width:40px;height:40px;right:6px;bottom:6px}
+.fsm h3{font-size:18px;line-height:1.25}
+.fsm .row .btn{min-height:40px;padding:8px 16px}
+.fsm .col{display:flex;flex-direction:column;gap:8px;min-width:0}
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.ct{display:flex;align-items:center;gap:12px;padding:14px;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s;width:100%}
+.ct:hover{transform:translateY(-3px);border-color:var(--acc2)}
+.ct[aria-pressed=true]{border-color:var(--acc3);box-shadow:0 0 0 1px var(--acc3)}
+.ci{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#7e7e7e,#393939)}
+.ci svg{width:22px;height:22px;stroke:#ffffff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ct strong{display:block;font-size:15px;line-height:1.25}.ct small{color:var(--mute);font-size:13px}
+/* popular */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:18px}
+.pc{padding:12px;display:flex;flex-direction:column;gap:10px;transition:transform .2s,border-color .2s}.pc:hover{transform:translateY(-4px);border-color:rgba(169,169,169,.6)}
+.pc h3{font-size:17px;line-height:1.25}
+.lt{font-size:13px;color:var(--mute);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc .row{margin-top:auto}.pc .row .btn{flex:1;padding:10px 12px}
+/* episodes */
+.eps{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.er{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px}
+.er .cv{border-radius:10px}.er .cv b{font-size:26cqw}
+.er h3{font-size:15px;line-height:1.3}
+.er p{font-size:13px;color:var(--mute)}
+.er .tl{font-weight:600;color:var(--acc2);font-size:13px}
+.more{display:flex;justify-content:center;margin-top:22px}
+.empty{padding:48px 24px;text-align:center;color:var(--mute)}.empty h2{margin-bottom:8px}.empty .btn{margin-top:16px}
+/* app promo */
+.promo{padding:clamp(28px,5vw,56px);display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:linear-gradient(135deg,rgba(91,91,91,.45),rgba(33,33,33,.7))}
+.promo h2{font-size:clamp(24px,3.4vw,36px)}.promo p{color:var(--mute);max-width:48ch;margin-top:8px}
+/* dialog */
+dialog{border:1px solid var(--line);border-radius:var(--r);background:#171717;color:var(--txt);width:min(720px,100% - 32px);max-height:90dvh;padding:0;overflow:auto}
+dialog::backdrop{background:rgba(8,8,8,.8);backdrop-filter:blur(6px)}
+.dh{display:grid;grid-template-columns:200px 1fr;gap:22px;padding:24px 24px 8px}
+.db{display:flex;flex-direction:column;gap:10px;justify-content:center;padding-right:36px}
+.db h2{font-size:clamp(22px,3vw,30px);line-height:1.1}
+.dl{padding:8px 24px 24px;display:grid;gap:8px}
+.dl .info{color:var(--mute);margin-bottom:6px}
+.dl h3{font-size:15px;margin-top:6px}
+.de{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+.de .en{font-size:12px;font-weight:700;color:var(--acc2);min-width:44px}
+.de strong{display:block;font-size:15px;line-height:1.3}.de span.s{font-size:13px;color:var(--mute)}
+.x{position:absolute;right:12px;top:12px;z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(12,12,12,.85);cursor:pointer;font-size:22px;line-height:1}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:200;padding:12px 20px;border-radius:999px;background:#212121;border:1px solid var(--acc2);font-size:14px;font-weight:600;transition:.25s;max-width:calc(100% - 32px);text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:48px 0 28px;background:linear-gradient(transparent,rgba(23,23,23,.6))}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}footer ul{padding:0}footer li{list-style:none;margin-bottom:8px}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(max-width:1020px){.fg{grid-template-columns:1fr}.fbig{grid-row:auto}.eps{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}.frow{grid-template-columns:1fr 1fr 1fr 1fr}.srch{grid-column:1/-1}}
+@media(max-width:860px){
+.burger{display:block}header .bar>.btn{display:none}
+nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(12,12,12,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:none}
+nav.open{display:flex}nav a{padding:12px 14px;font-size:16px}
+.fbar{position:static}html{scroll-padding-top:84px}}
+@media(max-width:640px){section{padding:26px 0}.hero{padding-top:36px}.frow{grid-template-columns:1fr 1fr}.frow>div:nth-last-child(-n+2){grid-column:span 1}.fbig{grid-template-columns:1fr;gap:16px}.fbig .cv{max-width:240px}.fsm{grid-template-columns:88px 1fr;gap:12px}.grid{grid-template-columns:1fr 1fr;gap:12px}.pc .row{flex-direction:column}.pc .row .btn{width:100%}.dh{grid-template-columns:1fr;padding:20px 16px 8px}.dh .cv{max-width:180px}.db{padding-right:0}.dl{padding:8px 16px 20px}.fgrid{grid-template-columns:1fr}.cats{grid-template-columns:1fr 1fr}.ct{padding:10px;gap:10px}.ci{width:38px;height:38px}}
+@media(max-width:400px){.grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html">Artists</a><a href="charts.html">Charts</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="podcasts.html" class="on" aria-current="page">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo">Contact</a><a href="join.html" class="mo">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+
+<main>
+<div class="wrap hero">
+<h1 class="hd">Podcasts from Uganda's music world</h1>
+<p>Interviews, industry news and stories behind the songs. Follow the shows you like and listen in the YAPSMusic app.</p>
+</div>
+
+<div class="wrap">
+<form class="glass fbar" id="filters" role="search" onsubmit="return false" aria-label="Search and filter podcasts">
+<div class="frow">
+<div class="srch"><label for="q">Search</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Podcast, host or episode" autocomplete="off"></div>
+<div><label for="cat">Category</label><select id="cat"><option value="all">All categories</option></select></div>
+<div><label for="sort">Sort by</label><select id="sort"><option value="pop">Most followed</option><option value="eps">Most episodes</option><option value="az">A to Z</option></select></div>
+<div><button class="btn" type="button" id="fol" aria-pressed="false">Following</button></div>
+<div><button class="btn" type="button" id="reset">Clear</button></div>
+</div>
+<div class="cnt" id="count" aria-live="polite"></div>
+</form>
+</div>
+
+<section id="featured" hidden><div class="wrap">
+<div class="head"><h2>Featured podcasts</h2></div>
+<div class="fg" id="fg"></div>
+</div></section>
+
+<section id="categories"><div class="wrap">
+<div class="head"><h2>Categories</h2><span id="catnote"></span></div>
+<div class="cats" id="cats"></div>
+</div></section>
+
+<section id="popular" hidden><div class="wrap">
+<div class="head"><h2>Popular podcasts</h2><span id="pn"></span></div>
+<div class="grid" id="pop"></div>
+</div></section>
+
+<section id="latest" hidden><div class="wrap">
+<div class="head"><h2>Latest episodes</h2><span id="en"></span></div>
+<div class="eps" id="eps"></div>
+<div class="more"><button class="btn" type="button" id="more">Show more episodes</button></div>
+</div></section>
+
+<div class="wrap" id="empty" hidden><div class="glass empty"><h2 class="hd" style="font-size:26px">No podcasts found</h2><p id="emsg">Try a different search or category.</p><button class="btn pri" type="button" id="reset2">Clear filters</button></div></div>
+
+<section id="app"><div class="wrap"><div class="glass promo">
+<div><h2 class="hd">Listen in the YAPSMusic app</h2><p>Play full episodes, follow your favourite shows and keep your library in one place with music and videos.</p></div>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open YAPSMusic App</a>
+</div></div></section>
+</main>
+
+<dialog id="dlg" aria-labelledby="dt"><div id="dbody"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+
+<script>
+/* ===== DATA — sample podcasts. Replace with real YAPSMusic data (e.g. fetch from Supabase) =====
+   c = category key, n = total episodes, fl = followers, h = cover hue (blues: 200-250), f = 1 for featured,
+   img = optional cover image (path in the app's images/ folder), e = latest episodes [number, title, date, length] */
+const APP_URL="https://brians124.github.io/YAPSMUSIC.APP/";
+const src=p=>/^https?:/.test(p)?p:APP_URL+encodeURI(p);
+const link=(p,ep)=>APP_URL+"?podcast="+p.id+(ep?"&episode="+ep[0]:"");
+const CATS={
+music:["Music & artists",'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'],
+interviews:["Interviews",'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>'],
+industry:["Industry & business",'<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>'],
+culture:["Culture & stories",'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'],
+gospel:["Gospel & faith",'<path d="M12 3v18M6 9h12"/>'],
+studio:["Studio & production",'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>']};
+const P=[
+{id:1,t:"Studio Sessions",host:"Grace Nambi",c:"interviews",n:84,fl:12400,h:212,f:1,fr:"Weekly",d:"Long-form conversations with Uganda's artists about the songs, the studio and the road behind them.",e:[[84,"Writing a hit in one night","2026-10-02","48 min"],[83,"From open mic to main stage","2026-09-25","52 min"],[82,"What the producer heard","2026-09-18","44 min"]]},
+{id:2,t:"The Beat Report",host:"Peter Ssali",c:"industry",n:52,fl:9800,h:228,f:1,fr:"Weekly",d:"Weekly news, charts and analysis from Uganda's music industry.",e:[[52,"Streaming numbers, explained","2026-10-03","31 min"],[51,"Who is topping the charts this month","2026-09-26","29 min"],[50,"Show promoters on rising costs","2026-09-19","36 min"]]},
+{id:3,t:"Made in Uganda",host:"Hana Mugisha",c:"culture",n:37,fl:7100,h:200,f:1,fr:"Every two weeks",d:"Stories of the people, places and sounds that shape Ugandan music.",e:[[37,"The drum makers of Masaka","2026-09-30","41 min"],[36,"How Luganda pop found its sound","2026-09-16","38 min"],[35,"Weddings, songs and tradition","2026-09-02","35 min"]]},
+{id:4,t:"Kampala Afrobeats Radio",host:"Naomi Kato",c:"music",n:120,fl:15200,h:245,fr:"Twice weekly",d:"New Afrobeats, Afropop and dancehall from Kampala, mixed and discussed.",e:[[120,"New this week: ten tracks to know","2026-10-03","58 min"],[119,"Dancehall special","2026-09-28","55 min"],[118,"Throwback hour","2026-09-24","60 min"]]},
+{id:5,t:"Behind the Beat",host:"Samuel Okello",c:"studio",n:41,fl:4300,h:222,fr:"Every two weeks",d:"Producers and engineers break down how Ugandan records are made.",e:[[41,"Mixing vocals for Afrobeats","2026-09-29","46 min"],[40,"Building a home studio on a budget","2026-09-15","39 min"],[39,"Sampling and clearing a track","2026-09-01","42 min"]]},
+{id:6,t:"Gospel Grounds",host:"Esther Nakato",c:"gospel",n:66,fl:8600,h:205,fr:"Weekly",d:"Worship leaders and gospel artists on faith, songs and service.",e:[[66,"Writing songs for the church choir","2026-10-01","37 min"],[65,"Worship leading in two languages","2026-09-24","40 min"],[64,"Gospel on the radio","2026-09-17","34 min"]]},
+{id:7,t:"Money & Music",host:"Daniel Mugerwa",c:"industry",n:23,fl:3900,h:236,fr:"Every two weeks",d:"How artists earn, save and grow: royalties, mobile money and touring.",e:[[23,"How streaming royalties are paid","2026-09-27","33 min"],[22,"Budgeting a tour","2026-09-13","30 min"],[21,"Contracts every artist should read","2026-08-30","35 min"]]},
+{id:8,t:"Luganda Lyrics Decoded",host:"Ruth Nabirye",c:"culture",n:48,fl:5200,h:218,fr:"Weekly",d:"Line-by-line looks at the words, proverbs and wordplay in Luganda hits.",e:[[48,"The proverb behind a hit chorus","2026-10-02","27 min"],[47,"Slang that moved from the street to the charts","2026-09-25","25 min"],[46,"Love songs, then and now","2026-09-18","29 min"]]},
+{id:9,t:"Women in the Booth",host:"Aisha Namutebi",c:"interviews",n:29,fl:4700,h:250,fr:"Every two weeks",d:"Singers, producers and DJs on building careers in Uganda's music industry.",e:[[29,"DJing your way to the main stage","2026-09-28","45 min"],[28,"Producing while raising a family","2026-09-14","43 min"],[27,"Women in live sound","2026-08-31","40 min"]]},
+{id:10,t:"Late Night Playlist",host:"Joel Opio",c:"music",n:95,fl:11300,h:235,fr:"Weekly",d:"A slow, late-evening mix of R&B, Afropop and acoustic sets with short chats between tracks.",e:[[95,"After midnight: R&B","2026-10-03","62 min"],[94,"Acoustic hour","2026-09-27","57 min"],[93,"Songs for the drive home","2026-09-20","60 min"]]}
+];
+/* ===== Helpers ===== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ini=s=>s.split(" ").filter(w=>/^[A-Za-z]/.test(w)&&w.toLowerCase()!=="the").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const fmt=n=>n>=1000?(n/1000).toFixed(1).replace(".0","")+"K":String(n);
+const fd=d=>new Intl.DateTimeFormat("en-GB",{day:"numeric",month:"short"}).format(new Date(d+"T00:00:00"));
+const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+const bars=p=>Array.from({length:9},(_,i)=>{const h=18+((p.id*37+i*53)%52);return `<rect x="${8+i*10}" y="${96-h}" width="6" height="${h}" rx="3" fill="#ffffff" opacity="${i%2?.16:.28}"/>`}).join("");
+const cover=(p,play)=>`<div class="cv" style="--h:${p.h}" role="img" aria-label="Cover art for ${esc(p.t)}"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="82" cy="22" r="28" fill="#ffffff" opacity=".07"/><circle cx="82" cy="22" r="15" fill="#ffffff" opacity=".08"/>${bars(p)}</svg><b aria-hidden="true">${ini(p.t)}</b>${p.img?`<img src="${src(p.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}${play?`<a class="pl" href="${link(p,p.e[0])}" target="_blank" rel="noopener" aria-label="Play latest episode of ${esc(p.t)}">${PLAY}</a>`:""}</div>`;
+const nameBtn=p=>`<button class="tl" type="button" data-open="${p.id}">${esc(p.t)}</button>`;
+const fb=p=>{const on=F.has(p.id);return `<button class="btn fol" type="button" data-follow="${p.id}" aria-pressed="${on}" aria-label="Follow ${esc(p.t)}">${on?"Following":"Follow"}</button>`};
+const stats=p=>`<p class="mt"><span>${p.n} episodes</span><span>${p.fr}</span><span><span data-fl="${p.id}">${fmt(p.fl+(F.has(p.id)?1:0))}</span> followers</span></p>`;
+/* ===== Follows (saved in this browser only) ===== */
+let F=new Set();try{F=new Set(JSON.parse(localStorage.getItem("yaps_pod_follows")||"[]"))}catch(e){}
+const saveF=()=>{try{localStorage.setItem("yaps_pod_follows",JSON.stringify([...F]))}catch(e){}};
+let tt;const toast=m=>{const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200)};
+/* ===== Templates ===== */
+const big=p=>`<article class="glass fbig">${cover(p,true)}<div class="fb"><span class="tag">Featured podcast</span><h3>${nameBtn(p)}</h3><p class="hs">Hosted by ${esc(p.host)}</p><p class="d">${esc(p.d)}</p>${stats(p)}<div class="row"><a class="btn pri" href="${link(p,p.e[0])}" target="_blank" rel="noopener">${PLAY}Play latest episode</a>${fb(p)}<button class="btn" type="button" data-open="${p.id}">Details</button></div></div></article>`;
+const sm=p=>`<article class="glass fsm">${cover(p,true)}<div class="col"><h3>${nameBtn(p)}</h3><p class="hs">${esc(p.host)}</p><p class="lt">Latest: ${esc(p.e[0][1])}</p><div class="row">${fb(p)}<button class="btn" type="button" data-open="${p.id}">Details</button></div></div></article>`;
+const card=p=>`<article class="glass pc">${cover(p,true)}<span class="tag">${CATS[p.c][0]}</span><h3>${nameBtn(p)}</h3><p class="hs">${esc(p.host)}</p>${stats(p)}<p class="lt">Latest, ${fd(p.e[0][2])}: ${esc(p.e[0][1])}</p><div class="row">${fb(p)}<button class="btn" type="button" data-open="${p.id}">Details</button></div></article>`;
+const epRow=x=>`<article class="glass er">${cover(x.p)}<div style="min-width:0"><h3>${esc(x.t)}</h3><p>${fd(x.d)}, ${x.m}</p><button class="tl" type="button" data-open="${x.p.id}">${esc(x.p.t)}</button> <span style="font-size:13px;color:var(--mute)">with ${esc(x.p.host)}</span></div><a class="pl sm" href="${link(x.p,[x.n])}" target="_blank" rel="noopener" aria-label="Play episode ${x.n}: ${esc(x.t)}">${PLAY}</a></article>`;
+/* ===== State + filters ===== */
+const DEF={q:"",c:"all",s:"pop",fol:false};
+let st={...DEF,m:8};
+const filtered=()=>st.q||st.c!=="all"||st.fol;
+const SORT={pop:(a,b)=>b.fl-a.fl,eps:(a,b)=>b.n-a.n,az:(a,b)=>a.t.localeCompare(b.t)};
+const text=p=>(p.t+" "+p.host+" "+p.d+" "+CATS[p.c][0]+" "+p.e.map(x=>x[1]).join(" ")).toLowerCase();
+const match=p=>(st.c==="all"||p.c===st.c)&&(!st.q||text(p).includes(st.q))&&(!st.fol||F.has(p.id));
+function render(){
+const list=P.filter(match).sort(SORT[st.s]);
+$("count").textContent=list.length+(list.length===1?" podcast found":" podcasts found");
+$("empty").hidden=list.length>0;
+$("emsg").textContent=st.fol&&!list.length&&!st.q&&st.c==="all"?"You are not following any podcasts yet. Tap Follow on a show to add it here.":"Try a different search or category.";
+$("popular").hidden=$("latest").hidden=!list.length;
+const fe=P.filter(p=>p.f);$("featured").hidden=filtered()||!fe.length;
+if(!$("featured").hidden)$("fg").innerHTML=big(fe[0])+fe.slice(1).map(sm).join("");
+$("cats").innerHTML=Object.entries(CATS).map(([k,v])=>{const n=P.filter(p=>p.c===k).length;return `<button class="glass ct" type="button" data-cat="${k}" aria-pressed="${st.c===k}"><span class="ci"><svg viewBox="0 0 24 24" aria-hidden="true">${v[1]}</svg></span><span><strong>${v[0]}</strong><small>${n} ${n===1?"podcast":"podcasts"}</small></span></button>`}).join("");
+$("catnote").textContent=st.c==="all"?"":"Showing "+CATS[st.c][0];
+$("pop").innerHTML=list.map(card).join("");$("pn").textContent=list.length+(list.length===1?" show":" shows");
+const hit=x=>!st.q||(x.t+" "+x.p.t+" "+x.p.host).toLowerCase().includes(st.q);
+const eps=list.flatMap(p=>p.e.map(x=>({p,n:x[0],t:x[1],d:x[2],m:x[3]}))).filter(hit).sort((a,b)=>b.d.localeCompare(a.d)||b.p.fl-a.p.fl);
+$("eps").innerHTML=eps.slice(0,st.m).map(epRow).join("");
+$("en").textContent=eps.length+(eps.length===1?" episode":" episodes");
+$("more").hidden=eps.length<=st.m;
+$("latest").hidden=!eps.length}
+const upd=(k,v)=>{st[k]=v;st.m=8;render()};
+/* controls */
+$("cat").insertAdjacentHTML("beforeend",Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join(""));
+$("q").oninput=e=>upd("q",e.target.value.trim().toLowerCase());
+$("cat").onchange=e=>upd("c",e.target.value);
+$("sort").onchange=e=>upd("s",e.target.value);
+$("fol").onclick=()=>{upd("fol",!st.fol);$("fol").setAttribute("aria-pressed",st.fol)};
+function reset(){st={...DEF,m:8};$("filters").reset();$("cat").value="all";$("sort").value="pop";$("fol").setAttribute("aria-pressed","false");render()}
+$("reset").onclick=$("reset2").onclick=reset;
+$("more").onclick=()=>{st.m+=8;render()};
+/* delegated clicks: follow, category tiles, details */
+const dlg=$("dlg");
+document.addEventListener("click",ev=>{
+const f=ev.target.closest("[data-follow]");
+if(f){const id=+f.dataset.follow,p=P.find(x=>x.id===id),on=!F.has(id);on?F.add(id):F.delete(id);saveF();
+document.querySelectorAll(`[data-follow="${id}"]`).forEach(x=>{x.setAttribute("aria-pressed",on);x.textContent=on?"Following":"Follow"});
+document.querySelectorAll(`[data-fl="${id}"]`).forEach(x=>x.textContent=fmt(p.fl+(on?1:0)));
+toast(on?"Following "+p.t:"Unfollowed "+p.t);if(st.fol)render();return}
+const c=ev.target.closest("[data-cat]");
+if(c){const k=c.dataset.cat;st.c=st.c===k?"all":k;st.m=8;$("cat").value=st.c;render();if(st.c!=="all")$("popular").scrollIntoView({behavior:"smooth"});return}
+const o=ev.target.closest("[data-open]");
+if(o){const p=P.find(x=>x.id==o.dataset.open);if(!p)return;
+$("dbody").innerHTML=`<button class="x" type="button" data-close aria-label="Close details">&times;</button><div class="dh">${cover(p)}<div class="db"><span class="tag">${CATS[p.c][0]}</span><h2 id="dt">${esc(p.t)}</h2><p class="hs">Hosted by ${esc(p.host)}</p>${stats(p)}<div class="row"><a class="btn pri" href="${link(p)}" target="_blank" rel="noopener">Open in the app</a>${fb(p)}</div></div></div><div class="dl"><p class="info">${esc(p.d)}</p><h3>Latest episodes</h3>${p.e.map(x=>`<div class="de"><span class="en">Ep ${x[0]}</span><div><strong>${esc(x[1])}</strong><span class="s">${fd(x[2])}, ${x[3]}</span></div><a class="pl sm" href="${link(p,x)}" target="_blank" rel="noopener" aria-label="Play episode ${x[0]}: ${esc(x[1])}">${PLAY}</a></div>`).join("")}<a class="lnk" href="${link(p)}" target="_blank" rel="noopener">See all ${p.n} episodes in the app</a></div>`;
+dlg.showModal()}});
+dlg.addEventListener("click",e=>{if(e.target===dlg||e.target.closest("[data-close]"))dlg.close()});
+/* nav */
+const nav=$("nav"),bg=$("burger");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+const na=$("navapp"),mq=matchMedia("(max-width:860px)");na.style.display=mq.matches?"inline-flex":"none";mq.addEventListener("change",e=>na.style.display=e.matches?"inline-flex":"none");
+$("yr").textContent=new Date().getFullYear();
+render();
+</script>
+<script src="signup-gate.js" defer></script>
+<script src="hero-player.js" defer></script>
+</body>
+</html>

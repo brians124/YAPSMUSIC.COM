@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Become a YAPSMusic Artist — Free Artist Signup</title>
+<meta name="description" content="Join YAPSMusic for free. Upload your songs, promote your releases, build an audience and share your music with listeners around the world, from Uganda.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+
+:root{--ink:#080808;--navy:#121212;--deep:#1b1b1b;--violet:#7c7c7c;--ocean:#a1a1a1;--crimson:#858585;--emerald:#9e9e9e;--sky:#a1a1a1;--sky2:#7c7c7c;--txt:#f6f6f6;--mute:#c6c6c6;--aurora-grad:linear-gradient(100deg,#9e9e9e 0%,#a1a1a1 33%,#7c7c7c 66%,#858585 100%);--aurora-btn:linear-gradient(100deg,#727272 0%,#6c6c6c 35%,#626262 68%,#686868 100%);--grad:var(--aurora-grad);--btn:var(--aurora-btn);--glass:rgba(255,255,255,.06);--line:rgba(142,142,142,.26);--r:18px;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;background:var(--ink)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 10% 0%,rgba(158,158,158,.20),transparent 42%),radial-gradient(circle at 100% 12%,rgba(133,133,133,.18),transparent 46%),radial-gradient(circle at 75% 100%,rgba(124,124,124,.22),transparent 50%),radial-gradient(circle at 0% 80%,rgba(161,161,161,.13),transparent 45%),var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding:56px 0}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,.45);border:0;box-shadow:0 8px 28px #7c7c7c55}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px}
+.head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
+.head a{color:var(--sky);font-size:14px;font-weight:600;white-space:nowrap}
+/* header */
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(8,8,8,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:var(--grad) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo i{font-style:normal;font-weight:inherit}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:var(--glass)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:48px 0 28px;background:linear-gradient(transparent,#12121266)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}
+footer li{list-style:none;margin-bottom:8px}footer ul{padding:0}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+/* Premium aurora lettering (from the YAPS app) */
+/* ── 3D letters (extruded teal → blue → purple, like the YAPS Music poster) ── */
+html .y3d, html .y3d-g {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 900 !important; letter-spacing: -0.3px; text-transform: uppercase;
+  color: #ffffff; display: inline-block;
+  filter:
+    drop-shadow(1px 1px 0 #5c5c5c) drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444)
+    drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(0 6px 7px rgba(0,0,0,0.5));
+}
+html .y3d-g {
+  background: var(--aurora-grad); background-size: 100% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  padding-right: 0.06em;
+  filter:
+    drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #343434)
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(0 6px 7px rgba(0,0,0,0.5));
+}
+html .y3d-s, html .y3d-s.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+html .y3d-s.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+html .y3d-xl {
+  filter:
+    drop-shadow(1px 1px 0 #5c5c5c) drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444)
+    drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(1px 1px 0 #2d2d2d) drop-shadow(0 10px 12px rgba(0,0,0,0.55));
+}
+html .y3d-xl.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #343434)
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(1px 1px 0 #282828) drop-shadow(0 10px 12px rgba(0,0,0,0.55));
+}
+html .y3d-live { background-size: 220% 100%; animation: auroraShine 5s linear infinite; }
+@keyframes auroraShine { from { background-position: 0% 0; } to { background-position: 220% 0; } }
+
+
+html .head h2,html .promo h2{font-family:Archivo,system-ui,sans-serif!important;font-weight:900!important;text-transform:uppercase;letter-spacing:-.2px;color:#ffffff;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.promo{position:relative;overflow:hidden;padding:clamp(32px,6vw,72px);background:linear-gradient(135deg,#2c2c2ccc,#282828cc 50%,#383838cc);text-align:center}.promo h2{font-size:clamp(28px,4.5vw,48px);margin-bottom:12px}.promo p{color:var(--mute);max-width:52ch;margin:0 auto 24px}.perks{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}.perks span{padding:6px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px}
+
+.ahero{padding:72px 0 32px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.ahero h1{font-size:clamp(34px,5.4vw,60px);line-height:1.05;margin-bottom:18px}
+.ahero h1 em{font-style:normal;background:var(--grad);background-size:220% 100%;animation:auroraShine 5s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em}
+.ahero p.lead{color:var(--mute);max-width:52ch;margin-bottom:24px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px;justify-self:center;width:100%}
+.mosaic .cover{aspect-ratio:1;border-radius:16px;position:relative;display:grid;place-items:center;font-weight:800;font-size:26px;color:#ffffffcc;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.mosaic .cover:nth-child(2),.mosaic .cover:nth-child(4),.mosaic .cover:nth-child(6){transform:translateY(18px)}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{padding:22px;text-align:center}.stat b{display:block;font-size:clamp(32px,4vw,46px);font-weight:900;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}.stat span{display:block;margin-top:8px;color:var(--mute);font-size:14px}
+.note{color:var(--mute);font-size:12.5px;margin-top:12px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.box{padding:clamp(22px,3vw,34px)}.box h3{font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}.box p,.box li{color:var(--mute)}.box ul{padding-left:18px;margin-top:10px;display:grid;gap:6px}
+.big{font-size:clamp(20px,2.6vw,28px);font-weight:700;line-height:1.3;letter-spacing:-.02em}
+.ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--btn);margin-bottom:14px}.ico svg{width:22px;height:22px;stroke:#ffffff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.uganda{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden}.uganda .pic{min-height:300px;background:linear-gradient(135deg,#565656,#2e2e2e 55%,#424242);position:relative}.uganda .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}.uganda .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(8,8,8,.7))}
+.uganda .b{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:12px}.uganda .b p{color:var(--mute)}
+.genres{display:flex;flex-wrap:wrap;gap:8px}.genres span{padding:5px 12px;border-radius:999px;background:rgba(158,158,158,.14);color:#9e9e9e;font-size:13px;font-weight:600}
+@media(max-width:1020px){.ahero,.two,.uganda{grid-template-columns:1fr}.three{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.mosaic{max-width:340px}}
+@media(max-width:860px){.burger{display:block}nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:none}nav.open{display:flex}nav a{padding:12px 14px;font-size:16px}header .bar>.btn{display:none}}
+@media(max-width:640px){section{padding:40px 0}.ahero{padding-top:40px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+.jhero{padding:80px 0 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.jhero h1{display:block;font-size:clamp(38px,6.4vw,76px);line-height:1.02;margin-bottom:18px}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border-radius:999px;background:rgba(158,158,158,.14);color:#9e9e9e;font-weight:700;font-size:13px;margin-bottom:18px;border:1px solid rgba(158,158,158,.35)}
+.btn.xl{padding:18px 38px;font-size:19px;font-weight:800;box-shadow:0 12px 40px #7c7c7c88,0 0 0 4px rgba(161,161,161,.18)}
+.sub{color:var(--mute);font-size:13px;margin-top:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.steps .box{position:relative;counter-increment:s}.steps .box::before{content:counter(s);position:absolute;right:20px;top:8px;font-size:84px;font-weight:900;line-height:1;color:rgba(124,124,124,.22)}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ticks{list-style:none!important;padding:0!important;display:grid;gap:10px}.ticks li{position:relative;padding-left:28px}.ticks li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:var(--btn)}.ticks li::after{content:"";position:absolute;left:5px;top:8px;width:4px;height:7px;border:solid #ffffff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+details.glass{padding:0;margin-bottom:12px}details summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:700;display:flex;justify-content:space-between;gap:16px}details summary::-webkit-details-marker{display:none}details summary::after{content:"+";font-size:22px;line-height:1;color:var(--ocean);transition:transform .2s}details[open] summary::after{transform:rotate(45deg)}details p{padding:0 22px 20px;color:var(--mute)}
+.final{position:relative;overflow:hidden;text-align:center;padding:clamp(40px,8vw,96px) 20px;background:linear-gradient(135deg,#2c2c2cdd,#282828dd 50%,#383838dd)}
+.final h2{font-size:clamp(30px,5.5vw,60px);margin-bottom:14px}.final p{color:var(--mute);max-width:54ch;margin:0 auto 30px}
+.help{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.help a.box{display:block;transition:transform .2s,border-color .2s}.help a.box:hover{transform:translateY(-3px);border-color:rgba(161,161,161,.6)}
+@media(max-width:1020px){.jhero,.steps,.help{grid-template-columns:1fr}.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.four{grid-template-columns:1fr}.btn.xl{width:100%;justify-content:center}.jhero{padding-top:40px}}
+
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html">Artists</a><a href="charts.html">Charts</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="podcasts.html">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo">Contact</a><a href="join.html" class="mo on" aria-current="page">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+
+<main>
+<div class="wrap jhero">
+<div>
+<span class="badge">Free artist signup</span>
+<h1 class="y3d y3d-xl y3d-g y3d-live">Become a YAPSMusic Artist</h1>
+<p class="lead" style="color:var(--mute);max-width:50ch;margin-bottom:28px;font-size:18px">Your music deserves more than your phone's storage. Put it where listeners in Uganda and around the world can find it, play it and share it. Joining is free.</p>
+<div class="cta-row"><a class="btn pri xl" href="https://brians124.github.io/YAPSMUSIC.APP/">Become an Artist</a><a class="btn" href="#steps">See how it works</a></div>
+<p class="sub">No sign-up fee. You keep ownership of your music.</p>
+</div>
+<div class="mosaic" aria-label="Artists on YAPSMusic"><div class="cover" style="background:linear-gradient(135deg,hsl(200 0% 48%),hsl(235 0% 16%))">JB<img src="https://brians124.github.io/YAPSMUSIC.APP/images/Joshua_Baraka.png" alt="Joshua Baraka" loading="lazy" onerror="this.remove()"></div><div class="cover" style="background:linear-gradient(135deg,hsl(292 0% 48%),hsl(327 0% 16%))">SD<img src="https://brians124.github.io/YAPSMUSIC.APP/images/Spice_Diana.png" alt="Spice Diana" loading="lazy" onerror="this.remove()"></div><div class="cover" style="background:linear-gradient(135deg,hsl(265 0% 48%),hsl(300 0% 16%))">FF<img src="https://brians124.github.io/YAPSMUSIC.APP/images/Fik_Fameica.png" alt="Fik Fameica" loading="lazy" onerror="this.remove()"></div><div class="cover" style="background:linear-gradient(135deg,hsl(155 0% 48%),hsl(190 0% 16%))">V<img src="https://brians124.github.io/YAPSMUSIC.APP/images/Vinka.png" alt="Vinka" loading="lazy" onerror="this.remove()"></div><div class="cover" style="background:linear-gradient(135deg,hsl(265 0% 48%),hsl(300 0% 16%))">S<img src="https://brians124.github.io/YAPSMUSIC.APP/images/Sheebah.jpg" alt="Sheebah" loading="lazy" onerror="this.remove()"></div><div class="cover" style="background:linear-gradient(135deg,hsl(200 0% 48%),hsl(235 0% 16%))">RN<img src="https://brians124.github.io/YAPSMUSIC.APP/images/Rema_Namakula.png" alt="Rema Namakula" loading="lazy" onerror="this.remove()"></div></div>
+</div>
+
+<section style="padding-top:24px"><div class="wrap">
+<div class="stats">
+<div class="glass stat"><b>Free</b><span>to join as an artist</span></div>
+<div class="glass stat"><b>3</b><span>steps to publish a track</span></div>
+<div class="glass stat"><b>6</b><span>audio formats accepted</span></div>
+<div class="glass stat"><b>3</b><span>visibility settings per track</span></div>
+</div>
+</div></section>
+
+<section id="steps"><div class="wrap">
+<div class="head"><h2>Join in 3 simple steps</h2></div>
+<div class="steps">
+<div class="glass box"><h3>Create your account</h3><p>Open the YAPSMusic app and sign up. It is free and quick.</p></div>
+<div class="glass box"><h3>Upload your track</h3><p>Add your audio, then fill in the title, artist name, genre and release date. Add artwork to finish the look.</p></div>
+<div class="glass box"><h3>Confirm and publish</h3><p>Confirm you own the rights, pick who can listen, and press Publish. Your music is live.</p></div>
+</div>
+<div class="cta-row" style="margin-top:28px;justify-content:center"><a class="btn pri xl" href="https://brians124.github.io/YAPSMUSIC.APP/">Become an Artist</a></div>
+</div></section>
+
+<section id="submit"><div class="wrap">
+<div class="head"><h2>Everything you need to be heard</h2></div>
+<div class="four">
+<div class="glass box"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg></div><h3>Upload songs</h3><p>Drop in your audio or video file by drag and drop or from your device. Add tags, an album name and a release date.</p></div>
+<div class="glass box"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1zM17 9a4 4 0 0 1 0 6"/></svg></div><h3>Promote releases</h3><p>Set a release date, add strong artwork and publish. Listeners can find your tracks through search, genres and the app's discovery pages.</p></div>
+<div class="glass box"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></div><h3>Build an audience</h3><p>Listeners can follow you, like your songs and add them to playlists. Your artist dashboard helps you keep track of your music.</p></div>
+<div class="glass box"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></div><h3>Share worldwide</h3><p>Listeners can share your songs with a link, so your music can travel well beyond Kampala.</p></div>
+</div>
+</div></section>
+
+<section id="benefits"><div class="wrap two">
+<div class="glass box"><h3>Artist benefits</h3>
+<ul class="ticks"><li>Free to join and to upload</li><li>You keep ownership of your tracks and artwork</li><li>An artist dashboard to manage your uploads</li><li>Choose Public, Unlisted or Private for every track</li><li>Choose whether listeners can download your music</li><li>Mark explicit content so listeners know what to expect</li><li>Upload music videos as well as audio</li><li>An app in English, Luganda and Swahili</li></ul></div>
+<div class="glass box" id="requirements"><h3>Artist requirements</h3>
+<ul class="ticks"><li>Music you own or have permission to distribute</li><li>Audio in MP3, WAV, FLAC, AAC, OGG or AIFF</li><li>A track title and your artist name</li><li>Artwork in JPG or PNG, at least 1400×1400 pixels</li><li>A confirmation that your upload does not infringe anyone else's copyright</li></ul>
+<p style="margin-top:16px">Respecting other artists' rights keeps YAPSMusic fair for everyone. Content reported for copyright is reviewed.</p></div>
+</div></section>
+
+<section id="faq"><div class="wrap" style="max-width:860px">
+<div class="head"><h2>Questions artists ask</h2></div>
+<details class="glass"><summary>Is it really free to join?</summary><p>Yes. Signing up as an artist on YAPSMusic is free.</p></details><details class="glass"><summary>Who owns my music?</summary><p>You do. You keep ownership of your tracks and artwork. By uploading, you give YAPSMusic a licence to host, stream and display them on the platform.</p></details><details class="glass"><summary>What file types can I upload?</summary><p>The upload screen accepts MP3, WAV, FLAC, AAC, OGG and AIFF audio, plus video files. Artwork should be a JPG or PNG, at least 1400×1400 pixels.</p></details><details class="glass"><summary>Can I upload a song I did not make?</summary><p>No. Only upload music you own or have permission to distribute. You confirm this before every release is published.</p></details><details class="glass"><summary>Can I choose who hears my track?</summary><p>Yes. Set each track to Public, Unlisted (only people with the link) or Private (only you), and choose whether listeners can download it.</p></details><details class="glass"><summary>Can I mark explicit content?</summary><p>Yes. There is an explicit-content option on every upload.</p></details><details class="glass"><summary>What if someone uploads my music without permission?</summary><p>Use the copyright reporting option in the app and give enough detail for the content to be identified and reviewed.</p></details><details class="glass"><summary>I have a question that is not answered here.</summary><p>Open the Help Center inside the app, or send feedback from the app menu. We read what you send to improve YAPSMusic.</p></details>
+</div></section>
+
+<section id="join"><div class="wrap">
+<div class="glass final">
+<h2>Your next release starts here</h2>
+<p>Create your free artist account, upload your first track and let the world hear it. Music to the World, from Uganda.</p>
+<a class="btn pri xl" href="https://brians124.github.io/YAPSMUSIC.APP/">Become an Artist</a>
+</div>
+</div></section>
+
+<section id="support"><div class="wrap">
+<div class="head"><h2>Contact and support</h2></div>
+<div class="help">
+<a class="glass box" href="https://brians124.github.io/YAPSMUSIC.APP/"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg></div><h3>Help Center</h3><p>Answers on uploads, accounts and playback, inside the app.</p></a>
+<a class="glass box" href="https://brians124.github.io/YAPSMUSIC.APP/"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/></svg></div><h3>Send feedback</h3><p>Suggest a feature or tell us how we can serve artists better.</p></a>
+<a class="glass box" href="https://brians124.github.io/YAPSMUSIC.APP/"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></div><h3>Report a problem</h3><p>Something not working, or a copyright concern? Report it from the app.</p></a>
+</div>
+<!-- Add your support email or WhatsApp link here once you have one, e.g. <p>Email: support@yourdomain</p> -->
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+<script>
+document.getElementById("yr").textContent=new Date().getFullYear();
+const nav=document.getElementById("nav"),bg=document.getElementById("burger"),na=document.getElementById("navapp"),mq=matchMedia("(max-width:860px)");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove("open");bg.setAttribute("aria-expanded",false)}});
+const sync=()=>na.style.display=mq.matches?"inline-flex":"none";sync();mq.addEventListener("change",sync);
+</script>
+<script src="signup-gate.js" defer></script>
+<script src="hero-player.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact YAPSMusic</title>
+<meta name="description" content="Contact YAPSMusic for general inquiries, artist support, partnerships and advertising or sponsorship.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+
+
+:root{--ink:#080808;--navy:#121212;--deep:#1b1b1b;--violet:#7c7c7c;--ocean:#a1a1a1;--crimson:#858585;--emerald:#9e9e9e;--sky:#a1a1a1;--sky2:#7c7c7c;--txt:#f6f6f6;--mute:#c6c6c6;--aurora-grad:linear-gradient(100deg,#9e9e9e 0%,#a1a1a1 33%,#7c7c7c 66%,#858585 100%);--aurora-btn:linear-gradient(100deg,#727272 0%,#6c6c6c 35%,#626262 68%,#686868 100%);--grad:var(--aurora-grad);--btn:var(--aurora-btn);--glass:rgba(255,255,255,.06);--line:rgba(142,142,142,.26);--r:18px;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;background:var(--ink)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 10% 0%,rgba(158,158,158,.20),transparent 42%),radial-gradient(circle at 100% 12%,rgba(133,133,133,.18),transparent 46%),radial-gradient(circle at 75% 100%,rgba(124,124,124,.22),transparent 50%),radial-gradient(circle at 0% 80%,rgba(161,161,161,.13),transparent 45%),var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding:56px 0}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,.45);border:0;box-shadow:0 8px 28px #7c7c7c55}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px}
+.head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
+.head a{color:var(--sky);font-size:14px;font-weight:600;white-space:nowrap}
+/* header */
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(8,8,8,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:var(--grad) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo i{font-style:normal;font-weight:inherit}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:var(--glass)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:48px 0 28px;background:linear-gradient(transparent,#12121266)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}
+footer li{list-style:none;margin-bottom:8px}footer ul{padding:0}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+/* Premium aurora lettering (from the YAPS app) */
+/* ── 3D letters (extruded teal → blue → purple, like the YAPS Music poster) ── */
+html .y3d, html .y3d-g {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-weight: 900 !important; letter-spacing: -0.3px; text-transform: uppercase;
+  color: #ffffff; display: inline-block;
+  filter:
+    drop-shadow(1px 1px 0 #5c5c5c) drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444)
+    drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(0 6px 7px rgba(0,0,0,0.5));
+}
+html .y3d-g {
+  background: var(--aurora-grad); background-size: 100% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  padding-right: 0.06em;
+  filter:
+    drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #343434)
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(0 6px 7px rgba(0,0,0,0.5));
+}
+html .y3d-s, html .y3d-s.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+html .y3d-s.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+}
+html .y3d-xl {
+  filter:
+    drop-shadow(1px 1px 0 #5c5c5c) drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444)
+    drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(1px 1px 0 #3f3f3f)
+    drop-shadow(1px 1px 0 #2d2d2d) drop-shadow(0 10px 12px rgba(0,0,0,0.55));
+}
+html .y3d-xl.y3d-g {
+  filter:
+    drop-shadow(1px 1px 0 #393939) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #343434)
+    drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636) drop-shadow(1px 1px 0 #363636)
+    drop-shadow(1px 1px 0 #282828) drop-shadow(0 10px 12px rgba(0,0,0,0.55));
+}
+html .y3d-live { background-size: 220% 100%; animation: auroraShine 5s linear infinite; }
+@keyframes auroraShine { from { background-position: 0% 0; } to { background-position: 220% 0; } }
+
+
+html .head h2,html .promo h2{font-family:Archivo,system-ui,sans-serif!important;font-weight:900!important;text-transform:uppercase;letter-spacing:-.2px;color:#ffffff;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+.promo{position:relative;overflow:hidden;padding:clamp(32px,6vw,72px);background:linear-gradient(135deg,#2c2c2ccc,#282828cc 50%,#383838cc);text-align:center}.promo h2{font-size:clamp(28px,4.5vw,48px);margin-bottom:12px}.promo p{color:var(--mute);max-width:52ch;margin:0 auto 24px}.perks{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}.perks span{padding:6px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px}
+
+.ahero{padding:72px 0 32px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.ahero h1{font-size:clamp(34px,5.4vw,60px);line-height:1.05;margin-bottom:18px}
+.ahero h1 em{font-style:normal;background:var(--grad);background-size:220% 100%;animation:auroraShine 5s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em}
+.ahero p.lead{color:var(--mute);max-width:52ch;margin-bottom:24px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px;justify-self:center;width:100%}
+.mosaic .cover{aspect-ratio:1;border-radius:16px;position:relative;display:grid;place-items:center;font-weight:800;font-size:26px;color:#ffffffcc;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.mosaic .cover:nth-child(2),.mosaic .cover:nth-child(4),.mosaic .cover:nth-child(6){transform:translateY(18px)}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{padding:22px;text-align:center}.stat b{display:block;font-size:clamp(32px,4vw,46px);font-weight:900;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}.stat span{display:block;margin-top:8px;color:var(--mute);font-size:14px}
+.note{color:var(--mute);font-size:12.5px;margin-top:12px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.box{padding:clamp(22px,3vw,34px)}.box h3{font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}.box p,.box li{color:var(--mute)}.box ul{padding-left:18px;margin-top:10px;display:grid;gap:6px}
+.big{font-size:clamp(20px,2.6vw,28px);font-weight:700;line-height:1.3;letter-spacing:-.02em}
+.ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--btn);margin-bottom:14px}.ico svg{width:22px;height:22px;stroke:#ffffff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.uganda{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden}.uganda .pic{min-height:300px;background:linear-gradient(135deg,#565656,#2e2e2e 55%,#424242);position:relative}.uganda .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}.uganda .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(8,8,8,.7))}
+.uganda .b{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:12px}.uganda .b p{color:var(--mute)}
+.genres{display:flex;flex-wrap:wrap;gap:8px}.genres span{padding:5px 12px;border-radius:999px;background:rgba(158,158,158,.14);color:#9e9e9e;font-size:13px;font-weight:600}
+@media(max-width:1020px){.ahero,.two,.uganda{grid-template-columns:1fr}.three{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}.mosaic{max-width:340px}}
+@media(max-width:860px){.burger{display:block}nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:none}nav.open{display:flex}nav a{padding:12px 14px;font-size:16px}header .bar>.btn{display:none}}
+@media(max-width:640px){section{padding:40px 0}.ahero{padding-top:40px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+.jhero{padding:80px 0 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.jhero h1{display:block;font-size:clamp(38px,6.4vw,76px);line-height:1.02;margin-bottom:18px}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border-radius:999px;background:rgba(158,158,158,.14);color:#9e9e9e;font-weight:700;font-size:13px;margin-bottom:18px;border:1px solid rgba(158,158,158,.35)}
+.btn.xl{padding:18px 38px;font-size:19px;font-weight:800;box-shadow:0 12px 40px #7c7c7c88,0 0 0 4px rgba(161,161,161,.18)}
+.sub{color:var(--mute);font-size:13px;margin-top:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.steps .box{position:relative;counter-increment:s}.steps .box::before{content:counter(s);position:absolute;right:20px;top:8px;font-size:84px;font-weight:900;line-height:1;color:rgba(124,124,124,.22)}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ticks{list-style:none!important;padding:0!important;display:grid;gap:10px}.ticks li{position:relative;padding-left:28px}.ticks li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:var(--btn)}.ticks li::after{content:"";position:absolute;left:5px;top:8px;width:4px;height:7px;border:solid #ffffff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+details.glass{padding:0;margin-bottom:12px}details summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:700;display:flex;justify-content:space-between;gap:16px}details summary::-webkit-details-marker{display:none}details summary::after{content:"+";font-size:22px;line-height:1;color:var(--ocean);transition:transform .2s}details[open] summary::after{transform:rotate(45deg)}details p{padding:0 22px 20px;color:var(--mute)}
+.final{position:relative;overflow:hidden;text-align:center;padding:clamp(40px,8vw,96px) 20px;background:linear-gradient(135deg,#2c2c2cdd,#282828dd 50%,#383838dd)}
+.final h2{font-size:clamp(30px,5.5vw,60px);margin-bottom:14px}.final p{color:var(--mute);max-width:54ch;margin:0 auto 30px}
+.help{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.help a.box{display:block;transition:transform .2s,border-color .2s}.help a.box:hover{transform:translateY(-3px);border-color:rgba(161,161,161,.6)}
+@media(max-width:1020px){.jhero,.steps,.help{grid-template-columns:1fr}.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.four{grid-template-columns:1fr}.btn.xl{width:100%;justify-content:center}.jhero{padding-top:40px}}
+
+
+/* ===== contact page ===== */
+.chero{padding:64px 0 24px}
+.chero h1{display:block;font-size:clamp(36px,6vw,68px);line-height:1.04;margin-bottom:16px}
+.chero p{color:var(--mute);max-width:56ch;font-size:18px}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.topic{display:flex;flex-direction:column}.topic p{flex:1}
+.topic .btn{align-self:flex-start;margin-top:16px;padding:9px 18px;font-size:14px}
+.ph{display:inline-block;margin-top:12px;padding:4px 10px;border-radius:8px;border:1px dashed rgba(161,161,161,.6);color:var(--ocean);font-size:12.5px;font-weight:600;background:rgba(161,161,161,.06)}
+.formgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:start}
+.fld{margin-bottom:18px}
+.fld label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.fld label span{color:var(--mute);font-weight:400}
+.fld input,.fld select,.fld textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(18,18,18,.8);color:#ffffff;font:inherit;font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s}
+.fld textarea{min-height:160px;resize:vertical;line-height:1.5}
+.fld select{appearance:none;-webkit-appearance:none;padding-right:40px;background:rgba(18,18,18,.8) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2322d3ee' fill='none' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 16px center}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--ocean);box-shadow:0 0 0 4px rgba(161,161,161,.16)}
+.fld.bad input,.fld.bad select,.fld.bad textarea{border-color:#9b9b9b}
+.err{display:none;color:#bdbdbd;font-size:13px;margin-top:6px}.fld.bad .err{display:block}
+.two2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btn.xl{padding:16px 36px;font-size:18px;font-weight:800;box-shadow:0 12px 40px #7c7c7c88}
+.btn[disabled]{opacity:.6;cursor:default;transform:none}
+.formmsg{display:none;margin-top:18px;padding:16px 18px;border-radius:14px;font-size:15px}
+.formmsg.show{display:block}.formmsg.ok{background:rgba(158,158,158,.12);border:1px solid rgba(158,158,158,.4)}.formmsg.info{background:rgba(161,161,161,.1);border:1px solid rgba(161,161,161,.4)}.formmsg.no{background:rgba(155,155,155,.1);border:1px solid rgba(155,155,155,.4)}
+.det{display:grid;gap:16px}.det dt{font-weight:700;font-size:14px}.det dd{margin:2px 0 0;color:var(--mute);font-size:14px}
+.det a{color:var(--ocean);font-weight:600}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.social a{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px dashed rgba(161,161,161,.55);background:var(--glass);font-weight:600;font-size:14px;transition:.2s}
+.social a:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.social svg{width:18px;height:18px;stroke:var(--ocean);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1020px){.four{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr}}
+@media(max-width:640px){.four,.two2{grid-template-columns:1fr}.chero{padding-top:36px}.btn.xl{width:100%;justify-content:center}}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html">Artists</a><a href="charts.html">Charts</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="podcasts.html">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo on" aria-current="page">Contact</a><a href="join.html" class="mo">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+
+<main>
+<div class="wrap chero">
+<h1 class="y3d y3d-xl y3d-g y3d-live">Contact YAPSMusic</h1>
+<p>Questions, ideas or something to report? Pick the topic that fits and send us a message. Artists can also find help inside the YAPSMusic app.</p>
+</div>
+
+<section style="padding-top:20px" id="topics"><div class="wrap">
+<div class="four">
+<div class="glass box topic"><h3>General inquiries</h3><p>Questions about YAPSMusic, feedback, or anything that does not fit elsewhere.</p><span class="ph">[Email placeholder]</span><button class="btn" type="button" data-topic="general">Write to us</button></div>
+<div class="glass box topic"><h3>Artist support</h3><p>Help with uploads, your artist profile or your tracks. You can also use the Help Center inside the app.</p><span class="ph">[Email placeholder]</span><button class="btn" type="button" data-topic="artist">Write to us</button></div>
+<div class="glass box topic"><h3>Partnership inquiries</h3><p>Labels, media, event organisers and organisations who want to work with YAPSMusic.</p><span class="ph">[Email placeholder]</span><button class="btn" type="button" data-topic="partnership">Write to us</button></div>
+<div class="glass box topic"><h3>Advertising &amp; sponsorship</h3><p>Reach music lovers in Uganda and beyond. Tell us about your brand and your goals.</p><span class="ph">[Email placeholder]</span><button class="btn" type="button" data-topic="advertising">Write to us</button></div>
+</div>
+</div></section>
+
+<section id="form"><div class="wrap formgrid">
+<div class="glass box">
+<h2 class="big" style="margin-bottom:6px">Send us a message</h2>
+<p style="margin-bottom:22px">Fields marked * are required.</p>
+<form id="cf" novalidate>
+<div class="fld" id="f-topic"><label for="topic">What is this about? *</label>
+<select id="topic" name="topic" required>
+<option value="general">General inquiry</option><option value="artist">Artist support</option><option value="partnership">Partnership inquiry</option><option value="advertising">Advertising / sponsorship</option>
+</select></div>
+<div class="two2">
+<div class="fld" id="f-name"><label for="name">Name *</label><input id="name" name="name" type="text" autocomplete="name" required aria-describedby="e-name"><div class="err" id="e-name">Please enter your name.</div></div>
+<div class="fld" id="f-email"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-email"><div class="err" id="e-email">Please enter a valid email address.</div></div>
+</div>
+<div class="fld" id="f-subject"><label for="subject">Subject *</label><input id="subject" name="subject" type="text" required aria-describedby="e-subject"><div class="err" id="e-subject">Please add a short subject.</div></div>
+<div class="fld" id="f-message"><label for="message">Message *</label><textarea id="message" name="message" required aria-describedby="e-message"></textarea><div class="err" id="e-message">Please write at least 10 characters.</div></div>
+<div class="hp" aria-hidden="true"><label>Leave this empty <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+<button class="btn pri xl" id="send" type="submit">Send message</button>
+<div class="formmsg" id="fmsg" role="status" aria-live="polite"></div>
+</form>
+</div>
+
+<aside class="glass box">
+<h3>Other ways to reach us</h3>
+<dl class="det" style="margin-top:14px">
+<div><dt>Email</dt><dd><span class="ph" style="margin:4px 0 0">[Add your email address]</span></dd></div>
+<div><dt>Phone / WhatsApp</dt><dd><span class="ph" style="margin:4px 0 0">[Add your phone number]</span></dd></div>
+<div><dt>Location</dt><dd>Kampala, Uganda<br><span class="ph" style="margin:4px 0 0">[Add your physical address, if public]</span></dd></div>
+<div><dt>Inside the app</dt><dd>Open the YAPSMusic app and use <b>Help Center</b>, <b>Send Feedback</b> or <b>Report a Problem</b>. <a href="https://brians124.github.io/YAPSMUSIC.APP/">Open the app</a></dd></div>
+<div><dt>Follow YAPSMusic</dt><dd>
+<div class="social" aria-label="Social media">
+<a href="#" data-social="facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg>Facebook</a>
+<a href="#" data-social="instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>
+<a href="#" data-social="x"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg>X</a>
+<a href="#" data-social="youtube"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="m10 9.5 5 2.5-5 2.5z"/></svg>YouTube</a>
+<a href="#" data-social="tiktok"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.4 2.5 2 4 4.5 4.2"/></svg>TikTok</a>
+</div>
+<span class="ph">[Add your social media links]</span></dd></div>
+</dl>
+</aside>
+</div></section>
+
+<section id="faq"><div class="wrap" style="max-width:860px">
+<div class="head"><h2>Frequently asked questions</h2></div>
+<details class="glass"><summary>How do I get help with the app?</summary><p>Open the YAPSMusic app and use the Help Center. If something is broken, choose Report a Problem and describe what happened, what you were doing and, if relevant, the song or artist involved.</p></details>
+<details class="glass"><summary>How can an artist get their music on YAPSMusic?</summary><p>Artists upload from inside the app, and joining is free. The <a href="join.html" style="color:var(--ocean)">Become an Artist</a> page explains the steps and requirements.</p></details>
+<details class="glass"><summary>I found my music on YAPSMusic and I did not upload it.</summary><p>Use the copyright reporting option in the app and give enough detail for the content to be identified and reviewed. Only music that the uploader has the rights to distribute should be on YAPSMusic.</p></details>
+<details class="glass"><summary>Something on an artist profile is wrong.</summary><p>Report the incorrect information through Report a Problem or the artist support topic in the form above.</p></details>
+<details class="glass"><summary>Can I suggest a feature or a song or artist to add?</summary><p>Yes. Send feedback from the app menu, or choose General inquiry in the form above.</p></details>
+<details class="glass"><summary>How do I ask about advertising or a partnership?</summary><p>Choose Advertising / sponsorship or Partnership inquiry in the form and tell us about your brand or organisation, what you have in mind and any timing.</p></details>
+<details class="glass"><summary>Is the website the same as the app?</summary><p>No. The website is where you discover YAPSMusic and the app is where you listen, build playlists and follow artists. See <a href="download.html" style="color:var(--ocean)">Get the app</a>.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+
+<script>
+/* ===== CONFIG =====
+   FORM_ENDPOINT: URL that accepts a POST with JSON {topic,name,email,subject,message}.
+   Examples: a Formspree/Getform URL, a Supabase Edge Function, or your own API.
+   While it is null the form validates but does not send, and tells the visitor so. */
+const CONFIG={FORM_ENDPOINT:null};
+const SOCIAL={ /* add real URLs, e.g. facebook:"https://facebook.com/yourpage". Links stay inactive until filled in. */
+  facebook:"",instagram:"",x:"",youtube:"",tiktok:""
+};
+const $=id=>document.getElementById(id);
+$("yr").textContent=new Date().getFullYear();
+document.querySelectorAll("[data-social]").forEach(a=>{
+  const u=SOCIAL[a.dataset.social];
+  if(u){a.href=u;a.target="_blank";a.rel="noopener";a.style.borderStyle="solid"}
+  else a.addEventListener("click",e=>e.preventDefault());
+});
+
+/* topic buttons + ?topic= in the URL */
+const topicEl=$("topic"),VALID=[...topicEl.options].map(o=>o.value);
+function setTopic(t,scroll){if(VALID.includes(t)){topicEl.value=t;if(scroll){$("form").scrollIntoView({behavior:"smooth",block:"start"});setTimeout(()=>$("name").focus({preventScroll:true}),400)}}}
+document.querySelectorAll("[data-topic]").forEach(b=>b.addEventListener("click",()=>setTopic(b.dataset.topic,true)));
+setTopic(new URLSearchParams(location.search).get("topic"),false);
+
+/* validation */
+const RULES={
+  name:v=>v.trim().length>=2,
+  email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+  subject:v=>v.trim().length>=3,
+  message:v=>v.trim().length>=10
+};
+const form=$("cf"),msg=$("fmsg");
+function check(k){const ok=RULES[k]($(k).value);$("f-"+k).classList.toggle("bad",!ok);$(k).setAttribute("aria-invalid",!ok);return ok}
+Object.keys(RULES).forEach(k=>{$(k).addEventListener("blur",()=>check(k));$(k).addEventListener("input",()=>{if($("f-"+k).classList.contains("bad"))check(k)})});
+function show(type,html){msg.className="formmsg show "+type;msg.innerHTML=html}
+
+form.addEventListener("submit",async e=>{
+  e.preventDefault();msg.className="formmsg";
+  if($("website").value)return;                       // honeypot: bots fill this, people never see it
+  const results=Object.keys(RULES).map(check);
+  if(results.includes(false)){const first=Object.keys(RULES)[results.indexOf(false)];$(first).focus();show("no","Please fix the highlighted fields and try again.");return}
+  const payload={topic:topicEl.value,name:$("name").value.trim(),email:$("email").value.trim(),subject:$("subject").value.trim(),message:$("message").value.trim()};
+  if(!CONFIG.FORM_ENDPOINT){
+    show("info","<b>This form is not connected yet, so your message has not been sent.</b> Please use <b>Help Center</b> or <b>Send Feedback</b> in the YAPSMusic app for now. <a href='"+"https://brians124.github.io/YAPSMUSIC.APP/"+"' style='color:var(--ocean)'>Open the app</a>");
+    return;
+  }
+  const btn=$("send"),label=btn.textContent;btn.disabled=true;btn.textContent="Sending…";
+  try{
+    const r=await fetch(CONFIG.FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
+    if(!r.ok)throw new Error(r.status);
+    form.reset();setTopic(payload.topic,false);
+    show("ok","<b>Thank you, "+payload.name.replace(/[<>&"]/g,"")+".</b> Your message has been sent.");
+  }catch(err){
+    show("no","Sorry, your message could not be sent. Please try again in a moment.");
+  }finally{btn.disabled=false;btn.textContent=label}
+});
+
+/* nav */
+const nav=$("nav"),bg=$("burger"),na=$("navapp"),mq=matchMedia("(max-width:860px)");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove("open");bg.setAttribute("aria-expanded",false)}});
+const sync=()=>na.style.display=mq.matches?"inline-flex":"none";sync();mq.addEventListener("change",sync);
+</script>
+<script src="signup-gate.js" defer></script>
+<script src="hero-player.js" defer></script>
+</body>
+</html>
