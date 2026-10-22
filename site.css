@@ -1,0 +1,137 @@
+/* YAPSMusic shared layer: loads after each page's own <style>, hardens every page for phones, tablets and desktops */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-width:320px;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+img,video,canvas,iframe{max-width:100%}
+img,video{height:auto}
+pre,table{max-width:100%;overflow-x:auto}
+h1,h2,h3,p,a,li{overflow-wrap:anywhere}
+.wrap{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+
+/* header search icon + mobile-only menu links */
+.sbtn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--txt);flex:none}
+.sbtn:hover{background:rgba(255,255,255,.12)}
+nav a.mo{display:none}
+nav .btn#navapp{margin-top:6px;justify-content:center}
+
+/* collapse to the menu earlier so 8 links never overflow tablets */
+@media(max-width:1080px){
+  .burger{display:block;margin-left:0;flex:none}
+  .sbtn{margin-left:auto}
+  header nav{position:absolute;top:100%;left:0;right:0;margin-left:0;flex-direction:column;gap:2px;padding:12px 20px 20px;background:rgba(8,8,8,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:none;max-height:calc(100vh - 76px);max-height:calc(100dvh - 76px);overflow-y:auto;overscroll-behavior:contain}
+  header nav.open{display:flex}
+  header nav a{padding:13px 14px;font-size:16px;min-height:44px;display:flex;align-items:center}
+  header nav a.mo{display:flex}
+  header nav a.btn{justify-content:center}
+  header .bar>.btn{display:none}
+  #navapp{display:inline-flex!important}
+  html.menu-open,html.menu-open body{overflow:hidden}
+}
+@media(min-width:1081px){nav a.mo{display:none!important}}
+
+/* touch comfort */
+@media(pointer:coarse){
+  .btn,button,.chip,.tab,select{min-height:44px}
+  nav a,footer a{min-height:40px}
+}
+@media(max-width:860px){
+  input,select,textarea{font-size:16px!important}   /* stops iOS zoom-on-focus */
+  .bar{gap:12px}
+}
+
+/* footer on small screens */
+@media(max-width:640px){
+  .wrap{width:min(1180px,100% - 32px)}
+  .fgrid{grid-template-columns:1fr 1fr!important;gap:28px 18px}
+  .fgrid>div:first-child{grid-column:1/-1}
+  .legal{flex-direction:column;gap:6px;align-items:flex-start}
+  footer ul li{margin:2px 0}
+  footer a{display:inline-block;padding:6px 0}
+}
+@media(max-width:360px){
+  .logo{font-size:18px}
+  .fgrid{grid-template-columns:1fr!important}
+  .g5,.g4,.g3,.g2{grid-template-columns:1fr 1fr}
+}
+/* leave room for the home-indicator on notched phones */
+footer{padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* stop grid children from forcing the page wider than the screen */
+.row>*,.card,.glass{min-width:0}
+.g5,.g4,.g3,.g2{min-width:0}
+.stage{overflow:clip}
+html{overflow-x:clip}
+
+/* ===== GRAY THEME — light + dark grays with transparent glass surfaces ===== */
+:root{
+  --ink:#0c0d0f;--navy:#15171a;--deep:#1f2226;
+  --violet:#8f949c;--ocean:#c4c8ce;--crimson:#a9aeb5;--emerald:#dfe1e5;--sky:#d2d5da;--sky2:#8f949c;
+  --txt:#f4f5f7;--mute:#b9bdc4;
+  --aurora-grad:linear-gradient(100deg,#f1f2f4 0%,#b8bcc2 33%,#80858d 66%,#d3d6db 100%);
+  --aurora-btn:linear-gradient(100deg,#868b93 0%,#5f636a 50%,#464a50 100%);
+  --grad:var(--aurora-grad);--btn:var(--aurora-btn);
+  --glass:rgba(214,217,222,.085);--line:rgba(214,217,222,.2);
+}
+html{background:var(--ink)}
+body{background:
+  radial-gradient(circle at 8% 0%,rgba(226,228,232,.16),transparent 42%),
+  radial-gradient(circle at 100% 12%,rgba(140,145,153,.22),transparent 46%),
+  radial-gradient(circle at 50% 100%,rgba(190,194,200,.12),transparent 50%),
+  linear-gradient(180deg,#121316,#0c0d0f 60%,#16181b)!important;background-attachment:fixed;color:var(--txt)}
+.glass{background:linear-gradient(145deg,rgba(226,228,232,.12),rgba(120,125,133,.06))!important;border:1px solid var(--line)!important;-webkit-backdrop-filter:blur(22px) saturate(120%);backdrop-filter:blur(22px) saturate(120%);box-shadow:0 8px 30px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08)}
+.glass:hover,.card:hover{border-color:rgba(226,228,232,.45)!important}
+header{background:rgba(14,15,17,.62)!important;-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+header nav{--navbg:rgba(14,15,17,.94)}
+.btn{background:rgba(214,217,222,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.btn.pri{background:var(--btn)!important;color:#fff;border:1px solid rgba(255,255,255,.18)!important;box-shadow:0 8px 26px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.22)}
+.play{background:linear-gradient(145deg,#d9dce0,#8a8f97)!important;color:#15171a!important;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.tag{background:rgba(226,228,232,.14)!important;color:#e6e8eb!important}
+.date{background:linear-gradient(160deg,#6e737b,#34373c)!important}
+.date span{color:#e2e4e8!important}
+.promo{background:linear-gradient(135deg,rgba(60,63,69,.8),rgba(36,38,42,.82) 50%,rgba(96,100,108,.7))!important}
+footer{background:linear-gradient(transparent,rgba(20,21,24,.6))!important}
+.orb{background:conic-gradient(from 200deg,#8f949c,#e3e5e8,#5d626a,#b8bcc2,#8f949c)!important}
+.eq b{background:linear-gradient(#e3e5e8,#8f949c)!important}.eq b:nth-child(3n+2){background:linear-gradient(#b8bcc2,#5d626a)!important}
+input,select{color-scheme:dark}
+::selection{background:rgba(226,228,232,.3)}
+
+/* ===== REAL-WEBSITE LAYOUT: edge-to-edge on big screens, flat sections instead of boxes ===== */
+:root{--pad:clamp(14px,2vw,40px)}
+/* 1. fill the whole screen: no centred max-width column, no empty side space */
+.wrap{width:100%!important;max-width:none!important;margin-inline:0!important;padding-inline:max(var(--pad),env(safe-area-inset-left,0px)) max(var(--pad),env(safe-area-inset-right,0px))!important}
+.wrap .wrap,main.wrap .wrap{padding-inline:0!important}
+.hero{gap:clamp(32px,5vw,96px)}
+.stage{max-width:clamp(340px,30vw,560px)}
+.hero p,.phero p,.lead{max-width:60ch}
+.search{max-width:min(720px,100%)}
+@media(min-width:1021px){.g5{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.g4{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}.list{grid-template-columns:repeat(auto-fit,minmax(420px,1fr))}}
+@media(min-width:2400px){body{font-size:18px}}
+
+/* 2. no boxes: cards, rows and panels sit directly on the page */
+.glass:not(#results):not(#sugg):not(.hp-res):not(#mp):not(.mod):not([role=dialog]){background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-radius:0}
+.glass:hover,.card:hover{border-color:transparent!important}
+.card,.card.artist,.album .card{padding:0!important}
+.card:hover{transform:none}
+.card:hover .cover,.card:focus-visible .cover{transform:translateY(-4px)}
+.cover{transition:transform .2s}
+.song,.pod,.event,.rc.row,.ac{padding:10px 8px!important;border-radius:12px!important}
+.song::before{display:none!important}
+.song:hover,.pod:hover,.rc.row:hover,.tr:hover{background:rgba(255,255,255,.07)!important;transform:none}
+.song.on,.card.on,[data-song].on,[data-play].on{background:rgba(255,255,255,.1)!important;box-shadow:none!important;border-color:transparent!important}
+.card.on .cover{box-shadow:0 0 0 2px var(--ocean)}
+.event{border-bottom:1px solid var(--line)!important;border-radius:0!important;padding-inline:0!important}
+details.glass{border-bottom:1px solid var(--line)!important;padding:14px 0}
+.box,.stat,.panel,.final,.uganda,.rail,.qr,.cl,.spot,.empty,.fbar{padding-inline:0!important}
+.feat{overflow:visible}
+.feat .cover{border-radius:var(--r,18px)}
+.player{padding:0!important;box-shadow:none!important}
+/* promo bands run edge to edge instead of sitting in a box */
+.promo{border-radius:0!important;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02))!important;margin-inline:calc(-1 * var(--pad));padding-inline:var(--pad)!important}
+.wrap .wrap .promo{margin-inline:0}
+footer{background:rgba(255,255,255,.03)}
+/* the decorative orb was hidden behind the old player box; without the box it just clutters the hero */
+.orb{display:none!important}
+.hero h1{font-size:clamp(38px,5.4vw,104px)}
+.hero p{font-size:clamp(16px,1.25vw,22px)}
+.stage{justify-self:end;max-width:clamp(340px,34vw,620px)}
+@media(max-width:1020px){.stage{justify-self:center}}
