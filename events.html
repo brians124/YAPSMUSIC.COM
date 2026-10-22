@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Events — YAPSMusic</title>
+<meta name="description" content="Find concerts, artist performances, music launches and festivals across Uganda on YAPSMusic.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080808;--navy:#121212;--violet:#7c7c7c;--ocean:#a1a1a1;--crimson:#858585;--emerald:#9e9e9e;--txt:#f6f6f6;--mute:#c6c6c6;--grad:linear-gradient(100deg,#9e9e9e 0%,#a1a1a1 33%,#7c7c7c 66%,#858585 100%);--btn:linear-gradient(100deg,#727272 0%,#6c6c6c 35%,#626262 68%,#686868 100%);--glass:rgba(255,255,255,.06);--line:rgba(142,142,142,.26);--r:18px;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:150px;background:var(--ink)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 10% 0%,rgba(158,158,158,.20),transparent 42%),radial-gradient(circle at 100% 12%,rgba(133,133,133,.18),transparent 46%),radial-gradient(circle at 75% 100%,rgba(124,124,124,.22),transparent 50%),radial-gradient(circle at 0% 80%,rgba(161,161,161,.13),transparent 45%),var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ocean);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding:36px 0}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,.45);border:0;box-shadow:0 8px 28px #7c7c7c55}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px}
+.head span{color:var(--ocean);font-size:14px;font-weight:600}
+html .head h2,html .feat h2,html dialog h2{font-size:clamp(22px,3vw,30px);font-family:Archivo,system-ui,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.2px;color:#ffffff;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+/* header */
+header{position:sticky;top:0;z-index:60;padding-top:env(safe-area-inset-top,0px);background:rgba(8,8,8,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:var(--grad) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}.logo i{font-style:normal}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:var(--glass)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+html .y3d{font-family:Archivo,system-ui,sans-serif!important;font-weight:900!important;letter-spacing:-.3px;text-transform:uppercase;color:#ffffff;display:inline-block;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3f3f3f) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+html .y3d-g{background:var(--grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em;animation:shine 5s linear infinite;filter:drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #363636) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+@keyframes shine{from{background-position:0 0}to{background-position:220% 0}}
+/* hero */
+.hero{padding:56px 0 24px}
+.hero h1{font-size:clamp(34px,5.6vw,60px);line-height:1.06;letter-spacing:-.5px;margin-bottom:14px;display:block}
+.hero p{color:var(--mute);max-width:52ch}
+/* filters */
+.fbar{position:sticky;top:calc(70px + env(safe-area-inset-top,0px));z-index:40;padding:14px;display:grid;gap:12px;background:rgba(18,18,18,.88)}
+.frow{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto;gap:10px;align-items:center}
+.fbar input,.fbar select{width:100%;height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);min-width:0}
+.fbar input::placeholder{color:var(--mute)}.fbar select option{background:#121212}
+.fbar label{display:block;font-size:12px;color:var(--mute);margin:0 0 4px 14px}
+.srch{position:relative}.srch svg{position:absolute;left:16px;bottom:13px;width:20px;height:20px;stroke:var(--ocean);fill:none;stroke-width:2}.srch input{padding-left:46px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:var(--glass);cursor:pointer;font-weight:600;font-size:14px;color:var(--mute);transition:.2s}
+.chip[aria-pressed=true]{background:var(--btn);border-color:transparent;color:#ffffff}
+.cnt{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--mute)}
+.lnk{background:none;border:0;color:var(--ocean);font-weight:600;cursor:pointer;font-size:13px}
+/* posters + cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:18px}
+.poster{position:relative;aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden;font-weight:900;font-size:56px;color:#ffffffcc}
+.poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(8,8,8,.7));pointer-events:none}
+.ev:hover .poster img{transform:scale(1.06)}
+.ev{overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}.ev:hover{transform:translateY(-4px);border-color:rgba(124,124,124,.6)}
+.tag{align-self:flex-start;padding:4px 12px;border-radius:999px;background:rgba(158,158,158,.16);color:#9e9e9e;font-size:12px;font-weight:600}
+.poster .ty{position:absolute;left:12px;top:12px;z-index:2;background:rgba(8,8,8,.72);backdrop-filter:blur(8px)}
+.date{position:absolute;right:12px;top:12px;z-index:2;width:58px;text-align:center;padding:7px 0;border-radius:14px;background:linear-gradient(160deg,#626262,#686868);border:1px solid var(--line)}
+.date b{display:block;font-size:22px;line-height:1;color:#ffffff}.date span{font-size:12px;color:#e4e4e4}
+.eb{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.eb h3{font-size:18px;line-height:1.25;font-weight:700}
+.art{color:var(--ocean);font-weight:600;font-size:14px}
+.meta{list-style:none;padding:0;display:grid;gap:6px;font-size:13.5px;color:var(--mute)}
+.meta li{display:flex;gap:9px;align-items:flex-start}
+svg.i,.meta svg,.tk svg,.tier svg{flex:none;width:17px;height:17px;margin-top:2px;stroke:var(--ocean);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tk{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);font-size:14px;margin-top:auto}
+.tk strong{font-weight:700}
+.pill{margin-left:auto;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill.on{background:rgba(158,158,158,.16);color:#9e9e9e}.pill.few{background:rgba(203,203,203,.16);color:#cbcbcb}.pill.free{background:rgba(161,161,161,.16);color:#a1a1a1}.pill.sold,.pill.end{background:rgba(255,255,255,.1);color:var(--mute)}
+.eb .btn{width:100%}
+/* featured */
+.feat{display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden}
+.feat .poster{aspect-ratio:auto;min-height:440px;font-size:96px}
+.feat .b{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.feat h2{font-size:clamp(28px,4vw,44px);line-height:1.1}
+.feat .info{color:var(--mute);max-width:52ch}
+.when{display:inline-flex;align-self:flex-start;padding:4px 12px;border-radius:999px;background:rgba(133,133,133,.18);color:#c6c6c6;font-size:12px;font-weight:700}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.empty{padding:48px 24px;text-align:center;color:var(--mute)}.empty h2{margin-bottom:8px}.empty .btn{margin-top:16px}
+/* dialog */
+dialog{border:1px solid var(--line);border-radius:var(--r);background:#121212;color:var(--txt);width:min(760px,100% - 32px);max-height:90dvh;padding:0;overflow:auto}
+dialog::backdrop{background:rgba(8,8,8,.78);backdrop-filter:blur(6px)}
+.dw{display:grid;grid-template-columns:.8fr 1.2fr;position:relative}
+.dw .poster{aspect-ratio:auto;min-height:100%;min-height:380px}
+.db{padding:28px;display:flex;flex-direction:column;gap:12px}
+.db .info{color:var(--mute);font-size:15px}
+.tier{display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,.05)}.tier div{display:grid;font-size:13px;color:var(--mute)}.tier strong{color:var(--txt);font-size:15px}
+.x{position:absolute;right:12px;top:12px;z-index:5;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(8,8,8,.8);cursor:pointer;font-size:20px;line-height:1}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:48px 0 28px;background:linear-gradient(transparent,#12121266)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}footer ul{padding:0}footer li{list-style:none;margin-bottom:8px}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(max-width:1020px){.feat{grid-template-columns:1fr}.feat .poster{min-height:340px}.fgrid{grid-template-columns:1fr 1fr}.frow{grid-template-columns:1fr 1fr 1fr}.srch{grid-column:1/-1}}
+@media(max-width:860px){
+.burger{display:block}header .bar>.btn{display:none}
+nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:none}
+nav.open{display:flex}nav a{padding:12px 14px;font-size:16px}
+.fbar{position:static}html{scroll-padding-top:84px}}
+@media(max-width:640px){section{padding:28px 0}.hero{padding-top:36px}.frow{grid-template-columns:1fr 1fr}.frow>div:last-child{grid-column:1/-1}.grid{grid-template-columns:1fr}.dw{grid-template-columns:1fr}.dw .poster{min-height:260px;aspect-ratio:16/10}.fgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html">Artists</a><a href="charts.html">Charts</a><a href="videos.html">Videos</a><a href="events.html" class="on" aria-current="page">Events</a><a href="podcasts.html">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo">Contact</a><a href="join.html" class="mo">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+
+<main>
+<div class="wrap hero">
+<h1 class="y3d">Live music, <span class="y3d y3d-g">across Uganda</span></h1>
+<p>Find concerts, artist performances, music launches and festivals near you. Pick a date, a place or a type of show, and get your tickets.</p>
+</div>
+
+<div class="wrap">
+<form class="glass fbar" id="filters" role="search" onsubmit="return false" aria-label="Filter events">
+<div class="frow">
+<div class="srch"><label for="q">Search</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Event, artist or venue" autocomplete="off"></div>
+<div><label for="when">Date</label><select id="when"><option value="upcoming">All upcoming</option><option value="week">Next 7 days</option><option value="month">Next 30 days</option><option value="quarter">Next 3 months</option><option value="past">Past events</option></select></div>
+<div><label for="from">On or after</label><input id="from" type="date"></div>
+<div><label for="city">Location</label><select id="city"><option value="all">All locations</option></select></div>
+<div><button class="btn" type="button" id="reset">Clear</button></div>
+</div>
+<div class="chips" id="type" role="group" aria-label="Event type">
+<button type="button" class="chip" data-type="all" aria-pressed="true">All events</button>
+<button type="button" class="chip" data-type="concert" aria-pressed="false">Concerts</button>
+<button type="button" class="chip" data-type="performance" aria-pressed="false">Performances</button>
+<button type="button" class="chip" data-type="launch" aria-pressed="false">Launches</button>
+<button type="button" class="chip" data-type="festival" aria-pressed="false">Festivals</button>
+</div>
+<div class="cnt"><span id="count" aria-live="polite"></span></div>
+</form>
+</div>
+
+<section id="featured" hidden><div class="wrap"><div class="glass feat" id="feat"></div></div></section>
+<div class="wrap" id="sections"></div>
+<div class="wrap" id="empty" hidden><div class="glass empty"><h2>No events found</h2><p>Try a different date, location or event type.</p><button class="btn pri" type="button" id="reset2">Clear filters</button></div></div>
+</main>
+
+<dialog id="dlg" aria-labelledby="dt"><div class="dw" id="dbody"></div></dialog>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+
+<script>
+/* ===== DATA — sample events. Replace with real YAPSMusic data (e.g. fetch from Supabase) =====
+   d = date (YYYY-MM-DD), tm = start time (24h), ty = concert | performance | launch | festival,
+   s = on | few | free | sold, f = 1 marks the featured event */
+const APP_URL="https://brians124.github.io/YAPSMUSIC.APP/";
+const src=p=>/^https?:/.test(p)?p:APP_URL+encodeURI(p);
+const TY={concert:["Concert","Upcoming concerts"],performance:["Performance","Artist performances"],launch:["Launch","Music launches"],festival:["Festival","Festivals"]};
+const ST={on:"On sale",few:"Few left",free:"Free entry",sold:"Sold out"};
+const EV=[
+{id:41,f:1,t:"YAPSMusic Live: Kampala",a:"Fik Fameica & friends",img:"images/Fik_Fameica.png",d:"2026-11-18",tm:"19:00",v:"Lugogo Cricket Oval",c:"Kampala",ty:"concert",p:"From UGX 40,000",tiers:"Regular UGX 40,000 · VIP UGX 120,000",s:"on",h:155,i:"The flagship YAPSMusic night: a full live band, big screens and a line-up of the biggest names in Afrobeats and Luganda pop."},
+{id:42,t:"Nile Nights Festival",a:"Jose Chameleone + 20 acts",img:"images/Jose Chameleon.jpg",d:"2026-12-05",tm:"16:00",v:"Jinja Nile Resort",c:"Jinja",ty:"festival",p:"From UGX 60,000",tiers:"Day pass UGX 60,000 · Weekend UGX 100,000",s:"on",h:265,i:"A day-to-night festival on the banks of the Nile with live music, food stalls and sunset sets."},
+{id:43,t:"Acoustic Sundays",a:"Juliana Kanyomozi",img:"images/Julian Kanyomo.png",d:"2026-12-13",tm:"15:00",v:"Garden City",c:"Kampala",ty:"performance",p:"Free entry",tiers:"Free. Reserve your spot in the app.",s:"free",h:200,i:"A relaxed afternoon of stripped-back sets, stories behind the songs and live requests."},
+{id:101,t:"Yoyo Live",a:"Joshua Baraka",img:"images/Joshua_Baraka.png",d:"2026-10-24",tm:"20:00",v:"Kololo Independence Grounds",c:"Kampala",ty:"concert",p:"From UGX 50,000",tiers:"Regular UGX 50,000 · VIP UGX 150,000",s:"few",h:200,i:"Joshua Baraka performs his hit Yoyo and more from his catalogue with a full live band."},
+{id:102,t:"Stress Killer Tour: Mbarara",a:"Sheebah Karungi",img:"images/Sheebah.jpg",d:"2026-11-07",tm:"19:00",v:"Mbarara Municipal Stadium",c:"Mbarara",ty:"concert",p:"From UGX 30,000",tiers:"Regular UGX 30,000 · VIP UGX 80,000",s:"on",h:292,i:"Sheebah brings her high-energy stage show and dancers to western Uganda."},
+{id:103,t:"Bebe Cool & Friends",a:"Bebe Cool",img:"images/Bebe Cool.png",d:"2026-12-19",tm:"18:00",v:"Imperial Resort Beach Hotel",c:"Entebbe",ty:"concert",p:"From UGX 45,000",tiers:"Regular UGX 45,000 · Table of 6 UGX 600,000",s:"on",h:155,i:"A lakeside December night of hits and surprise guests."},
+{id:104,t:"King Saha Live Session",a:"King Saha",img:"images/king saha.jpg",d:"2026-10-16",tm:"19:00",v:"Alliance Française",c:"Kampala",ty:"performance",p:"UGX 25,000",tiers:"General admission UGX 25,000",s:"on",h:265,i:"An intimate session with King Saha performing tracks from P2 and Wewe."},
+{id:105,t:"John Blaq Street Session",a:"John Blaq",img:"images/John blaq.png",d:"2026-10-31",tm:"20:00",v:"Main Street Stage",c:"Gulu",ty:"performance",p:"Free entry",tiers:"Free. Open to everyone.",s:"free",h:200,i:"A free open-air performance for Gulu, with Angella and Ngezaako on the setlist."},
+{id:106,t:"Rema Namakula Unplugged",a:"Rema Namakula",img:"images/Rema_Namakula.png",d:"2026-11-28",tm:"18:00",v:"Kampala Serena Hotel",c:"Kampala",ty:"performance",p:"UGX 80,000",tiers:"Dinner and show UGX 80,000",s:"few",h:292,i:"An evening of acoustic arrangements and dinner for a seated audience."},
+{id:107,t:"Sissa Listening Party",a:"Dax Vibez",img:"images/yaps-music-cover.jpg",d:"2026-10-10",tm:"18:00",v:"Cayenne Lounge",c:"Kampala",ty:"launch",p:"Free entry",tiers:"Free. RSVP in the app.",s:"free",h:155,i:"Hear Sissa with the artist, meet the team and enjoy a short live set."},
+{id:108,t:"Finally: Video Premiere",a:"Spice Diana",img:"images/Spice_Diana.png",d:"2026-10-18",tm:"19:30",v:"Acacia Mall Cinema",c:"Kampala",ty:"launch",p:"UGX 15,000",tiers:"Cinema seat UGX 15,000",s:"on",h:200,i:"Watch the new Finally video on the big screen before anyone else, followed by a Q&A."},
+{id:109,t:"Calm Down Launch",a:"Vyroota",img:"images/Vyroota.png",d:"2026-11-14",tm:"17:00",v:"Protea Hotel Entebbe",c:"Entebbe",ty:"launch",p:"UGX 20,000",tiers:"General admission UGX 20,000",s:"on",h:292,i:"The official launch of Vyroota's Calm Down with a live performance and signing."},
+{id:110,t:"Kampala Afrobeats Weekender",a:"Radio & Weasel + more",img:"images/Mose_Rhadio.png",d:"2027-01-16",tm:"14:00",v:"Kololo Independence Grounds",c:"Kampala",ty:"festival",p:"From UGX 70,000",tiers:"Day pass UGX 70,000 · VIP UGX 200,000",s:"on",h:265,i:"Two stages, one weekend of Afrobeats, dancehall and Luganda pop to open the year."},
+{id:111,t:"Roots & Rhythms Festival",a:"Vinka & friends",img:"images/Vinka.png",d:"2027-02-06",tm:"15:00",v:"Pece Stadium",c:"Gulu",ty:"festival",p:"From UGX 20,000",tiers:"Regular UGX 20,000 · VIP UGX 60,000",s:"on",h:348,i:"A northern Uganda celebration of music, dance and food with artists from across the country."}
+];
+/* ===== Helpers ===== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cov=h=>`linear-gradient(135deg,hsl(${h} 0% 48%),hsl(${h+35} 0% 16%))`;
+const ini=s=>s.split(" ").filter(w=>/^[A-Za-z]/.test(w)).map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const IC={cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',clk:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',pin:'<path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',tix:'<path d="M3 9a2 2 0 0 0 0 6v3h18v-3a2 2 0 0 1 0-6V6H3z"/><path d="M14 6v12" stroke-dasharray="2 3"/>'};
+const svg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
+const dt=e=>new Date(e.d+"T00:00:00");
+const fd=(e,o)=>new Intl.DateTimeFormat("en-GB",o).format(dt(e));
+const ft=t=>{const[h,m]=t.split(":");return (h%12||12)+":"+m+" "+(+h<12?"AM":"PM")};
+const today=new Date();today.setHours(0,0,0,0);
+const past=e=>dt(e)<today;
+const poster=(e,x="")=>`<div class="poster ${x}" style="background:${cov(e.h)}"><span aria-hidden="true">${ini(e.a)}</span><img src="${src(e.img)}" alt="${esc(e.t)} poster" loading="lazy" onerror="this.remove()"><span class="tag ty">${TY[e.ty][0]}</span><div class="date"><b>${fd(e,{day:"2-digit"})}</b><span>${fd(e,{month:"short"})}</span></div></div>`;
+const meta=e=>`<ul class="meta"><li>${svg("cal")}${fd(e,{weekday:"short",day:"numeric",month:"long",year:"numeric"})}</li><li>${svg("clk")}${ft(e.tm)}</li><li>${svg("pin")}${esc(e.v)}, ${esc(e.c)}</li></ul>`;
+const pill=e=>`<span class="pill ${past(e)?"end":e.s}">${past(e)?"Ended":ST[e.s]}</span>`;
+const card=e=>`<article class="glass ev">${poster(e)}<div class="eb"><h3>${esc(e.t)}</h3><p class="art">${esc(e.a)}</p>${meta(e)}<div class="tk">${svg("tix")}<strong>${esc(e.p)}</strong>${pill(e)}</div><button class="btn" type="button" data-id="${e.id}" aria-label="Event details: ${esc(e.t)}">Event details</button></div></article>`;
+/* ===== Filters ===== */
+const DEF={q:"",type:"all",city:"all",when:"upcoming",from:""};
+let st={...DEF};
+const filtered=()=>JSON.stringify(st)!==JSON.stringify(DEF);
+function match(e){const x=dt(e),n=(x-today)/864e5;
+if(st.type!=="all"&&e.ty!==st.type)return false;
+if(st.city!=="all"&&e.c!==st.city)return false;
+if(st.q&&!(e.t+" "+e.a+" "+e.v+" "+e.c).toLowerCase().includes(st.q))return false;
+if(st.from&&x<new Date(st.from+"T00:00:00"))return false;
+switch(st.when){case"upcoming":return n>=0;case"week":return n>=0&&n<=7;case"month":return n>=0&&n<=30;case"quarter":return n>=0&&n<=92;case"past":return n<0}return true}
+function render(){
+const list=EV.filter(match).sort((a,b)=>a.d.localeCompare(b.d)||a.tm.localeCompare(b.tm));
+$("count").textContent=list.length+(list.length===1?" event found":" events found");
+$("empty").hidden=list.length>0;
+Object.keys(TY).forEach(k=>{const s=list.filter(e=>e.ty===k);$("s-"+k).hidden=!s.length;$("g-"+k).innerHTML=s.map(card).join("");$("n-"+k).textContent=s.length+(s.length===1?" event":" events")});
+const up=EV.filter(e=>!past(e)).sort((a,b)=>a.d.localeCompare(b.d)),fe=EV.find(e=>e.f&&!past(e))||up[0];
+const show=fe&&!filtered();$("featured").hidden=!show;
+if(show){const n=Math.round((dt(fe)-today)/864e5);
+$("feat").innerHTML=`${poster(fe)}<div class="b"><span class="tag" style="align-self:flex-start">Featured event</span><span class="when">${n===0?"Today":n===1?"Tomorrow":"In "+n+" days"}</span><h2>${esc(fe.t)}</h2><p class="art" style="font-size:17px">${esc(fe.a)}</p><p class="info">${esc(fe.i)}</p>${meta(fe)}<div class="tk">${svg("tix")}<strong>${esc(fe.p)}</strong>${pill(fe)}</div><div class="cta-row"><a class="btn pri" href="${APP_URL}">${fe.s==="free"?"Reserve a spot":"Get tickets"}</a><button class="btn" type="button" data-id="${fe.id}">Event details</button></div></div>`}}
+/* sections + city list */
+$("sections").innerHTML=Object.entries(TY).map(([k,v])=>`<section id="s-${k}" hidden><div class="head"><h2>${v[1]}</h2><span id="n-${k}"></span></div><div class="grid" id="g-${k}"></div></section>`).join("");
+$("city").insertAdjacentHTML("beforeend",[...new Set(EV.map(e=>e.c))].sort().map(c=>`<option>${c}</option>`).join(""));
+/* controls */
+$("q").oninput=e=>{st.q=e.target.value.trim().toLowerCase();render()};
+$("when").onchange=e=>{st.when=e.target.value;render()};
+$("from").onchange=e=>{st.from=e.target.value;render()};
+$("city").onchange=e=>{st.city=e.target.value;render()};
+$("type").onclick=e=>{const b=e.target.closest("[data-type]");if(!b)return;st.type=b.dataset.type;[...$("type").children].forEach(c=>c.setAttribute("aria-pressed",c===b));render()};
+function reset(){st={...DEF};$("filters").reset();[...$("type").children].forEach((c,i)=>c.setAttribute("aria-pressed",i===0));render()}
+$("reset").onclick=$("reset2").onclick=reset;
+/* details dialog */
+const dlg=$("dlg");
+document.addEventListener("click",ev=>{const b=ev.target.closest("[data-id]");if(!b)return;const e=EV.find(x=>x.id==b.dataset.id);if(!e)return;
+$("dbody").innerHTML=`<button class="x" type="button" data-close aria-label="Close details">&times;</button>${poster(e)}<div class="db"><span class="tag">${TY[e.ty][0]}</span><h2 id="dt">${esc(e.t)}</h2><p class="art">${esc(e.a)}</p>${meta(e)}<p class="info">${esc(e.i)}</p><div class="tier">${svg("tix")}<div><strong>${esc(e.p)}</strong><span>${esc(e.tiers)}</span></div>${pill(e)}</div>${past(e)||e.s==="sold"?"":`<div class="cta-row"><a class="btn pri" href="${APP_URL}">${e.s==="free"?"Reserve a spot":"Get tickets"}</a></div>`}</div>`;
+dlg.showModal()});
+dlg.addEventListener("click",e=>{if(e.target===dlg||e.target.closest("[data-close]"))dlg.close()});
+/* nav */
+const nav=$("nav"),bg=$("burger");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+const na=$("navapp"),mq=matchMedia("(max-width:860px)");na.style.display=mq.matches?"inline-flex":"none";mq.addEventListener("change",e=>na.style.display=e.matches?"inline-flex":"none");
+$("yr").textContent=new Date().getFullYear();
+render();
+</script>
+<script src="signup-gate.js" defer></script>
+</body>
+</html>
