@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Charts — YAPSMusic</title>
+<meta name="description" content="The YAPSMusic charts: Global Top 100, Uganda Top 100, trending songs, most streamed, rising artists and genre charts.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080808;--navy:#121212;--deep:#1c1c1c;--blue:#7a7a7a;--sky:#9c9c9c;--ice:#dbdbdb;--txt:#f6f6f6;--mute:#c6c6c6;--up:#9e9e9e;--down:#9d9d9d;
+--grad:linear-gradient(100deg,#9e9e9e 0%,#a1a1a1 33%,#7c7c7c 66%,#858585 100%);--btn:linear-gradient(100deg,#606060 0%,#808080 100%);
+--glass:rgba(165,165,165,.07);--line:rgba(154,154,154,.25);--r:18px;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:150px;background:var(--ink)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 8% 0%,rgba(156,156,156,.18),transparent 44%),radial-gradient(circle at 100% 14%,rgba(122,122,122,.2),transparent 48%),radial-gradient(circle at 70% 100%,rgba(96,96,96,.2),transparent 52%),linear-gradient(180deg,var(--ink),#0f0f0f);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;cursor:pointer;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,.4);border:0;box-shadow:0 8px 28px #60606066}
+/* header */
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(8,8,8,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:var(--grad) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo i{font-style:normal}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:var(--glass)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+html .y3d{font-weight:900;text-transform:uppercase;color:#ffffff;display:inline-block;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3b3b3b) drop-shadow(0 8px 10px rgba(0,0,0,.55))}
+html .y3d-g{background:var(--grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em;animation:shine 5s linear infinite;filter:drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #353535) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+@keyframes shine{to{background-position:220% 0}}
+/* covers */
+.cover{position:relative;aspect-ratio:1;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:16px;color:#ffffffcc;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(8,8,8,.45));pointer-events:none}
+.cover.round{border-radius:50%}
+/* page head + spotlight */
+.top{padding:44px 0 22px;display:grid;grid-template-columns:1fr minmax(0,460px);gap:clamp(24px,5vw,56px);align-items:center}
+.top h1{font-size:clamp(34px,6vw,64px);line-height:1.04;letter-spacing:-.5px;display:block;margin-bottom:12px}
+.top p.lead{color:var(--mute);max-width:46ch}
+.spot{display:flex;gap:18px;align-items:center;padding:16px;overflow:hidden;position:relative}
+.spot::before{content:"";position:absolute;inset:-20px;background:var(--bg) center/cover;opacity:.25;filter:blur(24px) saturate(1.4)}
+.spot>*{position:relative}
+.spot .cover{width:clamp(110px,28vw,168px);flex:none;border-radius:16px;font-size:34px;box-shadow:0 18px 44px rgba(0,0,0,.6)}
+.spot small{display:inline-block;padding:3px 12px;border-radius:999px;background:rgba(156,156,156,.18);color:var(--sky);font-size:12px;font-weight:700}
+.spot h2{font-size:clamp(20px,3vw,28px);line-height:1.12;margin:8px 0 2px;letter-spacing:-.02em;overflow-wrap:anywhere}
+.spot p{color:var(--mute);font-size:14px}
+.spot .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.spot .btn{padding:9px 16px;font-size:14px}
+/* tabs */
+.tabsw{position:sticky;top:calc(68px + env(safe-area-inset-top,0px));z-index:40;background:linear-gradient(180deg,rgba(8,8,8,.92),rgba(8,8,8,.78));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.tabs,.gpills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 0;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar,.gpills::-webkit-scrollbar{display:none}
+.tab,.gp{flex:none;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;transition:.2s}
+.tab:hover,.gp:hover{background:rgba(165,165,165,.16)}
+.tab[aria-selected=true]{background:var(--btn);border-color:transparent;color:#ffffff;box-shadow:0 6px 20px #60606055}
+.gpills{padding:0 0 12px;display:none}.gpills.show{display:flex}
+.gp{padding:6px 14px;font-size:13px}.gp.on{border-color:var(--sky);color:var(--sky);background:rgba(156,156,156,.12)}
+/* chart list */
+.chead{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin:30px 0 16px}
+.chead h2{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.02em}
+.chead p{color:var(--mute);font-size:14px;max-width:62ch}
+.cacts{display:flex;gap:10px;flex-wrap:wrap}.cacts .btn{padding:10px 18px;font-size:14px}
+.cl{padding:8px}
+.row,.thd{display:grid;grid-template-columns:48px 64px 58px minmax(0,1fr) 110px 42px;align-items:center;gap:14px;padding:10px 14px}
+.thd{color:var(--mute);font-size:13px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:6px}
+.thd span:first-child,.rk{text-align:center}.thd span:nth-child(5),.meta{text-align:right}
+.row{border-radius:14px;cursor:pointer;transition:background .2s}
+.row:hover{background:rgba(165,165,165,.1)}
+.row.on{background:linear-gradient(90deg,rgba(156,156,156,.2),rgba(122,122,122,.08));box-shadow:inset 3px 0 0 var(--sky)}
+.rk{font-size:22px;font-weight:800;color:var(--mute);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.row:nth-child(-n+3) .rk{background:linear-gradient(180deg,#eeeeee,#9c9c9c);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;font-size:26px}
+.rk .eqb{display:none;gap:2px;height:20px;align-items:flex-end;justify-content:center}
+.rk .eqb i{width:4px;background:var(--sky);border-radius:2px;animation:eq .9s ease-in-out infinite alternate}
+.rk .eqb i:nth-child(2){animation-delay:.2s;background:var(--blue)}.rk .eqb i:nth-child(3){animation-delay:.4s;background:var(--ice)}
+@keyframes eq{from{height:20%}to{height:100%}}
+.row.playing .rk .eqb{display:flex}.row.playing .rk b{display:none}
+.mv{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:700;line-height:1.2;color:var(--mute)}
+.mv.up{color:var(--up)}.mv.down{color:var(--down)}
+.mv.new em{font-style:normal;padding:2px 8px;border-radius:999px;background:rgba(156,156,156,.18);color:var(--sky);font-size:11px;letter-spacing:.04em}
+.mv svg{width:12px;height:12px;fill:currentColor}
+.row .cover{width:58px;box-shadow:none}
+.row h3{font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .ar{font-size:14px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .mm{display:none;font-size:12px;color:var(--sky)}
+.meta{font-size:13px;color:var(--sky);white-space:nowrap}
+.pb{width:40px;height:40px;border-radius:50%;border:0;background:var(--btn);color:#ffffff;cursor:pointer;display:grid;place-items:center;font-size:12px;box-shadow:0 4px 14px #60606066}
+.empty{padding:56px 20px;text-align:center;color:var(--mute)}.empty h3{color:#ffffff;font-size:20px;margin-bottom:6px}
+/* player bar */
+.pbar{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(8,8,8,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:2px solid transparent;border-image:var(--grad) 1;transform:translateY(115%);transition:transform .35s}
+.pbar.show{transform:none}
+.pin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) auto;gap:18px;align-items:center;width:min(1180px,100%);margin:auto}
+.now{display:flex;gap:12px;align-items:center;min-width:0}
+.now .cover{width:48px;flex:none;border-radius:10px;font-size:13px}
+.now h4{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.now p{font-size:12px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seekw{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mute)}
+#seek{flex:1;accent-color:#7a7a7a;min-width:0}
+.ctl{display:flex;gap:8px;align-items:center}
+.ctl button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--glass);cursor:pointer}
+.ctl button.big{width:46px;height:46px;background:var(--btn);border:0}
+body.hb footer{margin-bottom:84px}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:48px;padding:40px 0 28px;background:linear-gradient(transparent,#12121266)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}
+footer ul{padding:0}footer li{list-style:none;margin-bottom:8px}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(max-width:1020px){.top{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){
+.burger{display:block}
+nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(8,8,8,.96);border-bottom:1px solid var(--line);display:none}
+nav.open{display:flex}nav a{padding:12px 14px;font-size:16px}
+header .bar>.btn{display:none}
+.pin{grid-template-columns:minmax(0,1fr) auto}.seekw{grid-column:1/-1;order:3}}
+@media(max-width:640px){
+.thd{display:none}
+.row,.thd{grid-template-columns:34px 38px 50px minmax(0,1fr) 40px;gap:10px;padding:10px 6px}
+.row .cover{width:50px}.meta{display:none}.row .mm{display:block}.rk{font-size:18px}.row:nth-child(-n+3) .rk{font-size:20px}
+.top{padding-top:28px}.spot{flex-direction:column;text-align:center}.spot .acts{justify-content:center}
+.fgrid{grid-template-columns:1fr}.cacts .btn{flex:1 1 140px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+<script src="signup-gate.js" defer></script>
+<script src="hero-player.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html">Artists</a><a href="charts.html" class="on" aria-current="page">Charts</a><a href="videos.html">Videos</a><a href="events.html">Events</a><a href="podcasts.html">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo">Contact</a><a href="join.html" class="mo">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+
+<main>
+<div class="wrap top">
+<div>
+<h1 class="y3d">YAPSMusic Charts</h1>
+<p class="lead">What Uganda and East Africa are playing right now. Pick a chart, tap a song and the whole list plays on.</p>
+</div>
+<div class="glass spot" id="spot"></div>
+</div>
+
+<div class="tabsw"><div class="wrap">
+<div class="tabs" id="tabs" role="tablist" aria-label="Chart categories"></div>
+<div class="gpills" id="gpills" aria-label="Genres"></div>
+</div></div>
+
+<div class="wrap" id="panel" role="tabpanel">
+<div class="chead"><div><h2 id="cTitle"></h2><p id="cDesc"></p></div>
+<div class="cacts"><button class="btn pri" id="playChart" type="button">&#9654; Play chart</button><a class="btn" id="openApp" href="https://brians124.github.io/YAPSMUSIC.APP/">Listen in app</a></div></div>
+<div class="glass cl">
+<div class="thd" aria-hidden="true"><span>#</span><span>Move</span><span></span><span>Song</span><span id="mhead">Streams</span><span></span></div>
+<div id="list"></div>
+</div>
+</div>
+</main>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+
+<div class="pbar" id="pbar" role="region" aria-label="Player">
+<div class="pin">
+<div class="now"><div class="cover" id="bArt"></div><div style="min-width:0"><h4 id="bt"></h4><p id="ba"></p></div></div>
+<div class="seekw"><span id="tc">0:00</span><input type="range" id="seek" min="0" max="100" step="0.1" value="0" aria-label="Seek"><span id="td">0:00</span></div>
+<div class="ctl"><button id="prev" aria-label="Previous">&#9198;</button><button id="pp" class="big" aria-label="Play or pause">&#9654;</button><button id="next" aria-label="Next">&#9197;</button></div>
+</div>
+</div>
+<audio id="aud" preload="none"></audio>
+
+<script>
+/* ===== DATA ===== */
+const APP_URL="https://brians124.github.io/YAPSMUSIC.APP/"; // app + image host
+const src=p=>/^https?:/.test(p)?p:APP_URL+encodeURI(p);
+const CAT=[[209,"Bring Me Back (Enox Mantano Remix – Slowed)","Miles Away ft. Claire Ridgely","images/trending_global.jpg","audio/Miles_Away_-_Bring_Me_Back_Enox_Mantano_Remix_Slowed.mp3","3:43","Electronic"],[208,"VALHALLA CALLING","Ragal Ironbull","images/trending_global.jpg","audio/Ragal_Ironbull_-_VALHALLA_CALLING.mp3","3:16","Rock"],[207,"My Man","Winnie Wa Mummy","images/taste-hero.jpg","audio/Winnie_Wa_Mummy_My_Man.mp3","2:52","Afrobeats"],[206,"Malidadi","Mimi Kampala ft. Pallaso","images/yaps-music-cover.jpg","audio/Mimi_Kampala__Pallaso_-_Malidadi.mp3","2:39","Afrobeats"],[205,"AK","Kapeke","images/yaps-music-cover.jpg","audio/Kapeke_-_AK.mp3","2:20","Afrobeats"],[204,"Mukomboti","Ava Peace","images/Ava peace.png","audio/Ava_Peace_-_Mukomboti.mp3","2:52","Afrobeats"],[203,"Wansigalamu","Crysto Panda ft. Lutty Neika & Pawaboy AB","images/Anaconda_Lutty_Neika_Bravion_Emcee.png","audio/Crysto_Panda_Lutty_Neika_Pawaboy_AB_-_Wansigalamu.mp3","3:24","Afrobeats"],[202,"Buntu Butono","King Saha & Dokta Brain","images/king saha.jpg","audio/King_Saha_Dokta_Brain_-_Buntu_Butono.mp3","3:12","Afrobeats"],[201,"Yoyo","Joshua Baraka","images/Joshua_Baraka.png","audio/Joshua Baraka - Yoyo.mp3","2:25","Afrobeats"],[200,"Sissa","Dax Vibez","images/yaps-music-cover.jpg","audio/Dax Vibez - Sissa.mp3","3:37","Afrobeats"],[199,"Sikiwa","Fik Fameica","images/Fik_Fameica.png","audio/Fik Fameica - Sikiwa.mp3","3:13","Afrobeats"],[198,"Yeffe","Jose Chameleone ft. Jeff Kiwa","images/Jose Chameleon.jpg","audio/Jose Chameleone Ft Jeff Kiwa - Yeffe.mp3","2:57","Luganda Pop"],[197,"Finally","Spice Diana","images/Spice_Diana.png","audio/Spice Diana - Finally.mp3","2:51","Afrobeats"],[196,"Grave Into Gardens","Elevation Worship ft. Brandon Lake","images/g2w-gospel-to-the-world.png","audio/Elevation_Worship_-_Grave_Into_Gardens.mp3","7:32","Gospel"],[195,"Here Again (Worthy)","Elevation Worship","images/g2w-gospel-to-the-world.png","audio/Elevation_Worship_-_Here_Again_Worthy.mp3","9:03","Gospel"],[194,"10,000 Reasons (Bless the Lord)","Matt Redman","images/g2w-gospel-to-the-world.png","audio/Matt_Redman_-_10000_Reasons_Bless_The_Lord.mp3","4:20","Gospel"],[193,"Oceans (Where Feet May Fail)","Hillsong UNITED","images/g2w-gospel-to-the-world.png","audio/Hillsong_UNITED_-_Oceans_Where_Feet_May_Fail.mp3","9:00","Gospel"],[192,"Build My Life","Pat Barrett","images/g2w-gospel-to-the-world.png","audio/Pat_Barrett_-_Build_My_Life.mp3","4:06","Gospel"],[191,"Ruhanga Isitwe","Patrick Lowry","images/g2w-gospel-to-the-world.png","audio/Patrick_Lowry_-_Ruhanga_Isitwe.mp3","6:02","Gospel"],[190,"Battle Belongs","Phil Wickham","images/g2w-gospel-to-the-world.png","audio/Phil_Wickham_-_Battle_Belongs.mp3","4:47","Gospel"],[189,"This Is Amazing Grace","Phil Wickham","images/g2w-gospel-to-the-world.png","audio/Phil_Wickham_-_This_Is_Amazing_Grace.mp3","4:38","Gospel"],[188,"Reckless Love","Cory Asbury","images/g2w-gospel-to-the-world.png","audio/Cory_Asbury_-_Reckless_Love.mp3","5:31","Gospel"],[187,"King of Heaven","Ryan Ofei","images/g2w-gospel-to-the-world.png","audio/Ryan_Ofei_-_King_Of_Heaven.mp3","7:50","Gospel"],[186,"I Know Who I Am","Sinach","images/g2w-gospel-to-the-world.png","audio/Sinach_-_I_Know_Who_I_Am.mp3","6:10","Gospel"],[185,"Way Maker","Sinach","images/g2w-gospel-to-the-world.png","audio/Sinach_-_Way_Maker.mp3","5:05","Gospel"],[184,"What A Beautiful Name","Hillsong Worship","images/g2w-gospel-to-the-world.png","audio/Hillsong_Worship_-_What_A_Beautiful_Name.mp3","5:42","Gospel"],[183,"House of the Lord","Vertical Worship","images/g2w-gospel-to-the-world.png","audio/Vertical_Worship_-_House_Of_The_Lord.mp3","4:50","Gospel"],[182,"Yesu Beera Nange","Judith Babirye","images/g2w-gospel-to-the-world.png","audio/Judith_Babirye_-_Yesu_Beera_Nange.mp3","6:17","Gospel"],[181,"Wambatira","Judith Babirye","images/g2w-gospel-to-the-world.png","audio/Judith_Babirye_-_Wambatira.mp3","5:22","Gospel"],[180,"Omukisa Gwa Mukama","Judith Babirye","images/g2w-gospel-to-the-world.png","audio/Judith_Babirye_-_Omukisa_Gwa_Mukama.mp3","4:36","Gospel"],[179,"Katonda Tageya (Lopela Katonda)","Gabie Ntaate","images/g2w-gospel-to-the-world.png","audio/Gabie_Ntaate_-_Katonda_Tageya.mp3","2:29","Gospel"],[178,"Gwasembayo","Gabie Ntaate","images/g2w-gospel-to-the-world.png","audio/Gabie_Ntaate_-_Gwasembayo.mp3","3:45","Gospel"],[177,"Brag About God","Gabie Ntaate","images/g2w-gospel-to-the-world.png","audio/Gabie_Ntaate_-_Brag_About_God.mp3","3:50","Gospel"],[176,"What A Friend We Have In Jesus","Traditional Hymn","images/g2w-gospel-to-the-world.png","audio/Christian_Hymn_-_What_A_Friend_We_Have_In_Jesus.mp3","4:16","Gospel"],[175,"Do It Again (Live)","Elevation Worship","images/g2w-gospel-to-the-world.png","audio/Do-It-Again-Live-Elevation-Worship.mp3","10:15","Gospel"],[174,"King Of My Heart","David Funk","images/g2w-gospel-to-the-world.png","audio/David_Funk_-_King_Of_My_Heart.mp3","9:01","Gospel"],[173,"Raise A Hallelujah","Dante Bowe & Jenn Johnson","images/g2w-gospel-to-the-world.png","audio/Dante_Bowe_Jenn_Johnson_-_Raise_A_Hallelujah.mp3","6:14","Gospel"],[172,"Firm Foundation (He Won't)","Cody Carnes","images/g2w-gospel-to-the-world.png","audio/Cody_Carnes_-_Firm_Foundation_He_Wont.mp3","6:22","Gospel"],[171,"Jesus Keep Me Near The Cross","Traditional Hymn","images/g2w-gospel-to-the-world.png","audio/Christian_Hymn_-_Jesus_Keep_Me_Near_The_Cross.mp3","3:05","Gospel"],[170,"Calm Down","Vyroota","images/Vyroota.png","audio/Vyroota - Calm Down.mp3","2:40","Luganda Pop"],[169,"Dangerous","Ceaserous","images/Ceaserous - Dangerous.jpg","audio/Ceaserous - Dangerous.mp3","3:27","Afrobeats"],[168,"Ndi Omu","Ava Peace","images/Ava peace.png","audio/Ava Peace - Ndi Omu.mp3","2:55","Afrobeats"],[167,"Onzise","Dax Vibez & Rema Namakula","images/Rema_Namakula.png","audio/Dax Vibez & Rema Namakula - Onzise.mp3","2:52","Afropop"],[166,"Middle","Vinka","images/Vinka.png","audio/Middle - Vinka.mp3","2:47","Afropop"],[165,"Miracles (Extended)","James Ploh ft. A Pass & Kiboo","images/Apass.png","audio/James_Ploh_Official_-_Miracles_Extended_-_A_Pass___Kiboo.mp3","2:56","Dancehall"],[164,"Bikyaganye","Dokta Brain","images/Dokta_Brain.png","audio/Dokta Brain - Bikyaganye.mp3","3:29","Afrobeats"],[163,"Moni Ami","Gloria Bugie","images/Gloria_Bugie.png","audio/Gloria Bugie - Moni Ami.mp3","3:58","Afropop"],[162,"Chap Chap","Lutty Neika","images/Anaconda_Lutty_Neika_Bravion_Emcee.png","audio/Lutty Neika - Chap Chap.mp3","2:57","Afropop"],[161,"Stress Killer","Sheebah Karungi","images/Sheebah.jpg","audio/Sheebah Karungi - Stress Killer.mp3","2:50","Afrobeats"],[160,"Nebirungi Byogere","Sqoop Larma","images/Sqoop_Larma_Temutuloga.webp","audio/Sqoop Larma - Nebirungi Byogere.mp3","2:41","Afrobeats"],[159,"Nassanga (Remix)","Kalifah AgaNaga ft. Eddy Kenzo, Winnie Nwagi, Lil Pazo & Weasel","images/nassanga_remix.jpg","audio/Kalifah AgaNaga ft. Eddy Kenzo, Winnie Nwagi, Lil Pazo & Weasel - Nassanga (Remix).mp3","3:44","Afrobeats"],[158,"Nigina","Hoozambe D.Star","images/1000014852.png","audio/Hoozambe-DStar-Nigina.mp3","2:25","Afrobeats"],[156,"Daddy","Da Agent","images/Da_Agent.png","audio/Da_Agent_Daddy.mp3","3:30","Afrobeats"],[1,"P2","King Saha","images/King_Saha_-_P2.jpg","audio/King_Saha_-_P2.mp3","3:52","Luganda Pop"],[2,"Wano Wano","Rema Namakula","images/Rema_Namakula.png","audio/Rema - Wano Wano.mp3","4:05","Afropop"],[3,"Kunsi","Vyroota","images/Vyroota.png","audio/Vyroota - Kunsi.mp3","3:28","Luganda Pop"],[4,"Toma","Vyroota","images/Vyroota.png","audio/Vyroota - Toma.mp3","3:24","Luganda Pop"],[5,"Champion Gal","Fik Fameica","images/Fik_Fameica.png","audio/Fik Fameica - Champion Gal.mp3","3:29","Afrobeats"],[6,"Angella","John Blaq","images/John blaq.png","audio/John Blaq - Angella.mp3","3:41","Afropop"],[7,"Mine","Vinka","images/Vinka.png","audio/Mine - Vinka (erycom)_1775090955.mp3","3:33","Afropop"],[8,"Ngezaako","John Blaq","images/John blaq.png","audio/John Blaq - Ngezaako.mp3","3:58","Luganda Pop"],[9,"Nsi Namba","TPaul ft. Sheebah","images/T-Paul.png","audio/Sheebah Ft Tpaul 256 - Nsi Namba.mp3","3:35","Afrobeats"],[10,"Daily Bundle","Elijah Kitaka","images/Eliaja Kitaka.png","audio/Elijah Kitaka - Daily bundle.mp3","3:18","Afropop"],[11,"See You Tonight","Omega 256 ft. Cindy Sanyu","images/see you tonight.jpg","audio/See You Tonight - Omega 256 & Cindy Sanyu (erycom)_1755435655.mp3","3:44","R&B"],[12,"Wrong Places","Joshua Baraka & JAE5","images/Joshua Baraka.png","audio/Joshua Baraka - Wrong Places.mp3","3:37","Afrobeats"],[13,"This Time","Joshua Baraka","images/Joshua_Baraka.png","audio/Joshua Baraka - This Time.mp3","3:47","R&B"],[14,"Siaka","Fik Fameica & Mejja","images/Fik_Fameica.png","audio/Fik Fameica, Mejja - Siaka.mp3","3:31","Afrobeats"],[15,"London","Kapeke","images/Kapeke.png","audio/Kapeke - London.mp3","3:22","Afropop"],[16,"Ntwala","Pawaboy & Jowy Landa","images/Pawaboy.jpg","audio/Pawaboy, Jowy Landa - Ntwala.mp3","3:41","Luganda Pop"],[17,"Nalokinga","Pawaboy","images/Pawaboy.jpg","audio/Pawaboy - Nalokinga.mp3","3:36","Luganda Pop"],[18,"Oyaya","Lutty Neika","images/Neika Oyaya.jpg","audio/Lutty Neika - Oyaya.mp3","3:19","Afropop"],[19,"Yandalula","Pawaboy","images/Pawaboy.jpg","audio/Pawaboy - Yandalula.mp3","3:19","Afropop"],[21,"Addict","Azawi","images/Azawi.png","audio/Addict - Azawi (erycom)_1774696906.mp3","3:45","Afrobeats"],[22,"Number Mojja","Levixone ft. Winnie Nwagi","images/levixon.jpg","audio/Number Moja - Levixone & Winnie Nwagi (erycom)_1777669338.mp3","4:02","Gospel"],[23,"Go","Karole Kasita","images/Karole kasita.jpg","audio/Karole Kasita ft Elijah Kitaka - Go (Remix).mp3","3:27","Afropop"],[25,"Nzalina","Feffe Bussi ft. Winnie Nwagi, Spice Diana, Kapeke & Dax Vibez","images/Nzalina.jpg","audio/Feffe Bussi Ft Winnie Nwagi, Spice Diana, Dax Vibez, Kapeke - Nzalina.mp3","4:01","Afrobeats"],[26,"Tema Ensingo Kaba","Kapeke","images/Kapeke.png","audio/Kapeke - Kaba.mp3","3:29","Luganda Pop"],[28,"Wewe","King Saha","images/king saha.jpg","audio/King_Saha_-_Wewe.mp3","3:54","Luganda Pop"],[32,"Biggwa","Liam Voice & Fik Fameica","images/Liam_Voice.png","audio/Liam Voice & Fik Fameica - Biggwa.mp3","3:42","Afropop"],[34,"Somebody","Sheebah","images/Sheebah_Somebody.jpg","audio/Sheebah_Somebody.mp3","3:44","Afrobeats"],[37,"Anaconda","Lutty Neika & Bravion Emcee","images/Anaconda_Lutty_Neika_Bravion_Emcee.png","audio/Anaconda.mp3","3:26","Afrobeats"],[51,"Baddie Remix","Shannon ft. Fik Fameica, AaronX, Tojo & DJ Lito","images/Fik_Fameica.png","audio/Shannon ft. Fik Fameica, AaronX, Tojo & DJ Lito - Baddie Remix.mp3","3:45","Afropop"],[52,"Tobingamba","Acidic Vokoz & Ava Peace","images/Ava peace.png","audio/Acidic Vokoz, Ava Peace - Tobingamba.mp3","3:22","Afrobeats"],[53,"Da Re","Sheebah Karungi","images/Sheebah_Da_Re.jpg","audio/Sheebah_Da_Re.mp3","3:31","Afropop"],[54,"Gundi (Remix)","Kapeke & Mimi Kampala","images/Kapeke.png","audio/Kapeke & Mimi Kampala - Gundi (Remix).mp3","3:28","Afrobeats"],[55,"Nze Nakiriza","Spice Diana & Vyroota","images/Spice_Diana.png","audio/Spice Diana & Vyroota - Nze Nakiriza.mp3","3:38","Afrobeats"],[58,"Valu Valu","Jose Chameleone","images/Jose Chameleon.jpg","audio/Jose_Chameleone_Valu_Valu.mp3","4:02","Luganda Pop"],[83,"Love You Everyday","Bebe Cool","images/Bebe Cool.png","audio/Love_you_everyday.mp3","3:59","Afropop"],[117,"Kampala","Pallaso","images/pallaso.jpg","audio/Pallaso_Kampala.mp3","3:58","Afropop"],[150,"Sirubala","Vinka","images/Vinka.png","audio/Vinka_Sirubala.mp3","3:35","Afropop"],[157,"Temutuloga","Sqoop Larma","images/Sqoop_Larma_Temutuloga.webp","audio/Sqoop Larma - Temutuloga.mp3","3:00","Afrobeats"]]; // [id,title,artist,img,audio,duration,genre]  (same as index.html DATA.catalog)
+const ARTISTS=[{"name": "Jose Chameleone", "img": "images/Jose Chameleon.jpg", "followers": "1.5M"}, {"name": "Bobi Wine", "img": "images/bobi_wine.jpg", "followers": "1.3M"}, {"name": "Bebe Cool", "img": "images/Bebe Cool.png", "followers": "1.1M"}, {"name": "King Saha", "img": "images/king saha.jpg", "followers": "1.1M"}, {"name": "John Blaq", "img": "images/John blaq.png", "followers": "980K"}, {"name": "Rema Namakula", "img": "images/Rema_Namakula.png", "followers": "920K"}, {"name": "Vyroota", "img": "images/Vyroota.png", "followers": "740K"}, {"name": "Fik Fameica", "img": "images/Fik_Fameica.png", "followers": "870K"}, {"name": "Azawi", "img": "images/Azawi.png", "followers": "810K"}, {"name": "Joshua Baraka", "img": "images/Joshua_Baraka.png", "followers": "650K"}, {"name": "Sheebah", "img": "images/Sheebah.jpg", "followers": "1.0M"}, {"name": "Vinka", "img": "images/Vinka.png", "followers": "590K"}, {"name": "Alien Skin", "img": "images/Alien_Skin.png", "followers": "720K"}, {"name": "Spice Diana", "img": "images/Spice_Diana.png", "followers": "560K"}, {"name": "Kapeke", "img": "images/Kapeke.png", "followers": "480K"}, {"name": "Pawaboy", "img": "images/Pawaboy.jpg", "followers": "420K"}, {"name": "Winnie Nwagi", "img": "images/Winnie_Nwagi.png", "followers": "680K"}, {"name": "A Pass", "img": "images/Apass.png", "followers": "450K"}, {"name": "Ben Hunter", "img": "images/Ben_Hunter.png", "followers": "380K"}, {"name": "Liam Voice", "img": "images/Liam_Voice.png", "followers": "290K"}, {"name": "Karole Kasita", "img": "images/Carol Kasita.jpg", "followers": "340K"}, {"name": "Elijah Kitaka", "img": "images/Eliaja Kitaka.png", "followers": "260K"}, {"name": "Princess Amila", "img": "images/Princess_Amila.png", "followers": "New"}, {"name": "Mose Radio", "img": "images/Mose_Radio.png", "followers": "New"}, {"name": "Kateleya", "img": "images/Kateleya_Cando.png", "followers": "New"}, {"name": "Cando", "img": "images/Kateleya_Cando.png", "followers": "New"}, {"name": "Navio", "img": "images/Navio.png", "followers": "New"}, {"name": "Eddy Kenzo", "img": "images/Eddy_Kenzo.png", "followers": "New"}, {"name": "Zexs Bilangilanji", "img": "images/Zexs_Bilangilanji.png", "followers": "New"}, {"name": "Prosper", "img": "images/Prosper.png", "followers": "New"}, {"name": "Bruno K", "img": "images/Bruno_K.png", "followers": "New"}, {"name": "Wizomanzo", "img": "images/Wizomanzo.png", "followers": "New"}, {"name": "B2C", "img": "images/B2C.png", "followers": "New"}, {"name": "Daddy Andre", "img": "images/Daddy_Andre.png", "followers": "New"}, {"name": "Da Agent", "img": "images/Da_Agent.png", "followers": "New"}, {"name": "Radio & Weasel", "img": "images/Mose_Rhadio.png", "followers": "890K"}, {"name": "Juliana Kanyomozi", "img": "images/Julian Kanyomo.png", "followers": "820K"}, {"name": "Pallaso", "img": "images/pallaso.jpg", "followers": "610K"}, {"name": "Maurice Kirya", "img": "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&q=80", "followers": "430K"}, {"name": "Ykee Benda", "img": "images/Yk bend.png", "followers": "520K"}, {"name": "Levixone", "img": "images/levixon.jpg", "followers": "480K"}, {"name": "Wilson Bugembe", "img": "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=300&q=80", "followers": "390K"}, {"name": "Irene Ntale", "img": "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&q=80", "followers": "450K"}, {"name": "Lydia Jazmine", "img": "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=300&q=80", "followers": "370K"}, {"name": "Feffe Bussi", "img": "images/Fefe_Bussi.png", "followers": "340K"}, {"name": "GNL Zamba", "img": "https://images.unsplash.com/photo-1544785349-c4a5301826fd?w=300&q=80", "followers": "310K"}, {"name": "Blu*3", "img": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&q=80", "followers": "280K"}, {"name": "Jackie Chandiru", "img": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&q=80", "followers": "260K"}, {"name": "Benon & Vamposs", "img": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80", "followers": "220K"}, {"name": "Coco Finger", "img": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&q=80", "followers": "200K"}, {"name": "Paulo Kafeero", "img": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80", "followers": "Classic"}, {"name": "Herman Basudde", "img": "https://images.unsplash.com/photo-1501386761578-eaa54b516f05?w=300&q=80", "followers": "Classic"}, {"name": "Fred Sebatta", "img": "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=300&q=80", "followers": "Classic"}, {"name": "Elly Wamala", "img": "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&q=80", "followers": "Classic"}, {"name": "Philly Lutaaya", "img": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=300&q=80", "followers": "Legend"}, {"name": "Afrigo Band", "img": "https://images.unsplash.com/photo-1468164016595-6108e4c60b8d?w=300&q=80", "followers": "Legend"}, {"name": "David Lutalo", "img": "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=300&q=80", "followers": "350K"}, {"name": "Jamal Wasswa", "img": "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&q=80", "followers": "180K"}, {"name": "Ava Peace", "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80", "followers": "New"}, {"name": "Lutty Neika", "img": "images/Anaconda_Lutty_Neika_Bravion_Emcee.png", "followers": "New"}, {"name": "Bravion Emcee", "img": "images/Anaconda_Lutty_Neika_Bravion_Emcee.png", "followers": "New"}, {"name": "Jowy Landa", "img": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&q=80", "followers": "New"}, {"name": "Cindy Sanyu", "img": "images/Cindy_Sanyu.png", "followers": "New"}, {"name": "Acidic Vokoz", "img": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&q=80", "followers": "New"}, {"name": "Dax Vibez", "img": "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=300&q=80", "followers": "New"}, {"name": "Ray G", "img": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&q=80", "followers": "New"}, {"name": "Crysto Panda", "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80", "followers": "New"}, {"name": "Gravity Omutujju", "img": "images/Gravity_Omutujju.png", "followers": "New"}, {"name": "Maureen Nantume", "img": "images/Maureen_Nantume.png", "followers": "New"}, {"name": "Carol Nantongo", "img": "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=300&q=80", "followers": "New"}, {"name": "An-Known", "img": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80", "followers": "New"}, {"name": "Mudra D Viral", "img": "images/Mudra_D_Viral.png", "followers": "New"}, {"name": "Fik Gaza", "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80", "followers": "New"}, {"name": "Grenade Official", "img": "images/Grenade_Official.png", "followers": "New"}, {"name": "Goodlyfe Crew", "img": "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?w=300&q=80", "followers": "New"}, {"name": "Mesach Semakula", "img": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80", "followers": "New"}, {"name": "Sophie Nantongo", "img": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&q=80", "followers": "New"}, {"name": "Ragga Dee", "img": "images/Ragga_Dee.png", "followers": "New"}, {"name": "Martha Mukisa", "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80", "followers": "New"}, {"name": "Shanita", "img": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80", "followers": "New"}, {"name": "T-Paul", "img": "images/T-Paul.png", "followers": "New"}, {"name": "James Ploh", "img": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&q=80", "followers": "New"}, {"name": "Kiboo", "img": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&q=80", "followers": "New"}, {"name": "Dokta Brain", "img": "images/Dokta_Brain.png", "followers": "New"}, {"name": "Gloria Bugie", "img": "images/Gloria_Bugie.png", "followers": "New"}]; // [{name,img,followers}] from the app's `artists` array
+/* Per-song stats read from the app's `tracks` array: p=plays (number), ps=plays as shown in the app,
+   r=region (C=Uganda/Central, W=Western, I=International), n=tagged "New", t=tagged "Trending" */
+const STATS={"1":{"p":2300000,"ps":"2.3M","r":"C","n":0,"t":1},"2":{"p":1900000,"ps":"1.9M","r":"C","n":0,"t":1},"3":{"p":1700000,"ps":"1.7M","r":"C","n":0,"t":1},"4":{"p":1400000,"ps":"1.4M","r":"C","n":0,"t":1},"5":{"p":1600000,"ps":"1.6M","r":"C","n":1,"t":1},"6":{"p":1800000,"ps":"1.8M","r":"C","n":1,"t":1},"7":{"p":1200000,"ps":"1.2M","r":"C","n":0,"t":1},"8":{"p":2000000,"ps":"2.0M","r":"C","n":0,"t":1},"9":{"p":1500000,"ps":"1.5M","r":"C","n":0,"t":1},"10":{"p":980000,"ps":"980K","r":"C","n":0,"t":1},"11":{"p":870000,"ps":"870K","r":"C","n":0,"t":1},"12":{"p":1300000,"ps":"1.3M","r":"C","n":0,"t":1},"13":{"p":1100000,"ps":"1.1M","r":"C","n":0,"t":1},"14":{"p":1000000,"ps":"1.0M","r":"C","n":0,"t":1},"15":{"p":760000,"ps":"760K","r":"C","n":0,"t":1},"16":{"p":840000,"ps":"840K","r":"C","n":0,"t":1},"17":{"p":910000,"ps":"910K","r":"C","n":0,"t":1},"18":{"p":690000,"ps":"690K","r":"C","n":0,"t":1},"19":{"p":690000,"ps":"690K","r":"C","n":0,"t":1},"21":{"p":1400000,"ps":"1.4M","r":"C","n":0,"t":1},"22":{"p":950000,"ps":"950K","r":"C","n":0,"t":0},"23":{"p":820000,"ps":"820K","r":"C","n":1,"t":1},"25":{"p":1200000,"ps":"1.2M","r":"C","n":0,"t":0},"26":{"p":670000,"ps":"670K","r":"C","n":0,"t":0},"28":{"p":1000000,"ps":"1.0M","r":"C","n":0,"t":0},"32":{"p":880000,"ps":"880K","r":"C","n":0,"t":0},"34":{"p":850000,"ps":"850K","r":"C","n":0,"t":1},"37":{"p":810000,"ps":"810K","r":"C","n":0,"t":1},"51":{"p":540000,"ps":"540K","r":"C","n":0,"t":0},"52":{"p":430000,"ps":"430K","r":"C","n":0,"t":0},"53":{"p":680000,"ps":"680K","r":"C","n":0,"t":1},"54":{"p":590000,"ps":"590K","r":"C","n":0,"t":0},"55":{"p":720000,"ps":"720K","r":"C","n":1,"t":0},"58":{"p":4099999,"ps":"4.1M","r":"C","n":0,"t":0},"83":{"p":2900000,"ps":"2.9M","r":"C","n":0,"t":0},"117":{"p":1400000,"ps":"1.4M","r":"C","n":0,"t":0},"150":{"p":1300000,"ps":"1.3M","r":"C","n":0,"t":0},"156":{"p":0,"ps":"0","r":"C","n":0,"t":1},"157":{"p":0,"ps":"0","r":"C","n":0,"t":1},"158":{"p":0,"ps":"0","r":"C","n":1,"t":1},"159":{"p":0,"ps":"0","r":"C","n":1,"t":1},"160":{"p":0,"ps":"0","r":"C","n":1,"t":1},"161":{"p":0,"ps":"0","r":"C","n":1,"t":1},"162":{"p":0,"ps":"0","r":"C","n":1,"t":1},"163":{"p":0,"ps":"0","r":"C","n":1,"t":1},"164":{"p":0,"ps":"0","r":"C","n":1,"t":1},"165":{"p":0,"ps":"0","r":"C","n":1,"t":1},"166":{"p":210000,"ps":"210K","r":"C","n":0,"t":0},"167":{"p":185000,"ps":"185K","r":"C","n":0,"t":0},"168":{"p":120000,"ps":"120K","r":"C","n":0,"t":0},"169":{"p":1500000,"ps":"1.5M","r":"C","n":1,"t":1},"170":{"p":0,"ps":"0","r":"C","n":1,"t":0},"171":{"p":0,"ps":"0","r":"I","n":1,"t":0},"172":{"p":0,"ps":"0","r":"I","n":1,"t":0},"173":{"p":0,"ps":"0","r":"I","n":1,"t":0},"174":{"p":0,"ps":"0","r":"I","n":1,"t":0},"175":{"p":0,"ps":"0","r":"I","n":1,"t":0},"176":{"p":0,"ps":"0","r":"I","n":1,"t":0},"177":{"p":0,"ps":"0","r":"C","n":1,"t":0},"178":{"p":0,"ps":"0","r":"C","n":1,"t":0},"179":{"p":0,"ps":"0","r":"C","n":1,"t":0},"180":{"p":0,"ps":"0","r":"C","n":1,"t":0},"181":{"p":0,"ps":"0","r":"C","n":1,"t":0},"182":{"p":0,"ps":"0","r":"C","n":1,"t":0},"183":{"p":0,"ps":"0","r":"I","n":1,"t":0},"184":{"p":0,"ps":"0","r":"I","n":1,"t":0},"185":{"p":0,"ps":"0","r":"I","n":1,"t":0},"186":{"p":0,"ps":"0","r":"I","n":1,"t":0},"187":{"p":0,"ps":"0","r":"I","n":1,"t":0},"188":{"p":0,"ps":"0","r":"I","n":1,"t":0},"189":{"p":0,"ps":"0","r":"I","n":1,"t":0},"190":{"p":0,"ps":"0","r":"I","n":1,"t":0},"191":{"p":0,"ps":"0","r":"W","n":1,"t":0},"192":{"p":0,"ps":"0","r":"I","n":1,"t":0},"193":{"p":0,"ps":"0","r":"I","n":1,"t":0},"194":{"p":0,"ps":"0","r":"I","n":1,"t":0},"195":{"p":0,"ps":"0","r":"I","n":1,"t":0},"196":{"p":0,"ps":"0","r":"I","n":1,"t":0},"197":{"p":0,"ps":"0","r":"C","n":1,"t":1},"198":{"p":0,"ps":"0","r":"C","n":1,"t":1},"199":{"p":0,"ps":"0","r":"C","n":1,"t":1},"200":{"p":0,"ps":"0","r":"C","n":1,"t":1},"201":{"p":0,"ps":"0","r":"C","n":1,"t":1},"202":{"p":0,"ps":"0","r":"C","n":1,"t":1},"203":{"p":0,"ps":"0","r":"C","n":1,"t":1},"204":{"p":0,"ps":"0","r":"C","n":1,"t":1},"205":{"p":0,"ps":"0","r":"C","n":1,"t":1},"206":{"p":0,"ps":"0","r":"C","n":1,"t":1},"207":{"p":0,"ps":"0","r":"C","n":1,"t":1},"208":{"p":0,"ps":"0","r":"I","n":1,"t":1},"209":{"p":0,"ps":"0","r":"I","n":1,"t":1}};
+
+/* ===== CHART SETTINGS — fill these in from your backend and the charts update automatically ===== */
+const DOWNLOADS={};   // {songId: downloadCount}  -> powers "Most Downloaded" (empty = coming soon)
+const PREV_RANK={};   // {chartKey: {songId: lastWeeksRank}} -> movement arrows. chartKey: global, uganda, trending, streamed, downloaded, rising (key = artist name), genre:<Genre>
+const RISING_MAX_FOLLOWERS=600000; // artists above this are "established", not "rising"
+
+const CHARTS=[
+{key:"global",label:"Global Top 100",title:"Global Top 100",desc:"Every song on YAPSMusic, ranked by streams. Ties are ordered trending first, then newest.",mh:"Streams"},
+{key:"uganda",label:"Uganda Top 100",title:"Uganda Top 100",desc:"The most played songs by Ugandan artists on YAPSMusic.",mh:"Streams"},
+{key:"trending",label:"Trending Today",title:"Trending Today",desc:"Songs currently marked trending on YAPSMusic, ranked by streams.",mh:"Streams"},
+{key:"streamed",label:"Most Streamed",title:"Most Streamed",desc:"The songs with the highest stream counts on YAPSMusic.",mh:"Streams"},
+{key:"downloaded",label:"Most Downloaded",title:"Most Downloaded",desc:"The songs listeners save for offline listening most often.",mh:"Downloads"},
+{key:"rising",label:"Rising Artists",title:"Rising Artists",desc:"Artists under 600K followers with the most new and trending songs. Tap play to hear their top song.",mh:"Followers"},
+{key:"genre",label:"Genre Charts",title:"Genre Charts",desc:"The top songs in each genre, ranked by streams.",mh:"Streams"}
+];
+
+/* ===== helpers ===== */
+const $=id=>document.getElementById(id),aud=$("aud"),HUE=[265,200,292,155];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cov=h=>`linear-gradient(135deg,hsl(${h+20} 0% 48%),hsl(${h+55} 0% 16%))`;
+const ini=s=>s.split(" ").filter(Boolean).map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const img=p=>p?`<img src="${esc(src(p))}" alt="" loading="lazy" onerror="this.remove()">`:"";
+const mmss=t=>isFinite(t)?Math.floor(t/60)+":"+String(Math.floor(t%60)).padStart(2,"0"):"0:00";
+const ALIAS={"Sheebah Karungi":"Sheebah"};
+const lead=a=>{const n=a.split(/\s+(?:ft\.?|feat\.?|&)\s+|\s*,\s*/i)[0].trim();return ALIAS[n]||n};
+const num=v=>{const m=String(v).trim().replace(/,/g,"").match(/^([\d.]+)\s*([kKmM])?/);if(!m)return 0;let n=parseFloat(m[1])||0;if(m[2])n*=/k/i.test(m[2])?1e3:1e6;return n};
+const fmt=n=>n>=1e6?(n/1e6).toFixed(n>=1e7?0:1).replace(/\.0$/,"")+"M":n>=1e3?Math.round(n/1e3)+"K":String(n);
+
+/* ===== build chart data ===== */
+const S=id=>STATS[id]||{p:0,ps:"0",r:"C",n:0,t:0};
+const SONGS=CAT.map(c=>({id:c[0],title:c[1],artist:c[2],img:c[3],audio:c[4],dur:c[5],genre:c[6],hue:HUE[c[0]%4],...S(c[0])}));
+const cmp=(a,b)=>b.p-a.p||b.t-a.t||b.id-a.id;
+const songItem=(t,m)=>({id:t.id,title:t.title,sub:t.artist,img:t.img,hue:t.hue,track:t,meta:m(t),isNew:!!t.n});
+const plays=t=>t.p>0?t.ps+" plays":"";
+const ugandan=t=>t.r!=="I";
+const GENRES=[...new Set(SONGS.map(t=>t.genre))].map(g=>({g,n:SONGS.filter(t=>t.genre===g).length})).sort((a,b)=>b.n-a.n).map(x=>x.g);
+let genre=GENRES[0];
+
+function risingArtists(){
+const by={};
+SONGS.filter(ugandan).forEach(t=>{const n=lead(t.artist);(by[n]=by[n]||[]).push(t)});
+return Object.entries(by).map(([name,ts])=>{
+const info=ARTISTS.find(a=>a.name===name),fol=info?num(info.followers):0,isNewAct=!info||/new/i.test(info.followers);
+const top=[...ts].sort(cmp)[0],nn=ts.filter(t=>t.n).length,tt=ts.filter(t=>t.t).length;
+return{name,ts,info,fol,top,score:nn*2+tt,plays:ts.reduce((s,t)=>s+t.p,0),ok:(isNewAct||fol<RISING_MAX_FOLLOWERS)&&nn>0}})
+.filter(a=>a.ok).sort((a,b)=>b.score-a.score||b.plays-a.plays||a.name.localeCompare(b.name)).slice(0,100)
+.map(a=>({id:"a:"+a.name,title:a.name,sub:"Top song: "+a.top.title,img:(a.info&&a.info.img)||a.top.img,hue:a.top.hue,round:true,track:a.top,
+meta:a.info&&/\d/.test(a.info.followers)?a.info.followers:"New artist",isNew:!a.info||/new/i.test(a.info.followers)}))}
+
+function build(key){
+switch(key){
+case"global":return SONGS.slice().sort(cmp).slice(0,100).map(t=>songItem(t,plays));
+case"uganda":return SONGS.filter(ugandan).sort(cmp).slice(0,100).map(t=>songItem(t,plays));
+case"trending":return SONGS.filter(t=>t.t).sort(cmp).slice(0,100).map(t=>songItem(t,plays));
+case"streamed":return SONGS.filter(t=>t.p>0).sort(cmp).slice(0,100).map(t=>songItem(t,plays));
+case"downloaded":return SONGS.filter(t=>DOWNLOADS[t.id]>0).sort((a,b)=>DOWNLOADS[b.id]-DOWNLOADS[a.id]||b.id-a.id).slice(0,100).map(t=>songItem(t,x=>fmt(DOWNLOADS[x.id])+" downloads"));
+case"rising":return risingArtists();
+case"genre":return SONGS.filter(t=>t.genre===genre).sort(cmp).slice(0,100).map(t=>songItem(t,plays))}
+return[]}
+
+/* movement: needs last week's rank (PREV_RANK). Without it: NEW for songs tagged New, otherwise no change info */
+function movement(key,it,rank){
+const prev=(PREV_RANK[key==="genre"?"genre:"+genre:key]||{})[key==="rising"?it.title:it.id];
+if(prev!=null){const d=prev-rank;return d>0?{c:"up",t:d}:d<0?{c:"down",t:-d}:{c:"same"}}
+return it.isNew?{c:"new"}:{c:"same"}}
+const ARW={up:'<svg viewBox="0 0 12 12"><path d="M6 1 11 9H1z"/></svg>',down:'<svg viewBox="0 0 12 12"><path d="M6 11 1 3h10z"/></svg>'};
+const mvHTML=m=>m.c==="new"?'<div class="mv new" aria-label="New entry"><em>NEW</em></div>':m.c==="same"?'<div class="mv" aria-label="No change">&ndash;</div>':`<div class="mv ${m.c}" aria-label="${m.c==="up"?"Up":"Down"} ${m.t}">${ARW[m.c]}<span>${m.t}</span></div>`;
+
+/* ===== state + render ===== */
+let key="global",list=[],queue=[],qKey="",qi=-1;
+const ck=()=>key==="genre"?"genre:"+genre:key;
+const cur=()=>queue[qi];
+const def=()=>CHARTS.find(c=>c.key===key);
+
+function renderTabs(){
+$("tabs").innerHTML=CHARTS.map(c=>`<button class="tab" role="tab" id="tab-${c.key}" data-chart="${c.key}" aria-selected="${c.key===key}" aria-controls="panel" tabindex="${c.key===key?0:-1}">${esc(c.label)}</button>`).join("");
+$("gpills").innerHTML=GENRES.map(g=>`<button class="gp${g===genre?" on":""}" type="button" data-genre="${esc(g)}">${esc(g)}</button>`).join("");
+$("gpills").classList.toggle("show",key==="genre");
+const t=document.querySelector(".tab[aria-selected=true]");if(t&&t.scrollIntoView)t.scrollIntoView({inline:"center",block:"nearest"})}
+
+function render(){
+const d=def();list=build(key);renderTabs();
+const gt=key==="genre"?genre+" Chart":d.title;
+document.title=gt+" — YAPSMusic Charts";
+$("cTitle").textContent=gt;$("mhead").textContent=d.mh;
+const filled=list.length;
+$("cDesc").textContent=d.desc+(filled&&filled<100&&key!=="rising"?` Showing ${filled} song${filled===1?"":"s"} so far.`:"");
+$("panel").setAttribute("aria-labelledby","tab-"+key);
+const dis=!filled;$("playChart").disabled=dis;$("playChart").style.opacity=dis?.5:1;
+if(!filled){
+$("list").innerHTML=`<div class="empty"><h3>${key==="downloaded"?"Download rankings are coming soon":"Nothing charting here yet"}</h3><p>${key==="downloaded"?"We are counting offline saves. Check back soon, or explore the other charts.":"Check back soon, or explore the other charts."}</p></div>`;
+$("spot").style.display="none";mark();return}
+$("list").innerHTML=list.map((it,i)=>{const r=i+1;return`<div class="row" role="button" tabindex="0" data-i="${i}" data-song="${it.track.id}" aria-label="Play ${esc(it.title)}, number ${r}"><div class="rk"><b>${r}</b><div class="eqb" aria-hidden="true"><i></i><i></i><i></i></div></div>${mvHTML(movement(key,it,r))}<div class="cover${it.round?" round":""}" style="background:${cov(it.hue)}">${esc(ini(it.title))}${img(it.img)}</div><div style="min-width:0"><h3>${esc(it.title)}</h3><p class="ar">${esc(it.sub)}</p>${it.meta?`<p class="mm">${esc(it.meta)}</p>`:""}</div><div class="meta">${esc(it.meta)}</div><button class="pb" type="button" tabindex="-1" aria-hidden="true">&#9654;</button></div>`}).join("");
+const f=list[0];$("spot").style.display="";$("spot").style.setProperty("--bg",`url('${src(f.img).replace(/'/g,"%27")}')`);
+$("spot").innerHTML=`<div class="cover${f.round?" round":""}" style="background:${cov(f.hue)}">${esc(ini(f.title))}${img(f.img)}</div><div style="min-width:0"><small>No. 1 · ${esc(gt)}</small><h2>${esc(f.title)}</h2><p>${esc(f.sub)}</p><div class="acts"><button class="btn pri" type="button" data-spot data-song="${f.track.id}">&#9654; Play</button><a class="btn" href="${APP_URL}?track=${f.track.id}">Listen in app</a></div></div>`;
+$("openApp").href=APP_URL+"?track="+f.track.id;$("playChart").dataset.song=f.track.id;
+mark()}
+
+function setChart(k,push){if(!CHARTS.some(c=>c.key===k))return;key=k;if(push)history.replaceState(null,"","#"+k);render()}
+
+/* ===== player: same behaviour as the website hero player and album.html ===== */
+function load(tracks,k,i,go){
+queue=tracks;qKey=k;qi=i;const s=cur();aud.src=src(s.audio);
+$("bArt").style.background=cov(s.hue);$("bArt").innerHTML=esc(ini(s.title))+img(s.img);
+$("bt").textContent=s.title;$("ba").textContent=s.artist;$("td").textContent=s.dur;$("tc").textContent="0:00";$("seek").value=0;
+if("mediaSession"in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:s.title,artist:s.artist,album:"YAPSMusic Charts",artwork:[{src:src(s.img)}]});
+navigator.mediaSession.setActionHandler("play",()=>aud.play());navigator.mediaSession.setActionHandler("pause",()=>aud.pause());
+navigator.mediaSession.setActionHandler("previoustrack",()=>step(-1));navigator.mediaSession.setActionHandler("nexttrack",()=>step(1))}
+if(go)aud.play().catch(()=>{});
+mark()}
+function step(d){if(!queue.length)return;load(queue,qKey,(qi+d+queue.length)%queue.length,true)}
+const playing=()=>!aud.paused&&!aud.ended;
+function mark(){
+const p=playing(),here=!!cur()&&qKey===ck();
+document.querySelectorAll("#list .row").forEach(r=>{const on=here&&+r.dataset.i===qi;r.classList.toggle("on",on);r.classList.toggle("playing",on&&p);r.querySelector(".pb").innerHTML=on&&p?"&#10074;&#10074;":"&#9654;"});
+$("playChart").innerHTML=here&&p?"&#10074;&#10074; Pause chart":"&#9654; Play chart";
+$("pp").innerHTML=p?"&#10074;&#10074;":"&#9654;"}
+const toggle=()=>playing()?aud.pause():aud.play().catch(()=>{});
+function playAt(i){const here=cur()&&qKey===ck();if(here&&qi===i)toggle();else load(list.map(x=>x.track),ck(),i,true)}
+aud.onplay=()=>{$("pbar").classList.add("show");document.body.classList.add("hb");mark()};aud.onpause=mark;
+aud.onended=()=>step(1);
+aud.ontimeupdate=()=>{$("tc").textContent=mmss(aud.currentTime);if(aud.duration)$("seek").value=aud.currentTime/aud.duration*100};
+aud.onerror=()=>{if(aud.getAttribute("src"))$("ba").textContent="Audio could not load. Open it in the app."};
+$("seek").oninput=()=>{if(aud.duration)aud.currentTime=$("seek").value/100*aud.duration};
+$("pp").onclick=toggle;$("prev").onclick=()=>step(-1);$("next").onclick=()=>step(1);
+$("playChart").onclick=()=>{if(!list.length)return;const here=cur()&&qKey===ck();if(here)toggle();else playAt(0)};
+
+/* ===== interaction ===== */
+$("list").addEventListener("click",e=>{const r=e.target.closest(".row");if(r)playAt(+r.dataset.i)});
+$("list").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){const r=e.target.closest(".row");if(r){e.preventDefault();playAt(+r.dataset.i)}}});
+$("spot").addEventListener("click",e=>{if(e.target.closest("[data-spot]"))playAt(0)});
+$("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)setChart(b.dataset.chart,true)});
+$("tabs").addEventListener("keydown",e=>{const k=CHARTS.map(c=>c.key),i=k.indexOf(key);
+const n=e.key==="ArrowRight"?(i+1)%k.length:e.key==="ArrowLeft"?(i-1+k.length)%k.length:e.key==="Home"?0:e.key==="End"?k.length-1:-1;
+if(n<0)return;e.preventDefault();setChart(k[n],true);$("tab-"+k[n]).focus()});
+$("gpills").addEventListener("click",e=>{const b=e.target.closest(".gp");if(!b)return;genre=b.dataset.genre;render()});
+addEventListener("hashchange",()=>setChart(location.hash.slice(1)));
+
+/* ===== site chrome ===== */
+$("yr").textContent=new Date().getFullYear();
+const nav=$("nav"),bg=$("burger"),na=$("navapp");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove("open");bg.setAttribute("aria-expanded",false)}});
+if(window.matchMedia){const mq=matchMedia("(max-width:860px)");na.style.display=mq.matches?"inline-flex":"none";mq.addEventListener("change",e=>na.style.display=e.matches?"inline-flex":"none")}
+
+/* start: #uganda, ?chart=uganda, or Global Top 100 */
+const q0=new URLSearchParams(location.search).get("chart")||location.hash.slice(1);
+if(CHARTS.some(c=>c.key===q0))key=q0;
+render();
+</script>
+</body>
+</html>
