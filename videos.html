@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Videos — YAPSMusic</title>
+<meta name="description" content="Watch the latest and trending music videos from Uganda and East Africa on YAPSMusic.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080808;--navy:#121212;--blue:#7a7a7a;--sky:#9c9c9c;--ice:#dbdbdb;--txt:#f6f6f6;--mute:#c6c6c6;
+--grad:linear-gradient(100deg,#9e9e9e 0%,#a1a1a1 33%,#7c7c7c 66%,#858585 100%);--btn:linear-gradient(100deg,#606060 0%,#808080 100%);
+--glass:rgba(165,165,165,.07);--line:rgba(154,154,154,.25);--r:18px;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:190px;background:var(--ink)}
+body{font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(circle at 8% 0%,rgba(156,156,156,.18),transparent 44%),radial-gradient(circle at 100% 14%,rgba(122,122,122,.2),transparent 48%),radial-gradient(circle at 70% 100%,rgba(96,96,96,.2),transparent 52%),linear-gradient(180deg,var(--ink),#0f0f0f);overflow-x:hidden}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding:30px 0}
+.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;cursor:pointer;transition:transform .15s,background .2s;text-align:center}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.btn.pri{background:var(--btn);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,.4);border:0;box-shadow:0 8px 28px #60606066}
+.btn.sm{padding:8px 16px;font-size:14px}
+/* header */
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(8,8,8,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:var(--grad) 1}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo i{font-style:normal}
+nav{margin-left:auto;display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mute);transition:.2s}
+nav a:hover,nav a.on{color:#ffffff;background:var(--glass)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass)}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#ffffff;margin:auto;position:relative;transition:.25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+html .y3d{font-weight:900;text-transform:uppercase;color:#ffffff;display:inline-block;filter:drop-shadow(1px 1px 0 #4f4f4f) drop-shadow(1px 1px 0 #444444) drop-shadow(1px 1px 0 #424242) drop-shadow(1px 1px 0 #3b3b3b) drop-shadow(0 8px 10px rgba(0,0,0,.55))}
+html .y3d-g{background:var(--grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em;animation:shine 5s linear infinite;filter:drop-shadow(1px 1px 0 #353535) drop-shadow(1px 1px 0 #353535) drop-shadow(0 3px 4px rgba(0,0,0,.5))}
+@keyframes shine{to{background-position:220% 0}}
+/* page title */
+.pt{padding:36px 0 18px;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+.pt h1{font-size:clamp(34px,6vw,60px);line-height:1.04;letter-spacing:-.5px;display:block}
+.pt p{color:var(--mute);max-width:46ch;margin-top:8px}
+/* sticky filter bar */
+.fbar{position:sticky;top:calc(68px + env(safe-area-inset-top,0px));z-index:40;background:linear-gradient(180deg,rgba(8,8,8,.94),rgba(8,8,8,.8));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.frow{display:flex;gap:14px;align-items:center;padding:12px 0 4px}
+.search{position:relative;flex:1;max-width:520px}
+.search svg{position:absolute;left:16px;top:50%;margin-top:-9px;width:18px;height:18px;stroke:var(--sky);fill:none;stroke-width:2;pointer-events:none}
+.search input{width:100%;padding:12px 44px 12px 44px;border-radius:999px;border:1px solid var(--line);background:var(--glass)}
+.search input::placeholder{color:var(--mute)}
+.search input::-webkit-search-cancel-button{display:none}
+.search .x{position:absolute;right:8px;top:50%;margin-top:-16px;width:32px;height:32px;border-radius:50%;display:none;place-items:center;color:var(--mute);font-size:18px}
+.search.has .x{display:grid}
+.sort{margin-left:auto;display:none;align-items:center;gap:8px;font-size:13px;color:var(--mute)}
+.sort.show{display:flex}
+.sort select{background:var(--glass);border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--txt);font-size:14px}
+.sort select option{background:#121212}
+.cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 0 12px;-webkit-overflow-scrolling:touch}
+.cats::-webkit-scrollbar{display:none}
+.cat{flex:none;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;font-size:14px;white-space:nowrap;transition:.2s}
+.cat:hover{background:rgba(165,165,165,.16)}
+.cat[aria-pressed=true]{background:var(--btn);border-color:transparent;color:#ffffff;box-shadow:0 6px 20px #60606055}
+/* section heads */
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px}
+.head h2{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.02em}
+.head p{color:var(--mute);font-size:14px}
+.head .more{color:var(--sky);font-size:14px;font-weight:600;white-space:nowrap}
+.arrows{display:flex;gap:8px}
+.arrows button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--glass);display:grid;place-items:center}
+/* featured */
+.hero{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px}
+.fv{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/9;min-height:300px;background:linear-gradient(135deg,#3b3b3b,#121212);border:1px solid var(--line);box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.fv>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,.05) 25%,rgba(8,8,8,.92));pointer-events:none}
+.fbody{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(18px,3vw,34px);display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.tag{display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(156,156,156,.2);color:var(--ice);font-size:12px;font-weight:700;backdrop-filter:blur(6px)}
+.fbody h2{font-size:clamp(24px,4vw,44px);line-height:1.08;letter-spacing:-.03em;overflow-wrap:anywhere}
+.fby{font-size:clamp(15px,1.8vw,19px);color:var(--ice)}
+.fby a{font-weight:700;border-bottom:2px solid var(--blue)}
+.fmeta{color:var(--mute);font-size:14px}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.rail{display:flex;flex-direction:column;gap:10px;padding:12px}
+.rail h3{font-size:14px;color:var(--mute);font-weight:600;padding:2px 4px 4px}
+.pick{display:flex;gap:12px;align-items:center;padding:8px;border-radius:14px;border:1px solid transparent;transition:.2s;width:100%}
+.pick:hover{background:rgba(165,165,165,.1)}
+.pick.on{border-color:var(--sky);background:rgba(156,156,156,.1)}
+.pick .th{width:118px;flex:none;border-radius:10px}
+.pick .tx{min-width:0}
+.pick b{display:block;font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pick small{color:var(--mute);font-size:13px}
+/* grid + cards */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 18px}
+.th{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#3b3b3b,#121212);box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.vc:hover .th img{transform:scale(1.06)}
+.th::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,8,8,.55));pointer-events:none}
+.pl{position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:var(--btn);display:grid;place-items:center;z-index:2;box-shadow:0 8px 24px #60606088;opacity:.92;transition:transform .2s,opacity .2s}
+.pl svg{width:20px;height:20px;fill:#ffffff;margin-left:3px}
+.vc:hover .pl,.pick:hover .pl{transform:scale(1.1);opacity:1}
+.pick .pl{width:34px;height:34px;margin:-17px 0 0 -17px}.pick .pl svg{width:13px;height:13px}
+.badge{position:absolute;right:8px;bottom:8px;z-index:2;padding:2px 8px;border-radius:6px;background:rgba(8,8,8,.82);font-size:12px;font-weight:600}
+.new{position:absolute;left:8px;top:8px;z-index:2;padding:2px 10px;border-radius:999px;background:var(--btn);font-size:11px;font-weight:800;letter-spacing:.05em}
+.vi{display:flex;gap:12px;margin-top:12px}
+.av{width:38px;height:38px;border-radius:50%;flex:none;position:relative;overflow:hidden;display:grid;place-items:center;font-size:13px;font-weight:800;background:linear-gradient(135deg,#606060,#121212);border:1px solid var(--line)}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vt{font-size:15px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vt:hover{color:var(--ice)}
+.va{display:inline-block;font-size:13px;color:var(--mute);margin-top:2px}.va:hover{color:var(--sky)}
+.vm{font-size:13px;color:var(--mute)}
+/* artists row */
+.arow{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding:4px 2px 10px}
+.arow::-webkit-scrollbar{display:none}
+.ac{flex:none;width:168px;scroll-snap-align:start;padding:16px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .2s,border-color .2s}
+.ac:hover{transform:translateY(-4px);border-color:rgba(156,156,156,.6)}
+.ac.on{border-color:var(--sky);box-shadow:0 0 0 1px var(--sky),0 0 26px #9c9c9c44}
+.ac .av{width:84px;height:84px;font-size:24px}
+.ac b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.ac small{color:var(--mute);font-size:13px}
+.ac .pf{margin-top:6px;font-size:13px;color:var(--sky);font-weight:600}
+/* results */
+.rhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 18px}
+.rhead h2{font-size:clamp(20px,2.6vw,26px);font-weight:900}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 8px 6px 14px;border-radius:999px;border:1px solid var(--sky);background:rgba(156,156,156,.12);color:var(--ice);font-size:13px;font-weight:600}
+.chip button{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:14px;line-height:1}
+.empty{padding:64px 20px;text-align:center;color:var(--mute)}.empty h3{color:#ffffff;font-size:20px;margin-bottom:6px}
+[hidden]{display:none!important}
+/* app promo */
+.promo{padding:clamp(26px,5vw,52px);text-align:center;background:linear-gradient(135deg,rgba(96,96,96,.35),rgba(18,18,18,.8));position:relative;overflow:hidden}
+.promo::before{content:"";position:absolute;width:380px;height:380px;right:-120px;top:-150px;border-radius:50%;background:radial-gradient(#9c9c9c44,transparent 70%)}
+.promo>*{position:relative}
+.promo h2{font-size:clamp(24px,4vw,38px);letter-spacing:-.03em;margin-bottom:8px}
+.promo p{color:var(--mute);max-width:52ch;margin:0 auto 20px}
+/* modal */
+.mod{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));background:rgba(5,5,5,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.mod.open{display:flex}
+.mbox{width:min(980px,100%);max-height:100%;overflow:auto;border-radius:20px;background:#121212;border:1px solid var(--line);box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.frame{position:relative;aspect-ratio:16/9;background:#000000}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.minfo{padding:18px 22px 22px;display:flex;gap:18px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.minfo h2{font-size:clamp(18px,2.6vw,26px);line-height:1.2;letter-spacing:-.02em}
+.minfo p{color:var(--mute);font-size:14px}.minfo p a{color:var(--ice);font-weight:700;border-bottom:1px solid var(--blue)}
+.mclose{position:absolute;right:10px;top:10px;z-index:3;width:40px;height:40px;border-radius:50%;background:rgba(8,8,8,.8);border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
+.mwrap{position:relative;width:min(980px,100%);max-height:100%}
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:30px;padding:40px 0 28px;background:linear-gradient(transparent,#12121266)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+footer h4{font-size:14px;margin-bottom:12px}
+footer ul{padding:0}footer li{list-style:none;margin-bottom:8px}
+footer li a,footer p{color:var(--mute);font-size:14px}footer li a:hover{color:#ffffff}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1020px){.hero{grid-template-columns:1fr}.rail{flex-direction:row;overflow-x:auto;scrollbar-width:none}.rail::-webkit-scrollbar{display:none}.rail h3{display:none}.pick{flex:none;width:250px}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){
+.burger{display:block}
+nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:12px 20px 20px;background:rgba(8,8,8,.96);border-bottom:1px solid var(--line);display:none}
+nav.open{display:flex}nav a{padding:12px 14px;font-size:16px}
+header .bar>.btn{display:none}
+.arrows{display:none}}
+@media(max-width:760px){
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
+.fv{aspect-ratio:auto;min-height:0;display:flex;flex-direction:column}
+.fv>img{position:relative;aspect-ratio:16/9;height:auto}
+.fv::after{display:none}
+.fbody{position:relative;background:linear-gradient(180deg,rgba(18,18,18,.2),#121212);padding:16px}
+.frow{flex-wrap:wrap}.search{max-width:none;flex-basis:100%}.sort{margin-left:0}
+.vi{gap:10px}.av{width:34px;height:34px}}
+@media(max-width:520px){
+.grid{grid-template-columns:1fr}
+.fgrid{grid-template-columns:1fr}
+.acts .btn{flex:1 1 140px}
+.ac{width:146px}.ac .av{width:70px;height:70px}
+.minfo{padding:14px}.mclose{top:6px;right:6px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="icon" href="https://brians124.github.io/YAPSMUSIC.APP/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://brians124.github.io/YAPSMUSIC.APP/icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="https://brians124.github.io/YAPSMUSIC.APP/icons/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="https://brians124.github.io/YAPSMUSIC.APP/icons/apple-touch-icon.png?v=2">
+
+<script src="site.js" defer></script>
+<script src="signup-gate.js" defer></script>
+<script src="hero-player.js" defer></script>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a>
+<nav id="nav" aria-label="Main">
+<a href="index.html">Home</a><a href="music.html">Music</a><a href="artists.html">Artists</a><a href="charts.html">Charts</a><a href="videos.html" class="on" aria-current="page">Videos</a><a href="events.html">Events</a><a href="podcasts.html">Podcasts</a><a href="news.html">News</a><a href="about.html" class="mo">About</a><a href="contact.html" class="mo">Contact</a><a href="join.html" class="mo">For artists</a><a href="download.html" class="mo">Get the app</a><a href="search.html" class="mo">Search</a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/" style="display:none" id="navapp">Open YAPSMusic App</a>
+</nav>
+<a class="sbtn" href="search.html" aria-label="Search YAPSMusic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open App</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+</div>
+</header>
+
+<main>
+<div class="wrap pt">
+<div><h1 class="y3d">Music Videos</h1><p>Watch the newest and most-watched videos from Uganda and East Africa.</p></div>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Watch in the YAPSMusic app</a>
+</div>
+
+<div class="fbar"><div class="wrap">
+<div class="frow">
+<form class="search" id="sbox" role="search" onsubmit="return false">
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input id="q" type="search" placeholder="Search videos or artists" autocomplete="off" aria-label="Search videos or artists">
+<button class="x" id="qx" type="button" aria-label="Clear search">&times;</button>
+</form>
+<label class="sort" id="sortw">Sort by <select id="sort"><option value="new">Newest</option><option value="views">Most viewed</option></select></label>
+</div>
+<div class="cats" id="cats" role="group" aria-label="Video categories"></div>
+</div></div>
+
+<div id="browse">
+<section><div class="wrap">
+<div class="hero">
+<div class="fv" id="fv"></div>
+<div class="glass rail" id="rail"></div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<div class="head"><div><h2>Latest videos</h2><p>Fresh releases from the YAPSMusic catalogue</p></div><button class="more" type="button" data-cat="New Releases">View all</button></div>
+<div class="grid" id="latest"></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="head"><div><h2>Trending videos</h2><p>Most watched right now</p></div><button class="more" type="button" data-cat="Trending">View all</button></div>
+<div class="grid" id="trending"></div>
+</div></section>
+
+<section id="artists"><div class="wrap">
+<div class="head"><div><h2>Artist videos</h2><p>Tap an artist to see all their videos</p></div>
+<div class="arrows"><button type="button" id="aprev" aria-label="Scroll artists left">&#8592;</button><button type="button" id="anext" aria-label="Scroll artists right">&#8594;</button></div></div>
+<div class="arow" id="arow"></div>
+</div></section>
+</div>
+
+<div id="results" hidden><div class="wrap">
+<div class="rhead"><h2 id="rt">Results</h2><div id="rchips" style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
+<div class="grid" id="rgrid"></div>
+<div class="empty" id="rempty" hidden><h3>No videos found</h3><p>Try a different artist, title or category.</p><div class="acts" style="justify-content:center"><button class="btn pri sm" type="button" id="reset">Clear filters</button></div></div>
+</div></div>
+
+<section><div class="wrap">
+<div class="glass promo">
+<h2>More videos in the YAPSMusic app</h2>
+<p>Swipe through short music videos, follow your favourite artists and save songs for offline listening.</p>
+<a class="btn pri" href="https://brians124.github.io/YAPSMUSIC.APP/">Open YAPSMusic App</a>
+</div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" aria-label="YAPS Music home"><span class="yl-bicon" aria-hidden="true"></span><span class="yl-bword">YAPS</span><span class="yl-bmusic">MUSIC</span></a><p style="margin-top:12px;max-width:34ch">Music to the World, from Uganda. Made in Kampala for listeners everywhere.</p></div>
+<div><h4>Discover</h4><ul><li><a href="music.html">Music</a></li><li><a href="songs/index.html">All songs</a></li><li><a href="artists.html">Artists</a></li><li><a href="charts.html">Charts</a></li><li><a href="videos.html">Videos</a></li><li><a href="search.html">Search</a></li></ul></div>
+<div><h4>Explore</h4><ul><li><a href="events.html">Events</a></li><li><a href="podcasts.html">Podcasts</a></li><li><a href="news.html">News</a></li><li><a href="download.html">Get the app</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="join.html">For artists</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+</div>
+<div class="legal"><span>© <span id="yr"></span> YAPSMusic. All rights reserved.</span><span>Kampala, Uganda</span></div>
+</div></footer>
+
+<div class="mod" id="mod" role="dialog" aria-modal="true" aria-label="Video player">
+<div class="mwrap">
+<button class="mclose" id="mclose" type="button" aria-label="Close video">&times;</button>
+<div class="mbox">
+<div class="frame" id="frame"></div>
+<div class="minfo">
+<div style="min-width:0;flex:1 1 260px"><h2 id="mt"></h2><p id="mp"></p></div>
+<div class="acts" style="margin:0"><button class="btn sm" id="mprev" type="button" aria-label="Previous video">&#9198; Prev</button><button class="btn sm" id="mnext" type="button" aria-label="Next video">Next &#9197;</button><a class="btn pri sm" id="mapp" href="#">Open in app</a><a class="btn sm" id="myt" href="#" target="_blank" rel="noopener">YouTube</a></div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+/* ===== DATA ===== */
+const APP_URL="https://brians124.github.io/YAPSMUSIC.APP/"; // app + image host
+const src=p=>/^https?:/.test(p)?p:APP_URL+encodeURI(p);
+/* Videos = every song in the app's catalogue that has a youtubeId (same source the app's Videos page uses).
+   [trackId, title, artist, youtubeId, views (the app's plays count), views as shown in the app, genre, isNew, isTrending, isUgandan, duration] */
+const RAW=[[201,"Yoyo","Joshua Baraka","GIH4nhli-AU",0,"0","Afrobeats",1,1,1,"2:25"],[199,"Sikiwa","Fik Fameica","zmL2NtUx4TM",0,"0","Afrobeats",1,1,1,"3:13"],[197,"Finally","Spice Diana","kmEt-GrhOmw",0,"0","Afrobeats",1,1,1,"2:51"],[166,"Middle","Vinka","KBmzuYfeUBs",210000,"210K","Afropop",0,0,1,"2:47"],[159,"Nassanga (Remix)","Kalifah AgaNaga ft. Eddy Kenzo, Winnie Nwagi, Lil Pazo & Weasel","Oo4FWZItRG4",0,"0","Afrobeats",1,1,1,"3:44"],[156,"Daddy","Da Agent","EnqwpH-o8Vk",0,"0","Afrobeats",0,1,1,"3:30"],[1,"P2","King Saha","LBcF336FgLU",2300000,"2.3M","Luganda Pop",0,1,1,"3:52"],[2,"Wano Wano","Rema Namakula","iK3pZsh_VUg",1900000,"1.9M","Afropop",0,1,1,"4:05"],[3,"Kunsi","Vyroota","j8yrA_VqIx4",1700000,"1.7M","Luganda Pop",0,1,1,"3:28"],[5,"Champion Gal","Fik Fameica","OvlZ8F3jw40",1600000,"1.6M","Afrobeats",1,1,1,"3:29"],[6,"Angella","John Blaq","swx07W7bbXM",1800000,"1.8M","Afropop",1,1,1,"3:41"],[8,"Ngezaako","John Blaq","uW92OYG1zgk",2000000,"2.0M","Luganda Pop",0,1,1,"3:58"],[9,"Nsi Namba","TPaul ft. Sheebah","013iZB8p8UU",1500000,"1.5M","Afrobeats",0,1,1,"3:35"],[12,"Wrong Places","Joshua Baraka & JAE5","UEw79RUpK6w",1300000,"1.3M","Afrobeats",0,1,1,"3:37"],[21,"Addict","Azawi","xM8ka6vdreA",1400000,"1.4M","Afrobeats",0,1,1,"3:45"],[23,"Go","Karole Kasita","iNg24Ka0lxY",820000,"820K","Afropop",1,1,1,"3:27"],[28,"Wewe","King Saha","R5P_-lEws6Q",1000000,"1.0M","Luganda Pop",0,0,1,"3:54"],[34,"Somebody","Sheebah","DQwHtxNq0cg",850000,"850K","Afrobeats",0,1,1,"3:44"],[37,"Anaconda","Lutty Neika & Bravion Emcee","MCxuPwjDDcs",810000,"810K","Afrobeats",0,1,1,"3:26"],[53,"Da Re","Sheebah Karungi","WRtrQQlZaH8",680000,"680K","Afropop",0,1,1,"3:31"],[55,"Nze Nakiriza","Spice Diana & Vyroota","ZXWU94BqOO4",720000,"720K","Afrobeats",1,0,1,"3:38"],[58,"Valu Valu","Jose Chameleone","VzKhEPuSl3U",4099999,"4.1M","Luganda Pop",0,0,1,"4:02"],[83,"Love You Everyday","Bebe Cool","tRG5g0iDy5E",2900000,"2.9M","Afropop",0,0,1,"3:59"]];
+const ARTISTS=[{"name":"Jose Chameleone","img":"images/Jose Chameleon.jpg","followers":"1.5M"},{"name":"Bobi Wine","img":"images/bobi_wine.jpg","followers":"1.3M"},{"name":"Bebe Cool","img":"images/Bebe Cool.png","followers":"1.1M"},{"name":"King Saha","img":"images/king saha.jpg","followers":"1.1M"},{"name":"John Blaq","img":"images/John blaq.png","followers":"980K"},{"name":"Rema Namakula","img":"images/Rema_Namakula.png","followers":"920K"},{"name":"Vyroota","img":"images/Vyroota.png","followers":"740K"},{"name":"Fik Fameica","img":"images/Fik_Fameica.png","followers":"870K"},{"name":"Azawi","img":"images/Azawi.png","followers":"810K"},{"name":"Joshua Baraka","img":"images/Joshua_Baraka.png","followers":"650K"},{"name":"Sheebah","img":"images/Sheebah.jpg","followers":"1.0M"},{"name":"Vinka","img":"images/Vinka.png","followers":"590K"},{"name":"Alien Skin","img":"images/Alien_Skin.png","followers":"720K"},{"name":"Spice Diana","img":"images/Spice_Diana.png","followers":"560K"},{"name":"Kapeke","img":"images/Kapeke.png","followers":"480K"},{"name":"Pawaboy","img":"images/Pawaboy.jpg","followers":"420K"},{"name":"Winnie Nwagi","img":"images/Winnie_Nwagi.png","followers":"680K"},{"name":"A Pass","img":"images/Apass.png","followers":"450K"},{"name":"Ben Hunter","img":"images/Ben_Hunter.png","followers":"380K"},{"name":"Liam Voice","img":"images/Liam_Voice.png","followers":"290K"},{"name":"Karole Kasita","img":"images/Carol Kasita.jpg","followers":"340K"},{"name":"Elijah Kitaka","img":"images/Eliaja Kitaka.png","followers":"260K"},{"name":"Princess Amila","img":"images/Princess_Amila.png","followers":"New"},{"name":"Mose Radio","img":"images/Mose_Radio.png","followers":"New"},{"name":"Kateleya","img":"images/Kateleya_Cando.png","followers":"New"},{"name":"Cando","img":"images/Kateleya_Cando.png","followers":"New"},{"name":"Navio","img":"images/Navio.png","followers":"New"},{"name":"Eddy Kenzo","img":"images/Eddy_Kenzo.png","followers":"New"},{"name":"Zexs Bilangilanji","img":"images/Zexs_Bilangilanji.png","followers":"New"},{"name":"Prosper","img":"images/Prosper.png","followers":"New"},{"name":"Bruno K","img":"images/Bruno_K.png","followers":"New"},{"name":"Wizomanzo","img":"images/Wizomanzo.png","followers":"New"},{"name":"B2C","img":"images/B2C.png","followers":"New"},{"name":"Daddy Andre","img":"images/Daddy_Andre.png","followers":"New"},{"name":"Da Agent","img":"images/Da_Agent.png","followers":"New"},{"name":"Radio & Weasel","img":"images/Mose_Rhadio.png","followers":"890K"},{"name":"Juliana Kanyomozi","img":"images/Julian Kanyomo.png","followers":"820K"},{"name":"Pallaso","img":"images/pallaso.jpg","followers":"610K"},{"name":"Maurice Kirya","img":"https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&q=80","followers":"430K"},{"name":"Ykee Benda","img":"images/Yk bend.png","followers":"520K"},{"name":"Levixone","img":"images/levixon.jpg","followers":"480K"},{"name":"Wilson Bugembe","img":"https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=300&q=80","followers":"390K"},{"name":"Irene Ntale","img":"https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&q=80","followers":"450K"},{"name":"Lydia Jazmine","img":"https://images.unsplash.com/photo-1506157786151-b8491531f063?w=300&q=80","followers":"370K"},{"name":"Feffe Bussi","img":"images/Fefe_Bussi.png","followers":"340K"},{"name":"GNL Zamba","img":"https://images.unsplash.com/photo-1544785349-c4a5301826fd?w=300&q=80","followers":"310K"},{"name":"Blu*3","img":"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&q=80","followers":"280K"},{"name":"Jackie Chandiru","img":"https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&q=80","followers":"260K"},{"name":"Benon & Vamposs","img":"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80","followers":"220K"},{"name":"Coco Finger","img":"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&q=80","followers":"200K"},{"name":"Paulo Kafeero","img":"https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80","followers":"Classic"},{"name":"Herman Basudde","img":"https://images.unsplash.com/photo-1501386761578-eaa54b516f05?w=300&q=80","followers":"Classic"},{"name":"Fred Sebatta","img":"https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=300&q=80","followers":"Classic"},{"name":"Elly Wamala","img":"https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&q=80","followers":"Classic"},{"name":"Philly Lutaaya","img":"https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=300&q=80","followers":"Legend"},{"name":"Afrigo Band","img":"https://images.unsplash.com/photo-1468164016595-6108e4c60b8d?w=300&q=80","followers":"Legend"},{"name":"David Lutalo","img":"https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=300&q=80","followers":"350K"},{"name":"Jamal Wasswa","img":"https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&q=80","followers":"180K"},{"name":"Ava Peace","img":"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80","followers":"New"},{"name":"Lutty Neika","img":"images/Anaconda_Lutty_Neika_Bravion_Emcee.png","followers":"New"},{"name":"Bravion Emcee","img":"images/Anaconda_Lutty_Neika_Bravion_Emcee.png","followers":"New"},{"name":"Jowy Landa","img":"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&q=80","followers":"New"},{"name":"Cindy Sanyu","img":"images/Cindy_Sanyu.png","followers":"New"},{"name":"Acidic Vokoz","img":"https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&q=80","followers":"New"},{"name":"Dax Vibez","img":"https://images.unsplash.com/photo-1554151228-14d9def656e4?w=300&q=80","followers":"New"},{"name":"Ray G","img":"https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&q=80","followers":"New"},{"name":"Crysto Panda","img":"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80","followers":"New"},{"name":"Gravity Omutujju","img":"images/Gravity_Omutujju.png","followers":"New"},{"name":"Maureen Nantume","img":"images/Maureen_Nantume.png","followers":"New"},{"name":"Carol Nantongo","img":"https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=300&q=80","followers":"New"},{"name":"An-Known","img":"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80","followers":"New"},{"name":"Mudra D Viral","img":"images/Mudra_D_Viral.png","followers":"New"},{"name":"Fik Gaza","img":"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80","followers":"New"},{"name":"Grenade Official","img":"images/Grenade_Official.png","followers":"New"},{"name":"Goodlyfe Crew","img":"https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?w=300&q=80","followers":"New"},{"name":"Mesach Semakula","img":"https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80","followers":"New"},{"name":"Sophie Nantongo","img":"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&q=80","followers":"New"},{"name":"Ragga Dee","img":"images/Ragga_Dee.png","followers":"New"},{"name":"Martha Mukisa","img":"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80","followers":"New"},{"name":"Shanita","img":"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80","followers":"New"},{"name":"T-Paul","img":"images/T-Paul.png","followers":"New"},{"name":"James Ploh","img":"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&q=80","followers":"New"},{"name":"Kiboo","img":"https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&q=80","followers":"New"},{"name":"Dokta Brain","img":"images/Dokta_Brain.png","followers":"New"},{"name":"Gloria Bugie","img":"images/Gloria_Bugie.png","followers":"New"}]; // [{name,img,followers}] from the app's `artists` array
+/* ===== SETTINGS — add real numbers/dates here and the page uses them =====
+   VIDEO_META: {trackId: {date:"2026-09-30", views:125000}}  (date = upload date, views overrides the app's count) */
+const VIDEO_META={};
+const FEATURED_ID=null; // trackId of the featured video, or null = newest release
+const ALIAS={"Sheebah Karungi":"Sheebah"};
+
+/* ===== helpers ===== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ini=s=>s.split(" ").filter(Boolean).map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const lead=a=>{const n=a.split(/\s+(?:ft\.?|feat\.?|&)\s+|\s*,\s*/i)[0].trim();return ALIAS[n]||n};
+const fmt=n=>n>=1e6?(n/1e6).toFixed(n>=1e7?0:1).replace(/\.0$/,"")+"M":n>=1e3?Math.round(n/1e3)+"K":String(n);
+const hq=y=>`https://img.youtube.com/vi/${y}/hqdefault.jpg`,mq=y=>`https://img.youtube.com/vi/${y}/maxresdefault.jpg`;
+const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>';
+const artistUrl=n=>"artist.html?artist="+encodeURIComponent(n);
+function ago(ds){const d=new Date(ds);if(isNaN(d))return"";const days=Math.floor((Date.now()-d)/864e5);
+if(days<=0)return"Today";if(days===1)return"Yesterday";if(days<7)return days+" days ago";
+if(days<30){const w=Math.floor(days/7);return w+(w===1?" week":" weeks")+" ago"}
+if(days<365){const m=Math.floor(days/30);return m+(m===1?" month":" months")+" ago"}
+const y=Math.floor(days/365);return y+(y===1?" year":" years")+" ago"}
+
+/* ===== model ===== */
+const V=RAW.map(r=>{const m=VIDEO_META[r[0]]||{},v=m.views!=null?m.views:r[4];
+return{id:r[0],title:r[1],artist:r[2],lead:lead(r[2]),yt:r[3],views:v,vs:m.views!=null?fmt(m.views):r[5],genre:r[6],n:!!r[7],t:!!r[8],u:!!r[9],dur:r[10],date:m.date?+new Date(m.date):0,dateText:m.date?ago(m.date):""}});
+const BY={};V.forEach(v=>BY[v.id]=v);
+const newest=(a,b)=>b.date-a.date||b.id-a.id;
+const viewed=(a,b)=>b.views-a.views||b.id-a.id;
+const viewsText=v=>v.views>0?v.vs+" views":"";
+const metaText=v=>{const p=[viewsText(v),v.dateText].filter(Boolean);return p.length?p.join(" · "):v.n?"New release":"Official video"};
+const avatarOf=n=>{const a=ARTISTS.find(x=>x.name===n);return a?a.img:null};
+const GENRES=[...new Set(V.map(v=>v.genre))];
+const CATS=["All","Trending","New Releases",...GENRES];
+const FEATURED=(()=>{const first=BY[FEATURED_ID];const pool=[...V.filter(v=>v.n).sort(newest).slice(0,3),...V.slice().sort(viewed).slice(0,2)];
+const list=[];[first,...pool].forEach(v=>{if(v&&!list.includes(v))list.push(v)});return list.slice(0,5)})();
+
+/* ===== templates ===== */
+const thumb=(v,big)=>`<img src="${esc(big?mq(v.yt):hq(v.yt))}" alt="" loading="${big?"eager":"lazy"}" ${big?`onload="if(this.naturalWidth<400)this.src='${hq(v.yt)}'"`:""} onerror="this.onerror=null;this.src='${hq(v.yt)}'">`;
+const av=n=>{const p=avatarOf(n);return`<span class="av">${esc(ini(n))}${p?`<img src="${esc(src(p))}" alt="" loading="lazy" onerror="this.remove()">`:""}</span>`};
+const card=v=>`<article class="vc"><button class="th" type="button" data-v="${v.id}" aria-label="Play ${esc(v.title)} by ${esc(v.artist)}">${thumb(v)}${v.n?'<span class="new">NEW</span>':""}<span class="pl">${PLAY}</span>${v.dur?`<span class="badge">${esc(v.dur)}</span>`:""}</button>
+<div class="vi">${av(v.lead)}<div style="min-width:0"><h3><button class="vt" type="button" data-v="${v.id}">${esc(v.title)}</button></h3><a class="va" href="${artistUrl(v.lead)}">${esc(v.artist)}</a><p class="vm">${esc(metaText(v))}</p></div></div></article>`;
+
+/* ===== state ===== */
+const st={cat:"All",q:"",artist:null,sort:"new",hero:null};
+let modalList=[],mi=-1,lastFocus=null;
+
+function renderCats(){$("cats").innerHTML=CATS.map(c=>`<button class="cat" type="button" data-cat="${esc(c)}" aria-pressed="${c===st.cat}">${esc(c)}</button>`).join("")}
+
+function renderHero(){
+const v=BY[st.hero]||FEATURED[0];if(!v)return;st.hero=v.id;
+$("fv").innerHTML=`${thumb(v,true)}<div class="fbody"><span class="tag">Featured video</span><h2>${esc(v.title)}</h2><p class="fby">by <a href="${artistUrl(v.lead)}">${esc(v.artist)}</a></p><p class="fmeta">${esc(metaText(v))}${v.dur?" · "+esc(v.dur):""}</p><div class="acts"><button class="btn pri" type="button" data-v="${v.id}">&#9654; Play video</button><a class="btn" href="${APP_URL}?track=${v.id}">Open in app</a><button class="btn" type="button" data-artist="${esc(v.lead)}">More from ${esc(v.lead)}</button></div></div>`;
+$("rail").innerHTML=`<h3>Featured picks</h3>`+FEATURED.map(f=>`<button class="pick${f.id===v.id?" on":""}" type="button" data-pick="${f.id}" aria-label="Feature ${esc(f.title)}"><span class="th">${thumb(f)}<span class="pl">${PLAY}</span></span><span class="tx"><b>${esc(f.title)}</b><small>${esc(f.artist)}</small></span></button>`).join("")}
+
+function renderBrowse(){
+$("latest").innerHTML=V.filter(v=>v.n).sort(newest).slice(0,8).map(card).join("");
+$("trending").innerHTML=V.filter(v=>v.t).sort(viewed).slice(0,8).map(card).join("");
+const by={};V.forEach(v=>{(by[v.lead]=by[v.lead]||[]).push(v)});
+$("arow").innerHTML=Object.entries(by).sort((a,b)=>b[1].length-a[1].length||b[1].reduce((s,v)=>s+v.views,0)-a[1].reduce((s,v)=>s+v.views,0)).map(([n,vs])=>`<div class="glass ac${st.artist===n?" on":""}"><button type="button" data-artist="${esc(n)}" style="display:flex;flex-direction:column;align-items:center;gap:4px;width:100%" aria-label="Show ${vs.length} video${vs.length===1?"":"s"} by ${esc(n)}">${av(n)}<b>${esc(n)}</b><small>${vs.length} video${vs.length===1?"":"s"}</small></button><a class="pf" href="${artistUrl(n)}">View artist</a></div>`).join("")}
+
+function filtered(){
+const q=st.q.trim().toLowerCase();
+let l=V.filter(v=>(st.cat==="All"||(st.cat==="Trending"?v.t:st.cat==="New Releases"?v.n:v.genre===st.cat))&&(!st.artist||v.lead===st.artist)&&(!q||(v.title+" "+v.artist+" "+v.genre).toLowerCase().includes(q)));
+return l.sort(st.sort==="views"?viewed:newest)}
+
+function update(){
+const browse=st.cat==="All"&&!st.q.trim()&&!st.artist;
+$("browse").hidden=!browse;$("results").hidden=browse;$("sortw").classList.toggle("show",!browse);
+$("sbox").classList.toggle("has",!!st.q);renderCats();
+if(browse)return;
+const l=filtered();
+$("rt").textContent=l.length+(l.length===1?" video":" videos");
+const chips=[];if(st.cat!=="All")chips.push(["cat",st.cat]);if(st.artist)chips.push(["artist","By "+st.artist]);if(st.q.trim())chips.push(["q","“"+st.q.trim()+"”"]);
+$("rchips").innerHTML=chips.map(c=>`<span class="chip">${esc(c[1])}<button type="button" data-clear="${c[0]}" aria-label="Remove filter ${esc(c[1])}">&times;</button></span>`).join("");
+$("rgrid").innerHTML=l.map(card).join("");$("rempty").hidden=!!l.length;$("rgrid").hidden=!l.length}
+
+function go(patch,scroll){Object.assign(st,patch);update();if(scroll){const t=st.cat==="All"&&!st.q&&!st.artist?"browse":"results";const el=$(t);if(el&&!el.hidden)scrollTo({top:el.getBoundingClientRect().top+scrollY-200,behavior:"smooth"})}}
+
+/* ===== modal player (YouTube embed) ===== */
+function listFor(id){const l=!$("results").hidden?filtered():[...V.filter(v=>v.n).sort(newest).slice(0,8),...V.filter(v=>v.t).sort(viewed).slice(0,8)];
+const seen=new Set(),out=[];[BY[id],...l].forEach(v=>{if(v&&!seen.has(v.id)){seen.add(v.id);out.push(v)}});return out}
+function openV(id){
+if(!BY[id])return;const m=$("mod");if(!m.classList.contains("open"))lastFocus=document.activeElement;
+const l=!$("results").hidden?filtered():listFor(id);modalList=l.includes(BY[id])?l:listFor(id);mi=modalList.indexOf(BY[id]);showV()}
+function showV(){
+const v=modalList[mi];if(!v)return;
+$("frame").innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.yt)}?autoplay=1&rel=0&playsinline=1" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+$("mt").textContent=v.title;
+$("mp").innerHTML=`<a href="${artistUrl(v.lead)}">${esc(v.artist)}</a> · ${esc(metaText(v))}`;
+$("mapp").href=APP_URL+"?track="+v.id;$("myt").href="https://www.youtube.com/watch?v="+encodeURIComponent(v.yt);
+const multi=modalList.length>1;$("mprev").hidden=$("mnext").hidden=!multi;
+$("mod").classList.add("open");document.body.classList.add("lock");$("mclose").focus()}
+function closeV(){$("mod").classList.remove("open");document.body.classList.remove("lock");$("frame").innerHTML="";if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+const stepV=d=>{if(modalList.length<2)return;mi=(mi+d+modalList.length)%modalList.length;showV()};
+
+/* ===== events ===== */
+document.addEventListener("click",e=>{
+const t=e.target;
+let b=t.closest("[data-v]");if(b){openV(+b.dataset.v);return}
+b=t.closest("[data-pick]");if(b){st.hero=+b.dataset.pick;renderHero();return}
+b=t.closest("[data-artist]");if(b){go({artist:b.dataset.artist,cat:"All",q:""},true);$("q").value="";return}
+b=t.closest("[data-cat]");if(b){go({cat:b.dataset.cat},b.classList.contains("more"));return}
+b=t.closest("[data-clear]");if(b){const k=b.dataset.clear;if(k==="cat")go({cat:"All"});else if(k==="artist")go({artist:null});else{$("q").value="";go({q:""})}return}
+if(t===$("mod"))closeV()});
+$("reset").onclick=()=>{$("q").value="";go({cat:"All",q:"",artist:null})};
+$("q").addEventListener("input",e=>go({q:e.target.value}));
+$("qx").onclick=()=>{$("q").value="";go({q:""});$("q").focus()};
+$("sort").onchange=e=>go({sort:e.target.value});
+$("mclose").onclick=closeV;$("mprev").onclick=()=>stepV(-1);$("mnext").onclick=()=>stepV(1);
+document.addEventListener("keydown",e=>{
+if(!$("mod").classList.contains("open"))return;
+if(e.key==="Escape")closeV();
+else if(e.key==="ArrowLeft")stepV(-1);else if(e.key==="ArrowRight")stepV(1);
+else if(e.key==="Tab"){const f=[...$("mod").querySelectorAll("button,a[href],iframe")].filter(x=>!x.hidden&&x.offsetParent!==null);if(!f.length)return;
+const i=f.indexOf(document.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}});
+const sc=d=>$("arow").scrollBy({left:d*($("arow").clientWidth*.8),behavior:"smooth"});
+$("aprev").onclick=()=>sc(-1);$("anext").onclick=()=>sc(1);
+
+/* ===== site chrome ===== */
+$("yr").textContent=new Date().getFullYear();
+const nav=$("nav"),bg=$("burger"),na=$("navapp");
+bg.onclick=()=>{const o=nav.classList.toggle("open");bg.setAttribute("aria-expanded",o)};
+nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove("open");bg.setAttribute("aria-expanded",false)}});
+if(window.matchMedia){const m=matchMedia("(max-width:860px)");na.style.display=m.matches?"inline-flex":"none";m.addEventListener("change",e=>na.style.display=e.matches?"inline-flex":"none")}
+
+/* ===== start. Deep links: ?video=<trackId>  ?artist=<name>  ?q=<text> ===== */
+const P=new URLSearchParams(location.search);
+if(P.get("artist")){const a=P.get("artist").toLowerCase(),hit=V.find(v=>v.lead.toLowerCase()===a);if(hit)st.artist=hit.lead}
+if(P.get("q")){st.q=P.get("q");$("q").value=st.q}
+renderHero();renderBrowse();update();
+if(P.get("video")&&BY[+P.get("video")])openV(+P.get("video"));
+</script>
+</body>
+</html>
